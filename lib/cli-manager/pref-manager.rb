@@ -6,6 +6,8 @@ module CLIManager
   #  those to a user via a prompt, and collect the results.
   #  ======================================================
   class PrefManager
+    include CLIMessenger
+
     #  ====================================================
     #  Attributes
     #  ====================================================
@@ -46,15 +48,15 @@ module CLIManager
         end
       
         if p[:options].nil?
-          pref = CLIMessage::prompt(p[:prompt], p[:default])
+          pref = prompt(p[:prompt], p[:default])
         else
           valid_option_chosen = false
           until valid_option_chosen
-            pref = CLIMessage::prompt(p[:prompt], p[:default])
+            pref = prompt(p[:prompt], p[:default])
             if p[:options].include?(pref)
               valid_option_chosen = true
             else
-              CLIMessage.error("Invalid option chosen: #{ pref }")
+              error("Invalid option chosen: #{ pref }")
             end
           end
         end
@@ -62,8 +64,6 @@ module CLIManager
         p[:answer] = pref
         @answers << p
       end
-    
-      p @answers
     end
 
     #  ----------------------------------------------------

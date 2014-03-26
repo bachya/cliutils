@@ -1,4 +1,14 @@
 #!/usr/bin/env ruby
 require 'cli-manager.rb'
 
-p 'here'
+include CLIManager::CLIMessenger
+
+error('test')
+warning('This is a really long warning, okay? It should start to wrap in STDOUT.')
+info('This is a really long bit of info that should span multiple lines if it knows what to do.')
+success('weeee!')
+section('SECTION')
+
+pm = CLIManager::PrefManager.new(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'test/test_files/prefstest.yaml'))
+pm.deliver
+p pm.answers
