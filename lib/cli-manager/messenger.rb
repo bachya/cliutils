@@ -11,7 +11,7 @@ module CLIManager
   #  CLIMessenger Module
   #  Outputs color-coordinated messages to a CLI
   #  ======================================================
-  module CLIMessenger
+  module Messenger
     #  ====================================================
     #  Methods
     #  ====================================================

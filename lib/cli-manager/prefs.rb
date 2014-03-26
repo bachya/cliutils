@@ -5,8 +5,8 @@ module CLIManager
   #  Engine to derive preferences from a YAML file, deliver
   #  those to a user via a prompt, and collect the results.
   #  ======================================================
-  class PrefManager
-    include CLIMessenger
+  class Prefs
+    include Messenger
 
     #  ====================================================
     #  Attributes

@@ -1,14 +1,21 @@
 #!/usr/bin/env ruby
 require 'cli-manager.rb'
+require 'logger'
 
-include CLIManager::CLIMessenger
+# error('test')
+# warning('This is a really long warning, okay? It should start to wrap in STDOUT.')
+# info('This is a really long bit of info that should span multiple lines if it knows what to do.')
+# success('weeee!')
+# section('SECTION')
+# 
+# pm = CLIManager::PrefManager.new(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'test/test_files/prefstest.yaml'))
+# pm.deliver
+# p pm.answers
 
-error('test')
-warning('This is a really long warning, okay? It should start to wrap in STDOUT.')
-info('This is a really long bit of info that should span multiple lines if it knows what to do.')
-success('weeee!')
-section('SECTION')
+stdout_logger = Logger.new(STDOUT)
+stdout_logger = proc do |severity, datetime, progname, msg|
+   "NICE: #{msg}\n"
+end
 
-pm = CLIManager::PrefManager.new(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'test/test_files/prefstest.yaml'))
-pm.deliver
-p pm.answers
+log = CLILogger.new(stdout_logger)
+p log
