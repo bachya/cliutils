@@ -12,10 +12,16 @@ require 'logger'
 # pm.deliver
 # p pm.answers
 
+include CLIManager::Messenging
+
+file_logger = Logger.new('test.txt')
 stdout_logger = Logger.new(STDOUT)
-stdout_logger = proc do |severity, datetime, progname, msg|
-   "NICE: #{msg}\n"
+stdout_logger.formatter = proc do |severity, datetime, progname, msg|
+  send(severity.downcase, msg)
 end
 
-log = CLILogger.new(stdout_logger)
-p log
+log = CLILogger.new(stdout_logger, file_logger)
+log.info('This is a really long info string that should wrap itself at some point.')
+log.warn('test')
+log.success('test')
+log.section('test')

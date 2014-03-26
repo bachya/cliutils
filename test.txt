@@ -1,0 +1,15 @@
+# Logfile created on 2014-03-26 11:31:03 -0600 by logger.rb/44203
+W, [2014-03-26T11:31:03.685419 #59708]  WARN -- : test
+I, [2014-03-26T11:31:31.653708 #59745]  INFO -- : This is a really long info string that should wrap itself at some point.
+W, [2014-03-26T11:31:31.653850 #59745]  WARN -- : test
+I, [2014-03-26T11:32:20.157624 #59768]  INFO -- : This is a really long info string that should wrap itself at some point.
+W, [2014-03-26T11:32:20.157762 #59768]  WARN -- : test
+I, [2014-03-26T11:32:51.507429 #59800]  INFO -- : This is a really long info string that should wrap itself at some point.
+W, [2014-03-26T11:32:51.507566 #59800]  WARN -- : test
+I, [2014-03-26T11:33:58.739247 #59834]  INFO -- : This is a really long info string that should wrap itself at some point.
+W, [2014-03-26T11:33:58.739389 #59834]  WARN -- : test
+S, [2014-03-26T11:33:58.739506 #59834] SUCCESS -- : test
+I, [2014-03-26T11:34:11.586699 #59868]  INFO -- : This is a really long info string that should wrap itself at some point.
+W, [2014-03-26T11:34:11.586819 #59868]  WARN -- : test
+S, [2014-03-26T11:34:11.586892 #59868] SUCCESS -- : test
+S, [2014-03-26T11:34:11.586966 #59868] SECTION -- : test

@@ -11,7 +11,7 @@ module CLIManager
   #  CLIMessenger Module
   #  Outputs color-coordinated messages to a CLI
   #  ======================================================
-  module Messenger
+  module Messenging
     #  ====================================================
     #  Methods
     #  ====================================================
@@ -156,7 +156,7 @@ module CLIManager
     #  @param m The message to output
     #  @return Void
     #  ----------------------------------------------------
-    def warning(m)
+    def warn(m)
       puts word_wrap(m, '# ').yellow
     end
     
