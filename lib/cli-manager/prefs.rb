@@ -6,8 +6,6 @@ module CLIManager
   #  those to a user via a prompt, and collect the results.
   #  ======================================================
   class Prefs
-    include Messenging
-
     #  ====================================================
     #  Attributes
     #  ====================================================

@@ -1,27 +1,11 @@
 #!/usr/bin/env ruby
 require 'cli-manager.rb'
-require 'logger'
-
-# error('test')
-# warning('This is a really long warning, okay? It should start to wrap in STDOUT.')
-# info('This is a really long bit of info that should span multiple lines if it knows what to do.')
-# success('weeee!')
-# section('SECTION')
-# 
-# pm = CLIManager::PrefManager.new(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'test/test_files/prefstest.yaml'))
-# pm.deliver
-# p pm.answers
 
 include CLIManager::Messenging
 
-file_logger = Logger.new('test.txt')
-stdout_logger = Logger.new(STDOUT)
-stdout_logger.formatter = proc do |severity, datetime, progname, msg|
-  send(severity.downcase, msg)
-end
-
-log = CLILogger.new(stdout_logger, file_logger)
-log.info('This is a really long info string that should wrap itself at some point.')
-log.warn('test')
-log.success('test')
-log.section('test')
+messenger.info('This is a really long info string that should wrap itself at some point.')
+messenger.attach('test.txt')
+messenger.warn('test')
+messenger.success('test')
+messenger.detach('test.txt')
+messenger.section('test')
