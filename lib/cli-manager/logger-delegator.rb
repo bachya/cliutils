@@ -32,7 +32,7 @@ class LoggerDelegator
   #  @return void
   #  ----------------------------------------------------  
   def attach(target)
-    @targets << Logger.new(target)
+    @targets << target
     LoggerDelegator.delegate_all
   end
 
@@ -60,7 +60,7 @@ class LoggerDelegator
   #  @return void
   #  ----------------------------------------------------  
   def detach(target)
-    @targets.delete()
+    @targets.delete(target)
     LoggerDelegator.delegate_all
   end
 end
