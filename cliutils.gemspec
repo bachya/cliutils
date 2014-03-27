@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'cli-manager/version'
+require 'cliutils/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "cli-manager"
-  spec.version       = CLIManager::VERSION
+  spec.name          = "cliutils"
+  spec.version       = CLIUtils::VERSION
   spec.authors       = ["Aaron Bach"]
   spec.email         = ["bachya1208@googlemail.com"]
   spec.summary       = %q{TODO: Write a short summary. Required.}

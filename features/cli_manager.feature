@@ -4,7 +4,7 @@ Feature: My bootstrapped app kinda works
   So I don't have to do it myself
 
   Scenario: App just runs
-    When I get help for "cli-manager"
+    When I get help for "cliutils"
     Then the exit status should be 0
     And the banner should be present
     And the banner should document that this app takes options

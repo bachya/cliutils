@@ -1,4 +1,4 @@
-module CLIManager
+module CLIUtils
   #  ======================================================
   #  PrefManager Class
   #
@@ -6,6 +6,7 @@ module CLIManager
   #  those to a user via a prompt, and collect the results.
   #  ======================================================
   class Prefs
+    include PrettyIO
     #  ====================================================
     #  Attributes
     #  ====================================================
@@ -20,14 +21,23 @@ module CLIManager
     #  Reads prompt data from YAML file.
     #  @return Void
     #  ----------------------------------------------------
-    def initialize(yaml_path)
-      if File.exists?(yaml_path)
-        @config_path = yaml_path
-        @prompts = YAML.load_file(yaml_path)
-        @answers = []
-        @deferred = []
+    def initialize(data)
+      @answers = []
+      @deferred = []
+      
+      case data
+      when String
+        if File.exists?(data)
+          @config_path = data
+          @prompts = YAML.load_file(data)
+        else
+          fail "Invalid configuration file: #{ yaml_path }"
+        end
+      when Array
+        @config_path = nil
+        @prompts = {:prompts => data}
       else
-        fail "Invalid preferences file: #{ yaml_path }"
+        fail 'Invalid configuration data'
       end
     end
 
@@ -38,7 +48,7 @@ module CLIManager
     #  answers from the user.
     #  @return Void
     #  ----------------------------------------------------
-    def deliver
+    def ask
       @prompts[:prompts].each do |p|
         if p[:requirements]
           @deferred << p
@@ -62,20 +72,6 @@ module CLIManager
         p[:answer] = pref
         @answers << p
       end
-    end
-
-    #  ----------------------------------------------------
-    #  deep_merge! method
-    #
-    #  Deep merges two hashes.
-    #  deep_merge by Stefan Rusterholz;
-    #  see http://www.ruby-forum.com/topic/142809
-    #  @return Void
-    #  ----------------------------------------------------
-    def deep_merge!(target, data)
-      merger = proc{|key, v1, v2|
-        Hash === v1 && Hash === v2 ? v1.merge(v2, &merger) : v2 }
-      target.merge! data, &merger
     end
   end
 end

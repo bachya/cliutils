@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require 'cliutils.rb'
+
+# include CLIManager::Messenging
+# 
+# file_logger = Logger.new('test.txt')
+# file_logger2 = Logger.new('test2.txt')
+# file_logger2.level = Logger::Severity::ERROR
+# 
+# messenger.info('This is a really long info string that should wrap itself at some point.')
+# messenger.attach(file_logger)
+# messenger.attach(file_logger2)
+# messenger.warn('test')
+# messenger.success('test')
+# messenger.detach(file_logger)
+# messenger.section('test')
+
+include CLIManager::Configuration
+
+load_configuration('~/.test')
+configuration.add_section(:test) unless configuration.data.key?(:test)
+configuration.test.merge!(name: 'Aaron')
+
+# p = CLIManager::Prefs.new(File.join(File.expand_path(File.dirname(__FILE__)),'..', 'test/test_files/prefstest.yaml'))
+
+arr = [{:prompt=>"What is the hostname of your DD-WRT router?", :default=>"192.168.1.1", :key=>"hostname", :section=>"ssh_info"}, {:prompt=>"What is the SSH username of your DD-WRT router?", :default=>"root", :key=>"username", :section=>"ssh_info"}, {:prompt=>"What SSH port does your DD-WRT router use?", :default=>22, :key=>"port", :section=>"ssh_info"}, {:prompt=>"How do you use password or key authentication?", :default=>"password", :key=>"auth_method", :section=>"ssh_info", :options=>["password", "key"]}, {:prompt=>"Where is your key located?", :default=>"~/.ssh", :key=>"key_location", :section=>"ssh_info", :requirements=>[{:key=>"auth_method", :value=>"key"}]}, {:prompt=>"What is your password?", :key=>"password", :section=>"ssh_info", :requirements=>[{:key=>"auth_method", :value=>"password"}]}]
+p = CLIManager::Prefs.new(arr)
+
+p p.prompts
+# p.ask
+# configuration.ingest_prefs(p)
+# 
+# configuration.save

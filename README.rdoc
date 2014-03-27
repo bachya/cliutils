@@ -1,4 +1,4 @@
-= cli-manager - DESCRIBE YOUR GEM
+= cliutils - DESCRIBE YOUR GEM
 
 Author::  YOUR NAME (YOUR EMAIL)
 Copyright:: Copyright (c) 2014 YOUR NAME
