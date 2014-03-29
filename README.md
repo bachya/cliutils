@@ -93,6 +93,8 @@ messenger.warn('Hey pal, you need to be careful.')
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-warn.png "A Warning from Messenger")
 
+### Messenging Methods
+
 `messenger` gives you access to several basic methods:
 
 * `messenger.error`: used to show a formatted-red error message.
@@ -112,7 +114,29 @@ messenger.success('But Luke still blew up the Death Star!')
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-types-1.png "Basic Messenger Types")
 
-`messenger` is smart enough to wrap your
+`messenger` also includes two "block" methods that allow you to wrap program execution in messages that are "longer-term".
+
+```Ruby
+messenger.info_block('Starting up...', 'Done!', multiline = false) { # do stuff here }
+```
+
+`messenger` outputs 'Starting up...', runs the code in `# do stuff here`, and once complete, outputs 'Done!' on the same line. Note that `section_block` is the same exact signature (except for the method name, of course!).
+
+### Prompting
+
+`messenger` also carries a convenient method to prompt your users to give input (including an optional default). It makes use of `readline`, so you can do cool things like text expansion of paths.
+
+```Ruby
+p = messenger.prompt('Are you a fan of Battlestar Galactica?', default = 'Y')
+messenger.info("You answered: #{ p }")
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prompting.png "Prompting")
+
+### Message Wrapping
+
+`messenger` is kind enough to wrap your messages, too, so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
+
+
 
 # Contributing
 

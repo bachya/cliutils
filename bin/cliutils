@@ -8,11 +8,8 @@ require 'cliutils.rb'
 include CLIUtils::Messenging
 
 puts ''
-messenger.section('STARTING ATTACK RUN...')
-messenger.info('Beginning strafing run...')
-messenger.warn('WARNING: Tie Fighters approaching!')
-messenger.error('Porkins died :(')
-messenger.success('But Luke still blew up the Death Star!')
+p = messenger.prompt('Are you a fan of Battlestar Galactica?', default = 'Y')
+messenger.info("You answered: #{ p }")
 puts ''
 # # 
 # # file_logger = Logger.new('test.txt')
