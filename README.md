@@ -15,35 +15,48 @@ It's fairly simple:
 
 Add this line to your application's Gemfile:
 
-    gem 'cliutils'
+```bash
+$ gem 'cliutils'
+```
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
-Or install it yourself as:
+Or install it yourself:
 
-    $ gem install cliutils
+```bash
+$ gem install cliutils
+```
 
-# PrettyIO
+# Usage
+
+```ruby
+require 'cliutils'
+```
+
+## PrettyIO
 
 First stop on our journey is better client IO. To activate, simply mix into your project:
 
-```
+```ruby
 include CLIUtils::PrettyIO
 ```
 
-## Colorized Strings
+### Colorized Strings
 
 The first feature that PrettyIO affords you is colorized strings:
 
-```
+```ruby
 puts 'A sample string'.red
 ```
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
 
-## Contributing
+# Contributing
 
-1. Fork it ( http://github.com/<my-github-username>/cliutils/fork )
+1. Fork it ( http://github.com/bachya/cliutils/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
