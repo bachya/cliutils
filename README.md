@@ -122,6 +122,22 @@ messenger.info_block('Starting up...', 'Done!', multiline = false) { # do stuff 
 
 `messenger` outputs 'Starting up...', runs the code in `# do stuff here`, and once complete, outputs 'Done!' on the same line. Note that `section_block` is the same exact signature (except for the method name, of course!).
 
+### Message Wrapping
+
+PrettyIO also gives `messenger` the ability to wrap your messages so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
+
+```Ruby
+wrap_amount(50)
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+puts ''
+wrap_amount(20)
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+puts ''
+wrap(false)
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/wrapping.png "Text Wrapping")
+
 ### Prompting
 
 `messenger` also carries a convenient method to prompt your users to give input (including an optional default). It makes use of `readline`, so you can do cool things like text expansion of paths.
@@ -131,10 +147,6 @@ p = messenger.prompt('Are you a fan of Battlestar Galactica?', default = 'Y')
 messenger.info("You answered: #{ p }")
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prompting.png "Prompting")
-
-### Message Wrapping
-
-`messenger` is kind enough to wrap your messages, too, so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
 
 
 

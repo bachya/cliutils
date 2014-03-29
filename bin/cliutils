@@ -8,8 +8,14 @@ require 'cliutils.rb'
 include CLIUtils::Messenging
 
 puts ''
-p = messenger.prompt('Are you a fan of Battlestar Galactica?', default = 'Y')
-messenger.info("You answered: #{ p }")
+wrap_amount(50)
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+puts ''
+wrap_amount(20)
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+puts ''
+wrap(false)
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
 # # 
 # # file_logger = Logger.new('test.txt')

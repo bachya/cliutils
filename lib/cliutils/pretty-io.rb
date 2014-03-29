@@ -12,6 +12,7 @@ module CLIUtils
   #  Outputs color-coordinated messages to a CLI
   #  ======================================================
   module PrettyIO
+    @@wrap = true
     @@wrap_char_limit = 40
 
     #  ====================================================
@@ -182,11 +183,33 @@ module CLIUtils
       puts _word_wrap(m, '# ').yellow
     end
 
-    def self.wrap_amount
+    #  ----------------------------------------------------
+    #  wrap method
+    #
+    #  Toggles wrapping on or off
+    #  @return Integer
+    #  ----------------------------------------------------
+    def wrap(on)
+      @@wrap = on
+    end
+
+    #  ----------------------------------------------------
+    #  wrap_amount method
+    #
+    #  Returns the current character wrap amount
+    #  @return Integer
+    #  ----------------------------------------------------
+    def wrap_amount
       @@wrap_char_limit
     end
-    
-    def self.wrap_amount=(chars)
+
+    #  ----------------------------------------------------
+    #  wrap_amount method
+    #
+    #  Sets the number of characters at which to wrap
+    #  @return Integer
+    #  ----------------------------------------------------
+    def wrap_amount(chars)
       @@wrap_char_limit = chars
     end
     
@@ -203,8 +226,12 @@ module CLIUtils
     #  @return String
     #  ----------------------------------------------------
     def _word_wrap(text, prefix_str) 
-      return text if @@wrap_char_limit <= 0
-      text.gsub(/\n/, ' ').gsub(/(.{1,#{@@wrap_char_limit - prefix_str.length}})(\s+|$)/, "#{ prefix_str }\\1\n").strip
+      if @@wrap
+        return text if @@wrap_char_limit <= 0
+        text.gsub(/\n/, ' ').gsub(/(.{1,#{@@wrap_char_limit - prefix_str.length}})(\s+|$)/, "#{ prefix_str }\\1\n").strip
+      else
+        text
+      end
     end
   end
 end

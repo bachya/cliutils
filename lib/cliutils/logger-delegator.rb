@@ -23,6 +23,7 @@ module CLIUtils
     #  ----------------------------------------------------
     def initialize(*targets)
       @targets = targets
+      LoggerDelegator.delegate
     end
 
     #  ----------------------------------------------------
@@ -33,6 +34,22 @@ module CLIUtils
     #  ----------------------------------------------------  
     def attach(target)
       @targets << target
+      LoggerDelegator.delegate
+    end
+
+    #  ----------------------------------------------------
+    #  delegate_all method
+    #
+    #  Creates delegator methods for all of the methods
+    #  on IO.
+    #  @return void
+    #  ----------------------------------------------------
+    def self.delegate
+      %w(log debug info warn error section success).each do |m|
+        define_method(m) do |*args|
+          @targets.map { |t| t.send(m, *args) }
+        end
+      end
     end
 
     #  ----------------------------------------------------
@@ -43,12 +60,7 @@ module CLIUtils
     #  ----------------------------------------------------  
     def detach(target)
       @targets.delete(target)
-    end
-    
-    %w(log debug info warn error section success).each do |m|
-        define_method(m) do |*args|
-            @targets.map { |t| t.send(m, *args) }
-        end
+      LoggerDelegator.delegate
     end
   end
 end
