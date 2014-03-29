@@ -179,7 +179,7 @@ messenger.section('This section message should appear only in STDOUT')
 ```
 
 In STDOUT:
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/multi-logging.png "Multi-logging")
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/multi-logger.png "Multi-logging")
 
 ...and in `file.txt`:
 
