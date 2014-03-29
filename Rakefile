@@ -5,9 +5,9 @@ require 'rdoc/task'
 require 'cucumber'
 require 'cucumber/rake/task'
 Rake::RDocTask.new do |rd|
-  rd.main = "README.rdoc"
-  rd.rdoc_files.include("README.rdoc","lib/**/*.rb","bin/**/*")
-  rd.title = 'Your application title'
+  rd.main = "README.md"
+  rd.rdoc_files.include("README.md","lib/**/**/*.rb")
+  rd.title = 'CLIUtils'
 end
 
 spec = eval(File.read('cliutils.gemspec'))

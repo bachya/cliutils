@@ -102,7 +102,7 @@ color_chart
 Throughout the life of your application, you will most likely want to send several messages to your user (warnings, errors, info, etc.). Messenging makes this a snap. It, too, is a mixin:
 
 ```ruby
-include CLIUtil::Messenging
+include CLIUtils::Messenging
 ```
 
 Once mixed in, you get access to `messenger`, a type of Logger that uses PrettyIO to send nicely-formatted messages to your user. For example, if you'd like to warn your user:
@@ -146,10 +146,10 @@ messenger.info_block('Starting up...', 'Done!', multiline = false) { # do stuff 
 PrettyIO also gives `messenger` the ability to wrap your messages so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
 
 ```Ruby
-CLIUtils::PrettyIO::wrap_amount(50)
+CLIUtils::PrettyIO::wrap_at(50)
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
-CLIUtils::PrettyIO::wrap_amount(20)
+CLIUtils::PrettyIO::wrap_at(20)
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
 CLIUtils::PrettyIO::wrap(false)
@@ -208,7 +208,7 @@ Since you can attach Logger objects, each can have it's own format and severity 
 CLIUtils offers two "things" -- a `Configurator` class and a `Configuration` module that provides access to a shared instance of `Configurator` -- that make managing a user's configuration parameters easy. Mix it in!
 
 ```Ruby
-include CLIUtil::Configuration
+include CLIUtils::Configuration
 ```
 
 ### Loading a Configuration File

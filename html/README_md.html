@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>README - CLIUtils</title>
+
+<link href="./fonts.css" rel="stylesheet">
+<link href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/search_index.js"></script>
+<script src="./js/search.js"></script>
+<script src="./js/searcher.js"></script>
+<script src="./js/darkfish.js"></script>
+
+
+<body id="top" role="document" class="file">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+<div class="nav-section">
+  <h3>Table of Contents</h3>
+
+  <ul class="link-list" role="directory">
+    <li><a href="#label-CLIUtils">CLIUtils</a>
+    <li><a href="#label-Why%3F">Why?</a>
+    <li><a href="#label-Installation">Installation</a>
+    <li><a href="#label-Usage">Usage</a>
+    <li><a href="#label-Libraries">Libraries</a>
+    <li><a href="#label-PrettyIO">PrettyIO</a>
+    <li><a href="#label-Messenging">Messenging</a>
+    <li><a href="#label-Messenging+Methods">Messenging Methods</a>
+    <li><a href="#label-Message+Wrapping">Message Wrapping</a>
+    <li><a href="#label-Prompting">Prompting</a>
+    <li><a href="#label-Logging">Logging</a>
+    <li><a href="#label-Configuration">Configuration</a>
+    <li><a href="#label-Loading+a+Configuration+File">Loading a Configuration File</a>
+    <li><a href="#label-Adding%2FRemoving+Sections">Adding/Removing Sections</a>
+    <li><a href="#label-Adding+Data+to+Sections">Adding Data to Sections</a>
+    <li><a href="#label-Saving+to+a+File">Saving to a File</a>
+    <li><a href="#label-Known+Issues">Known Issues</a>
+    <li><a href="#label-Bugs+and+Feature+Requests">Bugs and Feature Requests</a>
+    <li><a href="#label-Contributing">Contributing</a>
+    <li><a href="#label-License">License</a>
+  </ul>
+</div>
+
+
+  <div id="project-metadata">
+    <div id="fileindex-section" class="nav-section">
+  <h3>Pages</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./README_md.html">README</a>
+  
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-label="Page README.md">
+
+<h1 id="label-CLIUtils"><a href="CLIUtils.html">CLIUtils</a><span><a href="#label-CLIUtils">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p><a href="CLIUtils.html">CLIUtils</a> is a library of functionality designed
+to alleviate common tasks and headaches when developing command-line (CLI)
+apps in Ruby.</p>
+
+<h1 id="label-Why%3F">Why?<span><a href="#label-Why%3F">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>It&#39;s fairly simple:</p>
+<ol><li>
+<p>I love developing Ruby-based CLI apps.</p>
+</li><li>
+<p>I found myself copy/pasting common code from one to another.</p>
+</li><li>
+<p>I decided to do something about it.</p>
+</li></ol>
+
+<h1 id="label-Installation">Installation<span><a href="#label-Installation">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>Add this line to your application&#39;s Gemfile:</p>
+
+<pre>$ gem &#39;cliutils&#39;</pre>
+
+<p>And then execute:</p>
+
+<pre>$ bundle</pre>
+
+<p>Or install it yourself:</p>
+
+<pre>$ gem install cliutils</pre>
+
+<h1 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<pre class="ruby"><span class="ruby-identifier">require</span> <span class="ruby-string">&#39;cliutils&#39;</span>
+</pre>
+
+<p>If you want to mix in everything that <a href="CLIUtils.html">CLIUtils</a>
+has to offer:</p>
+
+<pre>include CLIUtils</pre>
+
+<p>Alternatively, as described below, mix in only the libraries that you want.</p>
+
+<p>Note that although this <a href="README_md.html">README.md</a> is
+extensive, it may not cover all methods. Check out the <a
+href="https://github.com/bachya/cli-utils/tree/master/test">tests</a> to
+see more examples.</p>
+
+<h1 id="label-Libraries">Libraries<span><a href="#label-Libraries">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p><a href="CLIUtils.html">CLIUtils</a> offers:</p>
+<ul><li>
+<p><a href="https://github.com/bachya/cli-utils#prettyio">PrettyIO</a>:
+nicer-looking CLI messages</p>
+</li><li>
+<p><a href="https://github.com/bachya/cli-utils#messenging">Messenging</a>: a
+full-featured <a href="Logger.html">Logger</a></p>
+</li><li>
+<p><a
+href="https://github.com/bachya/cli-utils#configuration">Configuration</a>:
+a app configuration manager</p>
+</li><li>
+<p><a href="https://github.com/bachya/cli-utils#prefs">Prefs</a>: a
+preferences prompter and manager</p>
+</li></ul>
+
+<h2 id="label-PrettyIO">PrettyIO<span><a href="#label-PrettyIO">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>First stop on our journey is better client IO. To activate, simply mix into
+your project:</p>
+
+<pre class="ruby"><span class="ruby-identifier">include</span> <span class="ruby-constant">CLIUtils</span><span class="ruby-operator">::</span><span class="ruby-constant">PrettyIO</span>
+</pre>
+
+<p>PrettyIO affords you colorized strings:</p>
+
+<pre class="ruby"><span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;A sample string&#39;</span>.<span class="ruby-identifier">red</span>
+</pre>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-red-text.png"></p>
+
+<p>PrettyIO gives you utility methods for the common ANSI color codes:</p>
+
+<pre class="ruby"><span class="ruby-constant">String</span>.<span class="ruby-identifier">blue</span>
+<span class="ruby-constant">String</span>.<span class="ruby-identifier">cyan</span>
+<span class="ruby-constant">String</span>.<span class="ruby-identifier">green</span>
+<span class="ruby-constant">String</span>.<span class="ruby-identifier">purple</span>
+<span class="ruby-constant">String</span>.<span class="ruby-identifier">red</span>
+<span class="ruby-constant">String</span>.<span class="ruby-identifier">white</span>
+<span class="ruby-constant">String</span>.<span class="ruby-identifier">yellow</span>
+</pre>
+
+<p>You also get the <code>colorize</code> method, which allows you to define
+more complex color combinations. For example, to get some nice purple text
+on a gnarly green background:</p>
+
+<pre class="ruby"><span class="ruby-identifier">puts</span> <span class="ruby-string">&#39;A sample string&#39;</span>.<span class="ruby-identifier">colorize</span>(<span class="ruby-string">&#39;35;42&#39;</span>)
+</pre>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-gnarly-text.png"></p>
+
+<p>Naturally, memorizing the ANSI color scheme is a pain, so PrettyIO gives
+you a convenient method to look up these color combinations:</p>
+
+<pre class="ruby"><span class="ruby-identifier">color_chart</span>
+</pre>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png"></p>
+
+<h2 id="label-Messenging">Messenging<span><a href="#label-Messenging">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p>Throughout the life of your application, you will most likely want to send
+several messages to your user (warnings, errors, info, etc.). Messenging
+makes this a snap. It, too, is a mixin:</p>
+
+<pre class="ruby"><span class="ruby-identifier">include</span> <span class="ruby-constant">CLIUtils</span><span class="ruby-operator">::</span><span class="ruby-constant">Messenging</span>
+</pre>
+
+<p>Once mixed in, you get access to <code>messenger</code>, a type of <a
+href="Logger.html">Logger</a> that uses PrettyIO to send nicely-formatted
+messages to your user. For example, if you&#39;d like to warn your user:</p>
+
+<pre class="ruby"><span class="ruby-identifier">messenger</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-string">&#39;Hey pal, you need to be careful.&#39;</span>)
+</pre>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-warn.png"></p>
+
+<h3 id="label-Messenging+Methods">Messenging Methods<span><a href="#label-Messenging+Methods">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>messenger</code> gives you access to several basic methods:</p>
+<ul><li>
+<p><code>messenger.error</code>: used to show a formatted-red error message.</p>
+</li><li>
+<p><code>messenger.info</code>: used to show a formatted-blue infomational
+message.</p>
+</li><li>
+<p><code>messenger.section</code>: used to show a formatted-purple sectional
+message.</p>
+</li><li>
+<p><code>messenger.success</code>: used to show a formatted-green success
+message.</p>
+</li><li>
+<p><code>messenger.yellow</code>: used to show a formatted-yellow warning
+message.</p>
+</li></ul>
+
+<p>Let&#39;s see an example that uses them all:</p>
+
+<pre>messenger.section(&#39;STARTING ATTACK RUN...&#39;)
+messenger.info(&#39;Beginning strafing run...&#39;)
+messenger.warn(&#39;WARNING: Tie Fighters approaching!&#39;)
+messenger.error(&#39;Porkins died :(&#39;)
+messenger.success(&#39;But Luke still blew up the Death Star!&#39;)</pre>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-types-1.png"></p>
+
+<p><code>messenger</code> also includes two “block” methods that allow you to
+wrap program execution in messages that are “longer-term”.</p>
+
+<pre>messenger.info_block(&#39;Starting up...&#39;, &#39;Done!&#39;, multiline = false) { # do stuff here }</pre>
+
+<p><code>messenger</code> outputs &#39;Starting up…&#39;, runs the code in
+<code># do stuff here</code>, and once complete, outputs &#39;Done!&#39; on
+the same line. Note that <code>section_block</code> is the same exact
+signature (except for the method name, of course!).</p>
+
+<h3 id="label-Message+Wrapping">Message Wrapping<span><a href="#label-Message+Wrapping">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>PrettyIO also gives <code>messenger</code> the ability to wrap your
+messages so that they don&#39;t span off into infinity. You can even
+control what the wrap limit (in characters) is:</p>
+
+<pre>CLIUtils::PrettyIO::wrap_at(50)
+messenger.info(&#39;This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.&#39;)
+puts &#39;&#39;
+CLIUtils::PrettyIO::wrap_at(20)
+messenger.info(&#39;This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.&#39;)
+puts &#39;&#39;
+CLIUtils::PrettyIO::wrap(false)
+messenger.info(&#39;This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.&#39;)</pre>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/wrapping.png"></p>
+
+<h3 id="label-Prompting">Prompting<span><a href="#label-Prompting">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p><code>messenger</code> also carries a convenient method to prompt your
+users to give input (including an optional default). It makes use of
+<code>readline</code>, so you can do cool things like text expansion of
+paths.</p>
+
+<pre>p = messenger.prompt(&#39;Are you a fan of Battlestar Galactica?&#39;, default = &#39;Y&#39;)
+messenger.info(&quot;You answered: #{ p }&quot;)</pre>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prompting.png"></p>
+
+<h3 id="label-Logging">Logging<span><a href="#label-Logging">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Often, it&#39;s desirable to log messages as they appear to your user.
+<code>messenging</code> makes this a breeze by allowing you to attach and
+detach <a href="Logger.html">Logger</a> instances at will.</p>
+
+<p>For instance, let&#39;s say you wanted to log a few messages to both your
+user&#39;s STDOUT and to <code>file.txt</code>:</p>
+
+<pre>file_logger = Logger.new(&#39;file.txt&#39;)
+
+messenger.info(&#39;This should only appear in STDOUT.&#39;)
+
+messenger.attach(file_logger)
+
+messenger.warn(&#39;This warning should appear in STDOUT and file.txt&#39;)
+messenger.error(&#39;This error should appear in STDOUT and file.txt&#39;)
+messenger.debug(&#39;This debug message should only appear in file.txt&#39;)
+
+messenger.detach(file_logger)
+
+messenger.section(&#39;This section message should appear only in STDOUT&#39;)</pre>
+
+<p>In STDOUT:</p>
+
+<p><img
+src="https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/multi-logger.png"></p>
+
+<p>…and in <code>file.txt</code>:</p>
+
+<pre>W, [2014-03-29T15:14:34.844406 #4497]  WARN -- : This warning should appear in STDOUT and file.txt
+E, [2014-03-29T15:14:34.844553 #4497] ERROR -- : This error should appear in STDOUT and file.txt
+D, [2014-03-29T15:14:34.844609 #4497] DEBUG -- : This debug message should only appear in file.txt</pre>
+
+<p>Since you can attach <a href="Logger.html">Logger</a> objects, each can
+have it&#39;s own format and severity level. Cool!</p>
+
+<h2 id="label-Configuration">Configuration<span><a href="#label-Configuration">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+
+<p><a href="CLIUtils.html">CLIUtils</a> offers two “things” – a
+<code>Configurator</code> class and a <code>Configuration</code> module
+that provides access to a shared instance of <code>Configurator</code> –
+that make managing a user&#39;s configuration parameters easy. Mix it in!</p>
+
+<pre>include CLIUtils::Configuration</pre>
+
+<h3 id="label-Loading+a+Configuration+File">Loading a Configuration File<span><a href="#label-Loading+a+Configuration+File">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<pre>load_configuration(&#39;~/.my-app-config&#39;)</pre>
+
+<p>If there&#39;s data in there, it will be consumed into
+<code>configuration</code>&#39;s <code>data</code> property.</p>
+
+<h3 id="label-Adding%2FRemoving+Sections">Adding/Removing Sections<span><a href="#label-Adding%2FRemoving+Sections">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>Sections are top levels of the configuration file and are managed via the
+<code>configuration</code> object:</p>
+
+<pre>configuration.add_section(:user_data)
+configuration.add_section(:program_data)
+configuration.delete_section(:program_data)</pre>
+
+<h3 id="label-Adding+Data+to+Sections">Adding Data to Sections<span><a href="#label-Adding+Data+to+Sections">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>There are two ways data can be managed in <code>configuration</code>: via
+its <code>@data</code> property or via some magic methods; your call:</p>
+
+<pre>configuration.data[:user_data].merge!(username: &#39;bob&#39;)
+# OR
+configuration.user_data.merge!(username: &#39;bob&#39;)</pre>
+
+<h3 id="label-Saving+to+a+File">Saving to a File<span><a href="#label-Saving+to+a+File">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+
+<p>When you&#39;re ready to save your configuration data to a YAML file:</p>
+
+<pre>configuration.save</pre>
+
+<p>Note that all your keys are converted to strings before saving (and,
+likewise, are converted to symbols, when loading). Assuming we used the
+commands above, we could expect this to be the contents of
+<code>~/.my-app-config</code>:</p>
+
+<pre>---
+user_data:
+  username: bob</pre>
+
+<h1 id="label-Known+Issues">Known Issues<span><a href="#label-Known+Issues">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+<ul><li>
+<p>LoggerDelegator doesn&#39;t currently know what to do with
+<code>messenger.prompt</code>, so you&#39;ll have to manually log a
+<code>debug</code> message if you want that information logged.</p>
+</li></ul>
+
+<h1 id="label-Bugs+and+Feature+Requests">Bugs and Feature Requests<span><a href="#label-Bugs+and+Feature+Requests">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>To report bugs with or suggest features/changes for <a
+href="CLIUtils.html">CLIUtils</a>, please use the <a
+href="http://github.com/bachya/cli-utils/issues">Issues Page</a>.</p>
+
+<h1 id="label-Contributing">Contributing<span><a href="#label-Contributing">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>Contributions are welcome and encouraged. To contribute:</p>
+<ol><li>
+<p>Fork it ( <a
+href="http://github.com/bachya/cliutils/fork">github.com/bachya/cliutils/fork</a>
+)</p>
+</li><li>
+<p>Create your feature branch (<code>git checkout -b my-new-feature</code>)</p>
+</li><li>
+<p>Commit your changes (<code>git commit -am &#39;Add some
+feature&#39;</code>)</p>
+</li><li>
+<p>Push to the branch (<code>git push origin my-new-feature</code>)</p>
+</li><li>
+<p>Create new Pull Request</p>
+</li></ol>
+
+<h1 id="label-License">License<span><a href="#label-License">&para;</a> <a href="#documentation">&uarr;</a></span></h1>
+
+<p>(The MIT License)</p>
+
+<p>Copyright © 2014 Aaron Bach <a
+href="mailto:bachya1208@gmail.com">bachya1208@gmail.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&#39;Software&#39;), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to permit
+persons to whom the Software is furnished to do so, subject to the
+following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED &#39;AS IS&#39;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</main>
+
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="http://rdoc.rubyforge.org">RDoc</a> 4.1.1.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

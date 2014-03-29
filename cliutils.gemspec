@@ -4,24 +4,25 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'cliutils/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "cliutils"
-  spec.version       = CLIUtils::VERSION
-  spec.authors       = ["Aaron Bach"]
-  spec.email         = ["bachya1208@googlemail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.name             = "cliutils"
+  spec.version          = CLIUtils::VERSION
+  spec.authors          = ["Aaron Bach"]
+  spec.email            = ["bachya1208@googlemail.com"]
+  spec.summary          = 'a library of functionality designed to alleviate common tasks and headaches when developing command-line (CLI) apps in Ruby.'
+  spec.description      = 'a library of functionality designed to alleviate common tasks and headaches when developing command-line (CLI) apps in Ruby.'
+  spec.homepage         = "https://github.com/bachya/cli-utils"
+  spec.license          = "MIT"
+                        
+  spec.files            = `git ls-files -z`.split("\x0")
+  spec.executables      = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files       = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths    = ["lib"]
+  
+  spec.has_rdoc         = true
+  spec.extra_rdoc_files = ['README.md'  ,'test.rdoc']
+  spec.rdoc_options << '--title' << 'CLIUtils' << '--main' << 'README.md' << '-ri'
 
-  spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
-
-  spec.add_development_dependency "bundler", "~> 1.5"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency("bundler", "~> 1.5")
   spec.add_development_dependency('rdoc')
-  spec.add_development_dependency('aruba')
   spec.add_development_dependency('rake', '~> 0.9.2')
-  spec.add_dependency('methadone', '~> 1.3.2')
 end

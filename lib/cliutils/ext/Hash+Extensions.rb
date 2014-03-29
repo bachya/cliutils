@@ -1,7 +1,7 @@
 #  ======================================================
 #  Hash Class
 #
-#  Contains many convenient methods borred from Rails
+#  Contains many convenient methods borrowed from Rails
 #  http://api.rubyonrails.org/classes/Hash.html
 #  ======================================================
 class Hash

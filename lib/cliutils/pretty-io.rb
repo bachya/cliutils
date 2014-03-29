@@ -212,22 +212,22 @@ module CLIUtils
     end
 
     #  ----------------------------------------------------
-    #  wrap_amount method
+    #  wrap_limit method
     #
     #  Returns the current character wrap amount
     #  @return Integer
     #  ----------------------------------------------------
-    def self.wrap_amount
+    def self.wrap_limit
       @@wrap_char_limit
     end
 
     #  ----------------------------------------------------
-    #  wrap_amount method
+    #  wrap_at method
     #
     #  Sets the number of characters at which to wrap
     #  @return Integer
     #  ----------------------------------------------------
-    def self.wrap_amount(chars)
+    def self.wrap_at(chars)
       @@wrap_char_limit = chars
     end
     
