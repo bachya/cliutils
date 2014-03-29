@@ -1,0 +1,11 @@
+lib/cliutils.rb d9df8016853e34d15d313e4b31e9372f774e1a1e
+lib/cliutils/prefs.rb ff05c575b2b369a1ddf4c1a2b5d967817dca9169
+lib/cliutils/version.rb 878b4b132480b6f152a92bfb25d3df9ec01afb68
+lib/cliutils/pretty-io.rb cb9180bfab92bac8de7d2596bca1d75b75bbd5e4
+lib/cliutils/messenging.rb 4a09e017169a879edc9721039452021a8bed2744
+lib/cliutils/configurator.rb 66021010c3d747db51917eab88f1d249ce4fe03a
+lib/cliutils/configuration.rb 1de2d1b17294954071ddda7227a71501d07a8ae3
+lib/cliutils/logger-delegator.rb e8f2454faf305ed1a7a882e15a87a683684bb333
+lib/cliutils/ext/Hash+Extensions.rb e47f73d02132978ed166e8f7d320b147a9397ea1
+lib/cliutils/ext/Logger+Extensions.rb f37fc1c860e1f1ccca1671c8ae09cac23e4a2812
+lib/cliutils/ext/String+Extensions.rb 651d2853ccb9f94767af1d7199fdc83df44778d7
