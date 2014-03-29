@@ -45,6 +45,8 @@ include CLIUtils
 
 Alternatively, as described below, mix in only the libraries that you want.
 
+Note that although this README.md is extensive, it may not cover all methods. Check out the [tests](https://github.com/bachya/cli-utils/tree/master/test) to see more examples.
+
 # Libraries
 
 CLIUtils offers:
@@ -200,6 +202,48 @@ D, [2014-03-29T15:14:34.844609 #4497] DEBUG -- : This debug message should only 
 ```
 
 Since you can attach Logger objects, each can have it's own format and severity level. Cool!
+
+## Configuration
+
+CLIUtils offers two "things" -- a `Configurator` class and a `Configuration` module -- that make managing a user's configuration parameters easy.
+
+### Loading a Configuration File
+
+```Ruby
+load_configuration('~/.my-app-config')
+```
+
+If there's data in there, it will be consumed into `configuration`'s `data` property.
+
+### Adding/Removing Sections
+
+Sections are top levels of the configuration file and are managed via the `configuration` object:
+
+```Ruby
+configuration.add_section(:user_data)
+configuration.add_section(:program_data)
+configuration.delete_section(:user_data)
+```
+
+### Adding Data to Sections
+
+There are two ways data can be managed in `configuration`: via its `@data` property or via some magic methods; your call:
+
+```Ruby
+configuration.data[:user_data].merge!(username: 'bob')
+
+configuration.user_data.merge!(username: 'bob)
+```
+
+### Saving to a File
+
+When you're ready to save your configuration data to a YAML file:
+
+```Ruby
+configuration.save
+```
+
+Note that all your keys are converted to strings before saving (and, likewise, are converted to symbols, when loading).
 
 # Known Issues
 
