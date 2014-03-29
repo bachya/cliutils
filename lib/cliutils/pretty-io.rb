@@ -26,9 +26,9 @@ module CLIUtils
     #  @param k The includer
     #  @return Void
     #  ----------------------------------------------------
-    def self.included(k)
-      k.extend(self)
-    end
+    # def self.included(k)
+    #   k.extend(self)
+    # end
 
     #  ----------------------------------------------------
     #  color_chart method

@@ -8,13 +8,13 @@ require 'cliutils.rb'
 include CLIUtils::Messenging
 
 puts ''
-wrap_amount(50)
+CLIUtils::PrettyIO::wrap_amount(50)
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
-wrap_amount(20)
+CLIUtils::PrettyIO::wrap_amount(20)
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
-wrap(false)
+CLIUtils::PrettyIO::wrap(false)
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
 # # 
