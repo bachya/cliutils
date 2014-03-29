@@ -26,9 +26,9 @@ module CLIUtils
     #  @param k The includer
     #  @return Void
     #  ----------------------------------------------------
-    # def self.included(k)
-    #   k.extend(self)
-    # end
+    def self.included(k)
+      k.extend(self)
+    end
 
     #  ----------------------------------------------------
     #  color_chart method
@@ -49,6 +49,15 @@ module CLIUtils
         end
       end
     end
+
+    #  ----------------------------------------------------
+    #  debug method
+    #
+    #  Empty method so that Messenging doesn't freak
+    #  out when passed a debug message.
+    #  @return Void
+    #  ----------------------------------------------------
+    def debug(m); end
 
     #  ----------------------------------------------------
     #  error method
@@ -100,6 +109,15 @@ module CLIUtils
         fail 'Did not specify a valid block'
       end
     end
+
+    #  ----------------------------------------------------
+    #  log method
+    #
+    #  Empty method so that Messenging doesn't freak
+    #  out when passed a debug message.
+    #  @return Void
+    #  ----------------------------------------------------
+    def log(m); end
 
     #  ----------------------------------------------------
     #  prompt method
@@ -189,7 +207,7 @@ module CLIUtils
     #  Toggles wrapping on or off
     #  @return Integer
     #  ----------------------------------------------------
-    def wrap(on)
+    def self.wrap(on)
       @@wrap = on
     end
 
@@ -199,7 +217,7 @@ module CLIUtils
     #  Returns the current character wrap amount
     #  @return Integer
     #  ----------------------------------------------------
-    def wrap_amount
+    def self.wrap_amount
       @@wrap_char_limit
     end
 
@@ -209,7 +227,7 @@ module CLIUtils
     #  Sets the number of characters at which to wrap
     #  @return Integer
     #  ----------------------------------------------------
-    def wrap_amount(chars)
+    def self.wrap_amount(chars)
       @@wrap_char_limit = chars
     end
     

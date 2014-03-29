@@ -37,6 +37,14 @@ $ gem install cliutils
 require 'cliutils'
 ```
 
+If you want to mix in everything that CLIUtils has to offer:
+
+```Ruby
+include CLIUtils
+```
+
+Alternatively, as described below, mix in only the libraries that you want.
+
 ## PrettyIO
 
 First stop on our journey is better client IO. To activate, simply mix into your project:
@@ -83,7 +91,7 @@ color_chart
 Throughout the life of your application, you will most likely want to send several messages to your user (warnings, errors, info, etc.). Messenging makes this a snap. It, too, is a mixin:
 
 ```ruby
-include CLIManager::Messenging
+include CLIUtil::Messenging
 ```
 
 Once mixed in, you get access to `messenger`, a type of Logger that uses PrettyIO to send nicely-formatted messages to your user. For example, if you'd like to warn your user:
@@ -148,7 +156,44 @@ messenger.info("You answered: #{ p }")
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prompting.png "Prompting")
 
+### Logging
 
+Often, it's desirable to log messages as they appear to your user. `messenging` makes this a breeze by allowing you to attach and detach Logger instances at will.
+
+For instance, let's say you wanted to log a few messages to both your user's STDOUT and to `file.txt`:
+
+```Ruby
+file_logger = Logger.new('file.txt')
+
+messenger.info('This should only appear in STDOUT.')
+
+messenger.attach(file_logger)
+
+messenger.warn('This warning should appear in STDOUT and file.txt')
+messenger.error('This error should appear in STDOUT and file.txt')
+messenger.debug('This debug message should only appear in file.txt')
+
+messenger.detach(file_logger)
+
+messenger.section('This section message should appear only in STDOUT')
+```
+
+In STDOUT:
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/multi-logging.png "Multi-logging")
+
+...and in `file.txt`:
+
+```
+W, [2014-03-29T15:14:34.844406 #4497]  WARN -- : This warning should appear in STDOUT and file.txt
+E, [2014-03-29T15:14:34.844553 #4497] ERROR -- : This error should appear in STDOUT and file.txt
+D, [2014-03-29T15:14:34.844609 #4497] DEBUG -- : This debug message should only appear in file.txt
+```
+
+Since you can attach Logger objects, each can have it's own format and severity level. Cool!
+
+# Known Issues
+
+* LoggerDelegator doesn't currently know what to do with `messenger.prompt`, so you'll have to manually log a `debug` message if you want that information logged.
 
 # Contributing
 

@@ -4,7 +4,7 @@ module CLIUtils
   #  Outputs color-coordinated messages to a CLI
   #  ======================================================
   module Messenging
-    extend self
+    include CLIUtils::PrettyIO
 
     #  ====================================================
     #  Methods
@@ -18,7 +18,6 @@ module CLIUtils
     #  @return Void
     #  ----------------------------------------------------
     def self.included(k)
-      k.class_eval { include PrettyIO }
       k.extend(self)
     end
 

@@ -10,6 +10,6 @@ require 'cliutils/messenging'
 require 'cliutils/prefs'
 require 'cliutils/version'
 
-module CLIManager
+module CLIUtils
 
 end

@@ -6,29 +6,17 @@ require 'cliutils.rb'
 # warn('test')
 
 include CLIUtils::Messenging
-
-puts ''
-CLIUtils::PrettyIO::wrap_amount(50)
-messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
-puts ''
-CLIUtils::PrettyIO::wrap_amount(20)
-messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
-puts ''
-CLIUtils::PrettyIO::wrap(false)
-messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
-puts ''
 # # 
-# # file_logger = Logger.new('test.txt')
-# # file_logger2 = Logger.new('test2.txt')
-# # file_logger2.level = Logger::Severity::ERROR
-# # 
-# # messenger.info('This is a really long info string that should wrap itself at some point.')
-# # messenger.attach(file_logger)
-# # messenger.attach(file_logger2)
-# # messenger.warn('test')
-# # messenger.success('test')
-# # messenger.detach(file_logger)
-# # messenger.section('test')
+file_logger = Logger.new('file.txt')
+puts ''
+messenger.info('This should only appear in STDOUT.')
+messenger.attach(file_logger)
+messenger.warn('This warning should appear in STDOUT and file.txt')
+messenger.error('This error should appear in STDOUT and file.txt')
+messenger.debug('This debug message should only appear in file.txt')
+messenger.detach(file_logger)
+messenger.section('This section message should appear only in STDOUT')
+puts ''
 # 
 # include CLIUtils::Configuration
 # 
