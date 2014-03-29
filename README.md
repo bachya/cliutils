@@ -235,7 +235,7 @@ There are two ways data can be managed in `configuration`: via its `@data` prope
 
 ```Ruby
 configuration.data[:user_data].merge!(username: 'bob')
-
+# OR
 configuration.user_data.merge!(username: 'bob')
 ```
 
