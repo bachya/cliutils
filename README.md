@@ -49,10 +49,10 @@ Alternatively, as described below, mix in only the libraries that you want.
 
 CLIUtils offers:
 
-* PrettIO: nicer-looking CLI messages
-* Messenging: a full-featured Logger
-* Configuration: a app configuration manager
-* Prefs: a preferences prompter and manager
+* [PrettyIO](https://github.com/bachya/cli-utils#prettyio): nicer-looking CLI messages
+* [Messenging](https://github.com/bachya/cli-utils#messenging): a full-featured Logger
+* [Configuration](https://github.com/bachya/cli-utils#configuration): a app configuration manager
+* [Prefs](https://github.com/bachya/cli-utils#prefs): a preferences prompter and manager
 
 ## PrettyIO
 
