@@ -80,18 +80,39 @@ color_chart
 
 ## Messenging
 
-Throughout the life of your application, you will most likely want to give several messages to your user (warnings, errors, info, etc.). Messenging makes this a snap. It, too, is a mixin:
+Throughout the life of your application, you will most likely want to send several messages to your user (warnings, errors, info, etc.). Messenging makes this a snap. It, too, is a mixin:
 
 ```ruby
 include CLIManager::Messenging
 ```
 
-Once mixed in, you get access to `messenger`, a type of Logger that manages messages to your user. For example, if you'd like to warn your user:
+Once mixed in, you get access to `messenger`, a type of Logger that uses PrettyIO to send nicely-formatted messages to your user. For example, if you'd like to warn your user:
 
 ```ruby
 messenger.warn('Hey pal, you need to be careful.')
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-warn.png "A Warning from Messenger")
+
+`messenger` gives you access to several basic methods:
+
+* `messenger.error`: used to show a formatted-red error message.
+* `messenger.info`: used to show a formatted-blue infomational message.
+* `messenger.section`: used to show a formatted-purple sectional message.
+* `messenger.success`: used to show a formatted-green success message.
+* `messenger.yellow`: used to show a formatted-yellow warning message.
+
+Let's see an example that uses them all:
+
+```Ruby
+messenger.section('STARTING ATTACK RUN...')
+messenger.info('Beginning strafing run...')
+messenger.warn('WARNING: Tie Fighters approaching!')
+messenger.error('Porkins died :(')
+messenger.success('But Luke still blew up the Death Star!')
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-types-1.png "Basic Messenger Types")
+
+`messenger` is smart enough to wrap your
 
 # Contributing
 

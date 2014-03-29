@@ -8,7 +8,11 @@ require 'cliutils.rb'
 include CLIUtils::Messenging
 
 puts ''
-messenger.warn('Hey pal, you need to be careful.')
+messenger.section('STARTING ATTACK RUN...')
+messenger.info('Beginning strafing run...')
+messenger.warn('WARNING: Tie Fighters approaching!')
+messenger.error('Porkins died :(')
+messenger.success('But Luke still blew up the Death Star!')
 puts ''
 # # 
 # # file_logger = Logger.new('test.txt')
