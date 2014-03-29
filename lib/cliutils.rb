@@ -10,8 +10,6 @@ require 'cliutils/messenging'
 require 'cliutils/prefs'
 require 'cliutils/version'
 
-require 'yaml'
-
 module CLIManager
   
 end

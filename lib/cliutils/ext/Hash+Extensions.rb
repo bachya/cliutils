@@ -80,11 +80,7 @@ class Hash
   #  @return Hash
   #  ----------------------------------------------------
   def deep_transform_keys(&block)
-    result = {}
-    each do |key, value|
-      result[yield(key)] = value.is_a?(Hash) ? value.deep_transform_keys(&block) : value
-    end
-    result
+    _deep_transform_keys_in_object(self, &block)
   end
 
   #  ----------------------------------------------------
@@ -95,10 +91,55 @@ class Hash
   #  @return Hash
   #  ----------------------------------------------------
   def deep_transform_keys!(&block)
-    keys.each do |key|
-      value = delete(key)
-      self[yield(key)] = value.is_a?(Hash) ? value.deep_transform_keys!(&block) : value
+    _deep_transform_keys_in_object!(self, &block)
+  end
+
+  private
+
+  #  ----------------------------------------------------
+  #  _deep_transform_keys_in_object method
+  #
+  #  Modification to deep_transform_keys that allows for
+  #  the existence of arrays.
+  #  https://github.com/rails/rails/pull/9720/files?short_path=4be3c90
+  #  @param object The object to examine
+  #  @param &block A block to execute on the opject
+  #  @return Object
+  #  ----------------------------------------------------
+  def _deep_transform_keys_in_object(object, &block)
+    case object
+    when Hash
+      object.each_with_object({}) do |(key, value), result|
+        result[yield(key)] = _deep_transform_keys_in_object(value, &block)
+      end
+    when Array
+      object.map {|e| _deep_transform_keys_in_object(e, &block) }
+    else
+      object
     end
-    self
+  end
+
+  #  ----------------------------------------------------
+  #  _deep_transform_keys_in_object! method
+  #
+  #  Same as _deep_transform_keys_in_object, but
+  #  destructively alters the original Object.
+  #  @param object The object to examine
+  #  @param &block A block to execute on the opject
+  #  @return Object
+  #  ----------------------------------------------------
+  def _deep_transform_keys_in_object!(object, &block)
+    case object
+    when Hash
+      object.keys.each do |key|
+        value = object.delete(key)
+        object[yield(key)] = _deep_transform_keys_in_object!(value, &block)
+      end
+      object
+    when Array
+      object.map! {|e| _deep_transform_keys_in_object!(e, &block)}
+    else
+      object
+    end
   end
 end

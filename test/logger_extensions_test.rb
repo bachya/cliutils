@@ -2,7 +2,7 @@ require 'test/unit'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/Logger+Extensions')
 
-class TestHashExtensions < Test::Unit::TestCase
+class TestLoggerExtensions < Test::Unit::TestCase
   def test_custom_level
     l = Logger.new(STDOUT)
     l.formatter = proc do |severity, datetime, progname, msg|

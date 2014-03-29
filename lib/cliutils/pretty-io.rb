@@ -12,9 +12,11 @@ module CLIUtils
   #  Outputs color-coordinated messages to a CLI
   #  ======================================================
   module PrettyIO
+    @@wrap_char_limit = 40
+
     #  ====================================================
     #  Methods
-    #  ====================================================
+    #  ====================================================  
     #  ----------------------------------------------------
     #  included method
     #
@@ -35,7 +37,7 @@ module CLIUtils
     #  @return Void
     #  ----------------------------------------------------
     def error(m)
-      puts word_wrap(m, '# ').red
+      puts _word_wrap(m, '# ').red
     end
 
     #  ----------------------------------------------------
@@ -46,7 +48,7 @@ module CLIUtils
     #  @return Void
     #  ----------------------------------------------------
     def info(m)
-      puts word_wrap(m, '# ').blue
+      puts _word_wrap(m, '# ').blue
     end
 
     #  ----------------------------------------------------
@@ -63,7 +65,7 @@ module CLIUtils
         if multiline
           info(m1)
         else
-          print word_wrap(m1, '# ').blue
+          print _word_wrap(m1, '# ').blue
         end
 
         yield
@@ -71,7 +73,7 @@ module CLIUtils
         if multiline
           info(m2)
         else
-          puts word_wrap(m2, '# ').blue
+          puts _word_wrap(m2, '# ').blue
         end
       else
         fail 'Did not specify a valid block'
@@ -111,7 +113,7 @@ module CLIUtils
     #  @return Void
     #  ----------------------------------------------------
     def section(m)
-      puts word_wrap(m, '---> ').purple
+      puts _word_wrap(m, '---> ').purple
     end
 
     #  ----------------------------------------------------
@@ -129,7 +131,7 @@ module CLIUtils
         if multiline
           section(m)
         else
-          print word_wrap(m, '---> ').purple
+          print _word_wrap(m, '---> ').purple
         end
 
         yield
@@ -146,7 +148,7 @@ module CLIUtils
     #  @return Void
     #  ----------------------------------------------------
     def success(m)
-      puts word_wrap(m, '# ').green
+      puts _word_wrap(m, '# ').green
     end
 
     #  ----------------------------------------------------
@@ -157,13 +159,21 @@ module CLIUtils
     #  @return Void
     #  ----------------------------------------------------
     def warn(m)
-      puts word_wrap(m, '# ').yellow
+      puts _word_wrap(m, '# ').yellow
+    end
+
+    def self.wrap_amount
+      @@wrap_char_limit
+    end
+    
+    def self.wrap_amount=(chars)
+      @@wrap_char_limit = chars
     end
     
     private
 
     #  ----------------------------------------------------
-    #  word_wrap method
+    #  _word_wrap method
     #
     #  Outputs a wrapped string (where each line is limited
     #  to a certain number of characters).
@@ -172,9 +182,9 @@ module CLIUtils
     #  @param line_width The number of characters per line
     #  @return String
     #  ----------------------------------------------------
-    def word_wrap(text, prefix_str, line_width = 40) 
-      return text if line_width <= 0
-      text.gsub(/\n/, ' ').gsub(/(.{1,#{line_width - prefix_str.length}})(\s+|$)/, "#{ prefix_str }\\1\n").strip
+    def _word_wrap(text, prefix_str) 
+      return text if @@wrap_char_limit <= 0
+      text.gsub(/\n/, ' ').gsub(/(.{1,#{@@wrap_char_limit - prefix_str.length}})(\s+|$)/, "#{ prefix_str }\\1\n").strip
     end
   end
 end

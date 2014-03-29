@@ -1,4 +1,6 @@
-module CLIManager
+require 'yaml'
+
+module CLIUtils
   #  ======================================================
   #  Configuration Class
   #

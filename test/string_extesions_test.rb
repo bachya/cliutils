@@ -2,7 +2,7 @@ require 'test/unit'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/String+Extensions')
 
-class TestHashExtensions < Test::Unit::TestCase
+class TestStringExtensions < Test::Unit::TestCase
   def test_custom_colors
     assert_output("\e[34mtest\e[0m\n") { puts 'test'.blue }
     assert_output("\e[36mtest\e[0m\n") { puts 'test'.cyan }

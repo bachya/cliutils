@@ -1,3 +1,5 @@
+require 'yaml'
+
 module CLIUtils
   #  ======================================================
   #  Configuration Class
@@ -27,7 +29,7 @@ module CLIUtils
       @data = {}
 
       if File.exists?(_path)
-        data = YAML.load_file(_path)
+        data = YAML::load_file(_path)
         @data.deep_merge!(data).deep_symbolize_keys!
       end
     end
