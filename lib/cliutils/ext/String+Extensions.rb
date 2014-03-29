@@ -13,7 +13,7 @@ class String
   #  @return Void
   #  ----------------------------------------------------
   def colorize(color_code)
-    "\e[#{ color_code }m#{ self }\e[0m"
+    "\033[#{ color_code }m#{ self }\033[0m"
   end
   
   def blue; colorize(34) end
@@ -21,5 +21,6 @@ class String
   def green; colorize(32) end
   def purple; colorize(35) end
   def red; colorize(31) end
+  def white; colorize(37) end
   def yellow; colorize(33) end
 end

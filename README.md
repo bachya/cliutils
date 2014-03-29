@@ -54,6 +54,32 @@ puts 'A sample string'.red
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-red-text.png "Colored Text via PrettyIO")
 
+PrettyIO gives you utility methods for the common ANSI color codes:
+
+```ruby
+String.blue
+String.cyan
+String.green
+String.purple
+String.red
+String.white
+String.yellow
+```
+
+You also get the `colorize` method, which allows you to define more complex color combinations. For example, to get some nice purple text on a gnarly green background:
+
+```ruby
+puts 'A sample string'.colorize('35;42')
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-gnarly-text.png "Complex Colored Text via PrettyIO")
+
+Naturally, memorizing the ANSI color scheme is a pain, so PrettyIO gives you a convenient method to look up these color combinations:
+
+```ruby
+color_chart
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
+
 # Contributing
 
 1. Fork it ( http://github.com/bachya/cliutils/fork )

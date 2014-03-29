@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 require 'cliutils.rb'
 
-puts ''
-puts 'A sample string'.red
-puts ''
+include CLIUtils::PrettyIO
+
+color_chart
 
 # # include CLIManager::Messenging
 # # 
