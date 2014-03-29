@@ -52,7 +52,7 @@ The first feature that PrettyIO affords you is colorized strings:
 ```ruby
 puts 'A sample string'.red
 ```
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text](https://github.com/bachya/cli-utils/blob/master/res/readme-images/prettyio-red-text.png "Colored Text via PrettyIO")
 
 # Contributing
 
