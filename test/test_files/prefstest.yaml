@@ -1,0 +1,33 @@
+prompts:
+  - prompt: What is the hostname of your DD-WRT router?
+    default: 192.168.1.1
+    key: hostname
+    section: ssh_info
+  - prompt: What is the SSH username of your DD-WRT router?
+    default: root
+    key: username
+    section: ssh_info
+  - prompt: What SSH port does your DD-WRT router use?
+    default: 22
+    key: port
+    section: ssh_info
+  - prompt: Do you use password or key authentication?
+    default: password
+    key: auth_method
+    section: ssh_info
+    options: ['password', 'key']
+  - prompt: Where is your key located?
+    default: ~/.ssh
+    key: key_location
+    section: ssh_info
+    requirements:
+      - key: auth_method
+        value: key
+  - prompt: What is your password?
+    key: password
+    section: ssh_info
+    requirements:
+      - key: auth_method
+        value: password
+      
+    
