@@ -7,22 +7,24 @@ require 'cliutils.rb'
 
 include CLIUtils::Messenging
 # # 
-file_logger = Logger.new('file.txt')
-puts ''
-messenger.info('This should only appear in STDOUT.')
-messenger.attach(file_logger)
-messenger.warn('This warning should appear in STDOUT and file.txt')
-messenger.error('This error should appear in STDOUT and file.txt')
-messenger.debug('This debug message should only appear in file.txt')
-messenger.detach(file_logger)
-messenger.section('This section message should appear only in STDOUT')
-puts ''
+# file_logger = Logger.new('file.txt')
+# puts ''
+# messenger.info('This should only appear in STDOUT.')
+# messenger.attach(file_logger)
+# messenger.warn('This warning should appear in STDOUT and file.txt')
+# messenger.error('This error should appear in STDOUT and file.txt')
+# messenger.debug('This debug message should only appear in file.txt')
+# messenger.detach(file_logger)
+# messenger.section('This section message should appear only in STDOUT')
+# puts ''
 # 
-# include CLIUtils::Configuration
-# 
-# load_configuration('~/.test')
-# configuration.add_section(:test) unless configuration.data.key?(:test)
-# configuration.test.merge!(name: 'Aaron')
+include CLIUtils::Configuration
+
+load_configuration('~/.test')
+configuration.add_section(:test) unless configuration.data.key?(:test)
+configuration.add_section(:test2) unless configuration.data.key?(:test2)
+
+configuration.test.merge!(name: 'Aaron')
 # 
 # p = CLIUtils::Prefs.new(File.join(File.expand_path(File.dirname(__FILE__)),'..', 'test/test_files/prefstest.yaml'))
 # 
