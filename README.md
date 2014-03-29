@@ -226,7 +226,7 @@ Sections are top levels of the configuration file and are managed via the `confi
 ```Ruby
 configuration.add_section(:user_data)
 configuration.add_section(:program_data)
-configuration.delete_section(:user_data)
+configuration.delete_section(:program_data)
 ```
 
 ### Adding Data to Sections
@@ -236,7 +236,7 @@ There are two ways data can be managed in `configuration`: via its `@data` prope
 ```Ruby
 configuration.data[:user_data].merge!(username: 'bob')
 
-configuration.user_data.merge!(username: 'bob)
+configuration.user_data.merge!(username: 'bob')
 ```
 
 ### Saving to a File
@@ -247,7 +247,13 @@ When you're ready to save your configuration data to a YAML file:
 configuration.save
 ```
 
-Note that all your keys are converted to strings before saving (and, likewise, are converted to symbols, when loading).
+Note that all your keys are converted to strings before saving (and, likewise, are converted to symbols, when loading). Assuming we used the commands above, we could expect this to be the contents of `~/.my-app-config`:
+
+```YAML
+---
+user_data:
+  username: bob
+```
 
 # Known Issues
 

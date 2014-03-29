@@ -21,10 +21,11 @@ include CLIUtils::Messenging
 include CLIUtils::Configuration
 
 load_configuration('~/.test')
-configuration.add_section(:test) unless configuration.data.key?(:test)
-configuration.add_section(:test2) unless configuration.data.key?(:test2)
-
-configuration.test.merge!(name: 'Aaron')
+configuration.add_section(:user_data)
+configuration.add_section(:program_data)
+configuration.delete_section(:program_data)
+configuration.user_data.merge!(username: 'bob')
+configuration.save
 # 
 # p = CLIUtils::Prefs.new(File.join(File.expand_path(File.dirname(__FILE__)),'..', 'test/test_files/prefstest.yaml'))
 # 
