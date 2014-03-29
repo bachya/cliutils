@@ -11,5 +11,5 @@ require 'cliutils/prefs'
 require 'cliutils/version'
 
 module CLIManager
-  
+
 end

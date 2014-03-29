@@ -1,11 +1,15 @@
 #!/usr/bin/env ruby
 require 'cliutils.rb'
 
-include CLIUtils::PrettyIO
+# include CLIUtils::PrettyIO
+# 
+# warn('test')
 
-color_chart
+include CLIUtils::Messenging
 
-# # include CLIManager::Messenging
+puts ''
+messenger.warn('Hey pal, you need to be careful.')
+puts ''
 # # 
 # # file_logger = Logger.new('test.txt')
 # # file_logger2 = Logger.new('test2.txt')

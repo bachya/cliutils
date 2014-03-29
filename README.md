@@ -45,9 +45,7 @@ First stop on our journey is better client IO. To activate, simply mix into your
 include CLIUtils::PrettyIO
 ```
 
-### Colorized Strings
-
-The first feature that PrettyIO affords you is colorized strings:
+PrettyIO affords you colorized strings:
 
 ```ruby
 puts 'A sample string'.red
@@ -79,6 +77,21 @@ Naturally, memorizing the ANSI color scheme is a pain, so PrettyIO gives you a c
 color_chart
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
+
+## Messenging
+
+Throughout the life of your application, you will most likely want to give several messages to your user (warnings, errors, info, etc.). Messenging makes this a snap. It, too, is a mixin:
+
+```ruby
+include CLIManager::Messenging
+```
+
+Once mixed in, you get access to `messenger`, a type of Logger that manages messages to your user. For example, if you'd like to warn your user:
+
+```ruby
+messenger.warn('Hey pal, you need to be careful.')
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-warn.png "A Warning from Messenger")
 
 # Contributing
 

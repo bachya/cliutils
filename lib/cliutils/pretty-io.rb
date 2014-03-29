@@ -29,6 +29,13 @@ module CLIUtils
       k.extend(self)
     end
 
+    #  ----------------------------------------------------
+    #  color_chart method
+    #
+    #  Displays a chart of all the possible ANSI foreground
+    #  and background color combinations.
+    #  @return Void
+    #  ----------------------------------------------------
     def color_chart
       [0, 1, 4, 5, 7].each do |attr|
         puts '----------------------------------------------------------------'
