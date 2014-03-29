@@ -45,6 +45,15 @@ include CLIUtils
 
 Alternatively, as described below, mix in only the libraries that you want.
 
+# Libraries
+
+CLIUtils offers:
+
+* PrettIO: nicer-looking CLI messages
+* Messenging: a full-featured Logger
+* Configuration: a app configuration manager
+* Prefs: a preferences prompter and manager
+
 ## PrettyIO
 
 First stop on our journey is better client IO. To activate, simply mix into your project:
@@ -196,10 +205,30 @@ Since you can attach Logger objects, each can have it's own format and severity 
 
 * LoggerDelegator doesn't currently know what to do with `messenger.prompt`, so you'll have to manually log a `debug` message if you want that information logged.
 
+# Bugs and Feature Requests
+
+To report bugs with or suggest features/changes for CLIUtils, please use the [Issues Page](http://github.com/bachya/cli-utils/issues).
+
 # Contributing
+
+Contributions are welcome and encouraged. To contribute:
 
 1. Fork it ( http://github.com/bachya/cliutils/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+# License
+
+(The MIT License)
+
+Copyright © 2014 Aaron Bach <bachya1208@gmail.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
