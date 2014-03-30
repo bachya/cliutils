@@ -5,6 +5,15 @@ module CLIUtils
   # Manages any configuration values and the flat YAML file
   # into which they get stored.
   module Configuration
+    # Allows easy access to Logger levels.
+    LOG_LEVELS = {
+      'DEBUG' => Logger::DEBUG,
+      'INFO'  => Logger::INFO,
+      'WARN'  => Logger::WARN,
+      'ERROR' => Logger::ERROR,
+      'FATAL' => Logger::FATAL,
+    }
+
     # Hook that triggers when this module is included.
     # @param [Object] k The includer object
     # @return [void]

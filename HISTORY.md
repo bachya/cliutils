@@ -1,3 +1,7 @@
+# 1.0.6 (2014-03-30)
+
+* Added convenience logging constant to Configuration
+
 # 1.0.5 (2014-03-30)
 
 * Fixed a bug with Configuration singleton
