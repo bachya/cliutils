@@ -23,5 +23,5 @@ DEPENDENCIES
   bundler (~> 1.5)
   cliutils!
   pry (~> 0.9)
-  rake
+  rake (~> 0)
   yard (= 0.8.7.4)
