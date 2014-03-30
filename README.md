@@ -53,10 +53,10 @@ Note that although this README.md is extensive, it may not cover all methods. Ch
 
 CLIUtils offers:
 
-* [PrettyIO](https://github.com/bachya/cli-utils#prettyio): nicer-looking CLI messages
-* [Messenging](https://github.com/bachya/cli-utils#messenging): a full-featured Logger
-* [Configuration](https://github.com/bachya/cli-utils#configuration): a app configuration manager
-* [Prefs](https://github.com/bachya/cli-utils#prefs): a preferences prompter and manager
+* [PrettyIO](#prettyio): nicer-looking CLI messages
+* [Messenging](#messenging): a full-featured Logger
+* [Configuration](#configuration): a app configuration manager
+* [Prefs](#prefs): a preferences prompter and manager
 
 ## PrettyIO
 
