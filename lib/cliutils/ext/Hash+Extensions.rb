@@ -86,7 +86,7 @@ class Hash
 
   # Same as _deep_transform_keys_in_object, but
   # destructively alters the original Object.
-  # @param [Object] The object to examine
+  # @param [Object] object The object to examine
   # @yield &block
   # @return [Object]
   def _deep_transform_keys_in_object!(object, &block)
