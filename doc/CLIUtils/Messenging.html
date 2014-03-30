@@ -91,11 +91,9 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<h6 id="label-"></h6>
+<p>CLIMessenger Module</p>
 
-<pre class="code ruby"><code class="ruby">CLIMessenger Module
-Outputs color-coordinated messages to a CLI
-======================================================</code></pre>
+<pre class="code ruby"><code class="ruby">Outputs coordinated messages to a variety of targets.</code></pre>
 
 
   </div>
@@ -121,7 +119,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(k) </a>
+      <a href="#included-class_method" title="included (class method)">+ (void) <strong>included</strong>(k) </a>
     
 
     
@@ -136,7 +134,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<h6 id="label-Methods++%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D++----------------------------------------------------++included+method.">Methods  ====================================================  —————————————————-  included method.</h6>
+<p>Hook that triggers when this module is included.</p>
 </div></span>
   
 </li>
@@ -154,7 +152,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#default_instance-instance_method" title="#default_instance (instance method)">- (Object) <strong>default_instance</strong> </a>
+      <a href="#default_instance-instance_method" title="#default_instance (instance method)">- (LoggerDelegator) <strong>default_instance</strong> </a>
     
 
     
@@ -169,7 +167,8 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  default_instance method.</p>
+<p>Returns a default instance of LoggerDelegator that delegates to STDOUT
+only.</p>
 </div></span>
   
 </li>
@@ -178,7 +177,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#messenger-instance_method" title="#messenger (instance method)">- (Object) <strong>messenger</strong> </a>
+      <a href="#messenger-instance_method" title="#messenger (instance method)">- (LoggerDelegator) <strong>messenger</strong> </a>
     
 
     
@@ -193,7 +192,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  messenger method.</p>
+<p>Singleton method to return (or initialize, if needed) a LoggerDelegator.</p>
 </div></span>
   
 </li>
@@ -222,7 +221,7 @@ Outputs color-coordinated messages to a CLI
       <div class="method_details first">
   <h3 class="signature first" id="included-class_method">
   
-    + (<tt>Object</tt>) <strong>included</strong>(k) 
+    + (<tt>void</tt>) <strong>included</strong>(k) 
   
 
   
@@ -230,26 +229,34 @@ Outputs color-coordinated messages to a CLI
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<h6 id="label-"></h6>
-
-<pre class="code ruby"><code class="ruby">Methods
-====================================================
-----------------------------------------------------
-included method
-
-Hook called when this module gets mixed in; extends
-the includer with the methods defined here.
-@param k The includer
-@return Void
-----------------------------------------------------
-</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Hook that triggers when this module is included.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>k</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The includer object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -257,12 +264,12 @@ the includer with the methods defined here.
       <pre class="lines">
 
 
-20
-21
-22</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/messenging.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/messenging.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -281,7 +288,7 @@ the includer with the methods defined here.
       <div class="method_details first">
   <h3 class="signature first" id="default_instance-instance_method">
   
-    - (<tt>Object</tt>) <strong>default_instance</strong> 
+    - (<tt><span class='object_link'><a href="LoggerDelegator.html" title="CLIUtils::LoggerDelegator (class)">LoggerDelegator</a></span></tt>) <strong>default_instance</strong> 
   
 
   
@@ -289,20 +296,28 @@ the includer with the methods defined here.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">default_instance method
-
-Returns a default instance of LoggerDelegator that
-delegates to STDOUT only.
-@return LoggerDelegator
-----------------------------------------------------</code></pre>
+    
+<p>Returns a default instance of LoggerDelegator that delegates to STDOUT
+only.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="LoggerDelegator.html" title="CLIUtils::LoggerDelegator (class)">LoggerDelegator</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -310,17 +325,17 @@ delegates to STDOUT only.
       <pre class="lines">
 
 
-31
-32
-33
-34
-35
-36
-37
-38</pre>
+17
+18
+19
+20
+21
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/messenging.rb', line 31</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/messenging.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_default_instance'>default_instance</span>
   <span class='id identifier rubyid_stdout_logger'>stdout_logger</span> <span class='op'>=</span> <span class='const'>Logger</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>STDOUT</span><span class='rparen'>)</span>
@@ -338,7 +353,7 @@ delegates to STDOUT only.
       <div class="method_details ">
   <h3 class="signature " id="messenger-instance_method">
   
-    - (<tt>Object</tt>) <strong>messenger</strong> 
+    - (<tt><span class='object_link'><a href="LoggerDelegator.html" title="CLIUtils::LoggerDelegator (class)">LoggerDelegator</a></span></tt>) <strong>messenger</strong> 
   
 
   
@@ -346,20 +361,27 @@ delegates to STDOUT only.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">messenger method
-
-Singleton method to return (or initialize, if needed)
-a LoggerDelegator.
-@return LoggerDelegator
-----------------------------------------------------</code></pre>
+    
+<p>Singleton method to return (or initialize, if needed) a LoggerDelegator.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="LoggerDelegator.html" title="CLIUtils::LoggerDelegator (class)">LoggerDelegator</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -367,12 +389,12 @@ a LoggerDelegator.
       <pre class="lines">
 
 
-47
-48
-49</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/messenging.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/messenging.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_messenger'>messenger</span>
   <span class='ivar'>@messenger</span> <span class='op'>||=</span> <span class='id identifier rubyid_default_instance'>default_instance</span>
@@ -387,7 +409,7 @@ a LoggerDelegator.
 </div>
 
     <div id="footer">
-  Generated on Sat Mar 29 17:22:03 2014 by
+  Generated on Sat Mar 29 18:18:03 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.1.0).
 </div>

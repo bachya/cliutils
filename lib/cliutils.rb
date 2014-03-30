@@ -10,6 +10,8 @@ require 'cliutils/messenging'
 require 'cliutils/prefs'
 require 'cliutils/version'
 
+# The CLIUtils module, which wraps everything
+# in this gem.
 module CLIUtils
 
 end

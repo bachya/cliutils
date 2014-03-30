@@ -1,49 +1,29 @@
 module CLIUtils
-  #  ======================================================
-  #  LoggerDelegator Class
-  #
-  #  Manages any configuration values and the flat YAML file
-  #  into which they get stored.
-  #  ======================================================
+  # LoggerDelegator Class
+  # Delegates certain Logger methods to a number of different
+  # targets.
   class LoggerDelegator
-    #  ====================================================
-    #  Attributes
-    #  ====================================================  
-    attr_reader :devices
+    attr_reader :targets
 
-    #  ====================================================
-    #  Methods
-    #  ====================================================
-    #  ----------------------------------------------------
-    #  initialize method
-    #
-    #  Initializer
-    #  @param *targets The endpoints to delegate to
-    #  @return void
-    #  ----------------------------------------------------
+    # Initializes and creates methods for the passed targets.
+    # @param [Logger] targets The endpoints to delegate to
+    # @return [void]
     def initialize(*targets)
       @targets = targets
       LoggerDelegator.delegate
     end
 
-    #  ----------------------------------------------------
-    #  attach method
-    #
-    #  Attaches a new target to delegate to.
-    #  @return void
-    #  ----------------------------------------------------  
+    # Attaches a new target to delegate to.
+    # @param [Logger] target The targets to delegate to
+    # @return [void]
     def attach(target)
       @targets << target
       LoggerDelegator.delegate
     end
 
-    #  ----------------------------------------------------
-    #  delegate_all method
-    #
-    #  Creates delegator methods for all of the methods
-    #  on IO.
-    #  @return void
-    #  ----------------------------------------------------
+    # Creates delegator methods for a specific list of Logger
+    # functions.
+    # @return [void]
     def self.delegate
       %w(log debug info warn error section success).each do |m|
         define_method(m) do |*args|
@@ -52,12 +32,8 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  detach method
-    #
-    #  Detaches a delegation target.
-    #  @return void
-    #  ----------------------------------------------------  
+    # Detaches a delegation target.
+    # @return [void]
     def detach(target)
       @targets.delete(target)
       LoggerDelegator.delegate

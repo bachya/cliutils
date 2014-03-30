@@ -1,3 +1,4 @@
 module CLIUtils
-  VERSION = "1.0.1"
+  # The current version of the gem
+  VERSION = "1.0.2"
 end

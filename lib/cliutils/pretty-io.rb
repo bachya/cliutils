@@ -7,36 +7,22 @@ end
 require 'readline'
 
 module CLIUtils
-  #  ======================================================
-  #  CLIMessenger Module
-  #  Outputs color-coordinated messages to a CLI
-  #  ======================================================
+  # CLIMessenger Module
+  # Outputs color-coordinated messages to a CLI
   module PrettyIO
     @@wrap = true
     @@wrap_char_limit = 40
 
-    #  ====================================================
-    #  Methods
-    #  ====================================================  
-    #  ----------------------------------------------------
-    #  included method
-    #
-    #  Hook called when this module gets mixed in; extends
-    #  the includer with the methods defined here.
-    #  @param k The includer
-    #  @return Void
-    #  ----------------------------------------------------
+    # Hook that triggers when this module is included.
+    # @param [Object] k The includer object
+    # @return [void]
     def self.included(k)
       k.extend(self)
     end
 
-    #  ----------------------------------------------------
-    #  color_chart method
-    #
-    #  Displays a chart of all the possible ANSI foreground
-    #  and background color combinations.
-    #  @return Void
-    #  ----------------------------------------------------
+    # Displays a chart of all the possible ANSI foreground
+    # and background color combinations.
+    # @return [void]
     def color_chart
       [0, 1, 4, 5, 7].each do |attr|
         puts '----------------------------------------------------------------'
@@ -50,46 +36,31 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  debug method
-    #
-    #  Empty method so that Messenging doesn't freak
-    #  out when passed a debug message.
-    #  @return Void
-    #  ----------------------------------------------------
+    # Empty method so that Messenging doesn't freak
+    # out when passed a debug message.
+    # @return [void]
     def debug(m); end
 
-    #  ----------------------------------------------------
-    #  error method
-    #
-    #  Outputs a formatted-red error message.
-    #  @param m The message to output
-    #  @return Void
-    #  ----------------------------------------------------
+    # Outputs a formatted-red error message.
+    # @param [String] m The message to output
+    # @return [void]
     def error(m)
       puts _word_wrap(m, '# ').red
     end
 
-    #  ----------------------------------------------------
-    #  info method
-    #
-    #  Outputs a formatted-blue informational message.
-    #  @param m The message to output
-    #  @return Void
-    #  ----------------------------------------------------
+    # Outputs a formatted-blue informational message.
+    # @param [String] m The message to output
+    # @return [void]
     def info(m)
       puts _word_wrap(m, '# ').blue
     end
 
-    #  ----------------------------------------------------
-    #  info_block method
-    #
-    #  Wraps a block in an opening and closing info message.
-    #  @param m1 The opening message to output
-    #  @param m2 The closing message to output
-    #  @param multiline Whether the message should be multiline
-    #  @return Void
-    #  ----------------------------------------------------
+    # Wraps a block in an opening and closing info message.
+    # @param [String] m1 The opening message to output
+    # @param [String] m2 The closing message to output
+    # @param [<True, False>] multiline Whether the message should be multiline
+    # @yield
+    # @return [void]
     def info_block(m1, m2 = 'Done.', multiline = false)
       if block_given?
         if multiline
@@ -110,24 +81,17 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  log method
-    #
-    #  Empty method so that Messenging doesn't freak
-    #  out when passed a debug message.
-    #  @return Void
-    #  ----------------------------------------------------
+    # Empty method so that Messenging doesn't freak
+    # out when passed a debug message.
+    # @return [void]
     def log(m); end
 
-    #  ----------------------------------------------------
-    #  prompt method
-    #
-    #  Outputs a prompt, collects the user's response, and
-    #  returns it.
-    #  @param prompt The prompt to output
-    #  @param default The default option
-    #  @return String
-    #  ----------------------------------------------------
+    # Outputs a prompt, collects the user's response, and
+    # returns it.
+    # @param [String] prompt The prompt to output
+    # @param [String] default The default option
+    # @param [String] start_dir The directory to start from for autocompletion
+    # @return [String]
     def prompt(prompt, default = nil, start_dir = '')
       Readline.completion_append_character = nil
       Readline.completion_proc = lambda do |prefix|
@@ -144,27 +108,18 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  section method
-    #
-    #  Outputs a formatted-purple section message.
-    #  @param m The message to output
-    #  @return Void
-    #  ----------------------------------------------------
+    # Outputs a formatted-purple section message.
+    # @param [String] m The message to output
+    # @return [void]
     def section(m)
       puts _word_wrap(m, '---> ').purple
     end
 
-    #  ----------------------------------------------------
-    #  section_block method
-    #
-    #  Wraps a block in an opening and closing section
-    #  message.
-    #  @param m1 The opening message to output
-    #  @param m2 The closing message to output
-    #  @param multiline A multiline message or not
-    #  @return Void
-    #  ----------------------------------------------------
+    # Wraps a block in an opening and closing section message.
+    # @param [String] m The opening message to output
+    # @param [<True, False>] multiline Whether the message should be multiline
+    # @yield
+    # @return [void]
     def section_block(m, multiline = true)
       if block_given?
         if multiline
@@ -179,70 +134,47 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  success method
-    #
-    #  Outputs a formatted-green success message.
-    #  @param m The message to output
-    #  @return Void
-    #  ----------------------------------------------------
+    # Outputs a formatted-green success message.
+    # @param [String] m The message to output
+    # @return [void]
     def success(m)
       puts _word_wrap(m, '# ').green
     end
 
-    #  ----------------------------------------------------
-    #  warning method
-    #
-    #  Outputs a formatted-yellow warning message.
-    #  @param m The message to output
-    #  @return Void
-    #  ----------------------------------------------------
+    # Outputs a formatted-yellow warning message.
+    # @param [String] m The message to output
+    # @return [void]
     def warn(m)
       puts _word_wrap(m, '# ').yellow
     end
 
-    #  ----------------------------------------------------
-    #  wrap method
-    #
-    #  Toggles wrapping on or off
-    #  @return Integer
-    #  ----------------------------------------------------
+    # Toggles wrapping on or off
+    # @param [<True, False>] on
+    # @return [void]
     def self.wrap(on)
       @@wrap = on
     end
 
-    #  ----------------------------------------------------
-    #  wrap_limit method
-    #
-    #  Returns the current character wrap amount
-    #  @return Integer
-    #  ----------------------------------------------------
+    # Returns the current character wrap amount
+    # @return [Integer]
     def self.wrap_limit
       @@wrap_char_limit
     end
 
-    #  ----------------------------------------------------
-    #  wrap_at method
-    #
-    #  Sets the number of characters at which to wrap
-    #  @return Integer
-    #  ----------------------------------------------------
+    # Sets the number of characters at which to wrap
+    # @param [Integer] chars The number of chars to output before wrapping
+    # @return [void]
     def self.wrap_at(chars)
       @@wrap_char_limit = chars
     end
     
     private
 
-    #  ----------------------------------------------------
-    #  _word_wrap method
-    #
-    #  Outputs a wrapped string (where each line is limited
-    #  to a certain number of characters).
-    #  @param text The text to wrap
-    #  @param prefix_str The prefix for each line
-    #  @param line_width The number of characters per line
-    #  @return String
-    #  ----------------------------------------------------
+    # Outputs a wrapped string (where each line is limited
+    # to a certain number of characters).
+    # @param [String] text The text to wrap
+    # @param [String] prefix_str The prefix for each line
+    # @return [String]
     def _word_wrap(text, prefix_str) 
       if @@wrap
         return text if @@wrap_char_limit <= 0

@@ -91,11 +91,7 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<h6 id="label-"></h6>
-
-<pre class="code ruby"><code class="ruby">CLIMessenger Module
-Outputs color-coordinated messages to a CLI
-======================================================</code></pre>
+<p>CLIMessenger Module Outputs color-coordinated messages to a CLI</p>
 
 
   </div>
@@ -138,7 +134,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#included-class_method" title="included (class method)">+ (Object) <strong>included</strong>(k) </a>
+      <a href="#included-class_method" title="included (class method)">+ (void) <strong>included</strong>(k) </a>
     
 
     
@@ -153,7 +149,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<h6 id="label-Methods++%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D++++----------------------------------------------------++included+method.">Methods  ====================================================    —————————————————-  included method.</h6>
+<p>Hook that triggers when this module is included.</p>
 </div></span>
   
 </li>
@@ -162,7 +158,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#wrap-class_method" title="wrap (class method)">+ (Object) <strong>wrap</strong>(on) </a>
+      <a href="#wrap-class_method" title="wrap (class method)">+ (void) <strong>wrap</strong>(on) </a>
     
 
     
@@ -177,7 +173,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  wrap method.</p>
+<p>Toggles wrapping on or off.</p>
 </div></span>
   
 </li>
@@ -186,7 +182,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#wrap_at-class_method" title="wrap_at (class method)">+ (Object) <strong>wrap_at</strong>(chars) </a>
+      <a href="#wrap_at-class_method" title="wrap_at (class method)">+ (void) <strong>wrap_at</strong>(chars) </a>
     
 
     
@@ -201,7 +197,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  wrap_at method.</p>
+<p>Sets the number of characters at which to wrap.</p>
 </div></span>
   
 </li>
@@ -210,7 +206,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#wrap_limit-class_method" title="wrap_limit (class method)">+ (Object) <strong>wrap_limit</strong> </a>
+      <a href="#wrap_limit-class_method" title="wrap_limit (class method)">+ (Integer) <strong>wrap_limit</strong> </a>
     
 
     
@@ -225,7 +221,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  wrap_limit method.</p>
+<p>Returns the current character wrap amount.</p>
 </div></span>
   
 </li>
@@ -243,7 +239,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#color_chart-instance_method" title="#color_chart (instance method)">- (Object) <strong>color_chart</strong> </a>
+      <a href="#color_chart-instance_method" title="#color_chart (instance method)">- (void) <strong>color_chart</strong> </a>
     
 
     
@@ -258,7 +254,8 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  color_chart method.</p>
+<p>Displays a chart of all the possible ANSI foreground and background color
+combinations.</p>
 </div></span>
   
 </li>
@@ -267,7 +264,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#debug-instance_method" title="#debug (instance method)">- (Object) <strong>debug</strong>(m) </a>
+      <a href="#debug-instance_method" title="#debug (instance method)">- (void) <strong>debug</strong>(m) </a>
     
 
     
@@ -282,7 +279,8 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  debug method.</p>
+<p>Empty method so that Messenging doesn&#39;t freak out when passed a debug
+message.</p>
 </div></span>
   
 </li>
@@ -291,7 +289,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#error-instance_method" title="#error (instance method)">- (Object) <strong>error</strong>(m) </a>
+      <a href="#error-instance_method" title="#error (instance method)">- (void) <strong>error</strong>(m) </a>
     
 
     
@@ -306,7 +304,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  error method.</p>
+<p>Outputs a formatted-red error message.</p>
 </div></span>
   
 </li>
@@ -315,7 +313,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#info-instance_method" title="#info (instance method)">- (Object) <strong>info</strong>(m) </a>
+      <a href="#info-instance_method" title="#info (instance method)">- (void) <strong>info</strong>(m) </a>
     
 
     
@@ -330,7 +328,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  info method.</p>
+<p>Outputs a formatted-blue informational message.</p>
 </div></span>
   
 </li>
@@ -339,7 +337,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#info_block-instance_method" title="#info_block (instance method)">- (Object) <strong>info_block</strong>(m1, m2 = &#39;Done.&#39;, multiline = false) </a>
+      <a href="#info_block-instance_method" title="#info_block (instance method)">- (void) <strong>info_block</strong>(m1, m2 = &#39;Done.&#39;, multiline = false) { ... }</a>
     
 
     
@@ -354,7 +352,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  info_block method.</p>
+<p>Wraps a block in an opening and closing info message.</p>
 </div></span>
   
 </li>
@@ -363,7 +361,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#log-instance_method" title="#log (instance method)">- (Object) <strong>log</strong>(m) </a>
+      <a href="#log-instance_method" title="#log (instance method)">- (void) <strong>log</strong>(m) </a>
     
 
     
@@ -378,7 +376,8 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  log method.</p>
+<p>Empty method so that Messenging doesn&#39;t freak out when passed a debug
+message.</p>
 </div></span>
   
 </li>
@@ -387,7 +386,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#prompt-instance_method" title="#prompt (instance method)">- (Object) <strong>prompt</strong>(prompt, default = nil, start_dir = &#39;&#39;) </a>
+      <a href="#prompt-instance_method" title="#prompt (instance method)">- (String) <strong>prompt</strong>(prompt, default = nil, start_dir = &#39;&#39;) </a>
     
 
     
@@ -402,7 +401,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  prompt method.</p>
+<p>Outputs a prompt, collects the user&#39;s response, and returns it.</p>
 </div></span>
   
 </li>
@@ -411,7 +410,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#section-instance_method" title="#section (instance method)">- (Object) <strong>section</strong>(m) </a>
+      <a href="#section-instance_method" title="#section (instance method)">- (void) <strong>section</strong>(m) </a>
     
 
     
@@ -426,7 +425,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  section method.</p>
+<p>Outputs a formatted-purple section message.</p>
 </div></span>
   
 </li>
@@ -435,7 +434,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#section_block-instance_method" title="#section_block (instance method)">- (Object) <strong>section_block</strong>(m, multiline = true) </a>
+      <a href="#section_block-instance_method" title="#section_block (instance method)">- (void) <strong>section_block</strong>(m, multiline = true) { ... }</a>
     
 
     
@@ -450,7 +449,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  section_block method.</p>
+<p>Wraps a block in an opening and closing section message.</p>
 </div></span>
   
 </li>
@@ -459,7 +458,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#success-instance_method" title="#success (instance method)">- (Object) <strong>success</strong>(m) </a>
+      <a href="#success-instance_method" title="#success (instance method)">- (void) <strong>success</strong>(m) </a>
     
 
     
@@ -474,7 +473,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  success method.</p>
+<p>Outputs a formatted-green success message.</p>
 </div></span>
   
 </li>
@@ -483,7 +482,7 @@ Outputs color-coordinated messages to a CLI
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#warn-instance_method" title="#warn (instance method)">- (Object) <strong>warn</strong>(m) </a>
+      <a href="#warn-instance_method" title="#warn (instance method)">- (void) <strong>warn</strong>(m) </a>
     
 
     
@@ -498,7 +497,7 @@ Outputs color-coordinated messages to a CLI
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  warning method.</p>
+<p>Outputs a formatted-yellow warning message.</p>
 </div></span>
   
 </li>
@@ -516,7 +515,7 @@ Outputs color-coordinated messages to a CLI
       <div class="method_details first">
   <h3 class="signature first" id="included-class_method">
   
-    + (<tt>Object</tt>) <strong>included</strong>(k) 
+    + (<tt>void</tt>) <strong>included</strong>(k) 
   
 
   
@@ -524,25 +523,34 @@ Outputs color-coordinated messages to a CLI
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<h6 id="label-"></h6>
-
-<pre class="code ruby"><code class="ruby">Methods
-====================================================    ----------------------------------------------------
-included method
-
-Hook called when this module gets mixed in; extends
-the includer with the methods defined here.
-@param k The includer
-@return Void
-----------------------------------------------------
-</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Hook that triggers when this module is included.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>k</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The includer object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -550,12 +558,12 @@ the includer with the methods defined here.
       <pre class="lines">
 
 
-29
-30
-31</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_included'>included</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_extend'>extend</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -568,7 +576,7 @@ the includer with the methods defined here.
       <div class="method_details ">
   <h3 class="signature " id="wrap-class_method">
   
-    + (<tt>Object</tt>) <strong>wrap</strong>(on) 
+    + (<tt>void</tt>) <strong>wrap</strong>(on) 
   
 
   
@@ -576,19 +584,29 @@ the includer with the methods defined here.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">wrap method
-
-Toggles wrapping on or off
-@return Integer
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Toggles wrapping on or off</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>on</span>
+      
+      
+        <span class='type'>(<tt>&lt;True, False&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -596,12 +614,12 @@ Toggles wrapping on or off
       <pre class="lines">
 
 
-210
-211
-212</pre>
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 210</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wrap'>wrap</span><span class='lparen'>(</span><span class='id identifier rubyid_on'>on</span><span class='rparen'>)</span>
   <span class='cvar'>@@wrap</span> <span class='op'>=</span> <span class='id identifier rubyid_on'>on</span>
@@ -614,7 +632,7 @@ Toggles wrapping on or off
       <div class="method_details ">
   <h3 class="signature " id="wrap_at-class_method">
   
-    + (<tt>Object</tt>) <strong>wrap_at</strong>(chars) 
+    + (<tt>void</tt>) <strong>wrap_at</strong>(chars) 
   
 
   
@@ -622,19 +640,34 @@ Toggles wrapping on or off
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">wrap_at method
-
-Sets the number of characters at which to wrap
-@return Integer
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Sets the number of characters at which to wrap</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>chars</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The number of chars to output before wrapping</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -642,12 +675,12 @@ Sets the number of characters at which to wrap
       <pre class="lines">
 
 
-230
-231
-232</pre>
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 230</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wrap_at'>wrap_at</span><span class='lparen'>(</span><span class='id identifier rubyid_chars'>chars</span><span class='rparen'>)</span>
   <span class='cvar'>@@wrap_char_limit</span> <span class='op'>=</span> <span class='id identifier rubyid_chars'>chars</span>
@@ -660,7 +693,7 @@ Sets the number of characters at which to wrap
       <div class="method_details ">
   <h3 class="signature " id="wrap_limit-class_method">
   
-    + (<tt>Object</tt>) <strong>wrap_limit</strong> 
+    + (<tt>Integer</tt>) <strong>wrap_limit</strong> 
   
 
   
@@ -668,19 +701,27 @@ Sets the number of characters at which to wrap
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">wrap_limit method
-
-Returns the current character wrap amount
-@return Integer
-----------------------------------------------------</code></pre>
+    
+<p>Returns the current character wrap amount</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -688,12 +729,12 @@ Returns the current character wrap amount
       <pre class="lines">
 
 
-220
-221
-222</pre>
+160
+161
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 220</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wrap_limit'>wrap_limit</span>
   <span class='cvar'>@@wrap_char_limit</span>
@@ -712,7 +753,7 @@ Returns the current character wrap amount
       <div class="method_details first">
   <h3 class="signature first" id="color_chart-instance_method">
   
-    - (<tt>Object</tt>) <strong>color_chart</strong> 
+    - (<tt>void</tt>) <strong>color_chart</strong> 
   
 
   
@@ -720,14 +761,9 @@ Returns the current character wrap amount
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">color_chart method
-
-Displays a chart of all the possible ANSI foreground
-and background color combinations.
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Displays a chart of all the possible ANSI foreground and background color
+combinations.</p>
 
 
   </div>
@@ -741,21 +777,21 @@ and background color combinations.
       <pre class="lines">
 
 
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51</pre>
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_color_chart'>color_chart</span>
   <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='int'>4</span><span class='comma'>,</span> <span class='int'>5</span><span class='comma'>,</span> <span class='int'>7</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attr'>attr</span><span class='op'>|</span>
@@ -777,7 +813,7 @@ and background color combinations.
       <div class="method_details ">
   <h3 class="signature " id="debug-instance_method">
   
-    - (<tt>Object</tt>) <strong>debug</strong>(m) 
+    - (<tt>void</tt>) <strong>debug</strong>(m) 
   
 
   
@@ -785,14 +821,9 @@ and background color combinations.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_debug'>debug</span> <span class='id identifier rubyid_method'>method</span>
-
-<span class='const'>Empty</span> <span class='id identifier rubyid_method'>method</span> <span class='id identifier rubyid_so'>so</span> <span class='id identifier rubyid_that'>that</span> <span class='const'>Messenging</span> <span class='id identifier rubyid_doesn'>doesn</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>t freak
-out when passed a debug message.
-@return Void
-</span></span></code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Empty method so that Messenging doesn&#39;t freak out when passed a debug
+message.</p>
 
 
   </div>
@@ -806,10 +837,10 @@ out when passed a debug message.
       <pre class="lines">
 
 
-60</pre>
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -820,7 +851,7 @@ out when passed a debug message.
       <div class="method_details ">
   <h3 class="signature " id="error-instance_method">
   
-    - (<tt>Object</tt>) <strong>error</strong>(m) 
+    - (<tt>void</tt>) <strong>error</strong>(m) 
   
 
   
@@ -828,20 +859,34 @@ out when passed a debug message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">error method
-
-Outputs a formatted-red error message.
-@param m The message to output
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Outputs a formatted-red error message.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>m</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The message to output</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -849,12 +894,12 @@ Outputs a formatted-red error message.
       <pre class="lines">
 
 
-69
-70
-71</pre>
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid__word_wrap'>_word_wrap</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'># </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_red'>red</span>
@@ -867,7 +912,7 @@ Outputs a formatted-red error message.
       <div class="method_details ">
   <h3 class="signature " id="info-instance_method">
   
-    - (<tt>Object</tt>) <strong>info</strong>(m) 
+    - (<tt>void</tt>) <strong>info</strong>(m) 
   
 
   
@@ -875,20 +920,34 @@ Outputs a formatted-red error message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">info method
-
-Outputs a formatted-blue informational message.
-@param m The message to output
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Outputs a formatted-blue informational message.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>m</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The message to output</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -896,12 +955,12 @@ Outputs a formatted-blue informational message.
       <pre class="lines">
 
 
-80
-81
-82</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_info'>info</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid__word_wrap'>_word_wrap</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'># </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_blue'>blue</span>
@@ -914,7 +973,7 @@ Outputs a formatted-blue informational message.
       <div class="method_details ">
   <h3 class="signature " id="info_block-instance_method">
   
-    - (<tt>Object</tt>) <strong>info_block</strong>(m1, m2 = &#39;Done.&#39;, multiline = false) 
+    - (<tt>void</tt>) <strong>info_block</strong>(m1, m2 = &#39;Done.&#39;, multiline = false) { ... }
   
 
   
@@ -922,22 +981,83 @@ Outputs a formatted-blue informational message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">info_block method
-
-Wraps a block in an opening and closing info message.
-@param m1 The opening message to output
-@param m2 The closing message to output
-@param multiline Whether the message should be multiline
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Wraps a block in an opening and closing info message.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>m1</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The opening message to output</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>m2</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;Done.&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The closing message to output</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>multiline</span>
+      
+      
+        <span class='type'>(<tt>&lt;True, False&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the message should be multiline</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -945,28 +1065,28 @@ Wraps a block in an opening and closing info message.
       <pre class="lines">
 
 
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111</pre>
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 64</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_info_block'>info_block</span><span class='lparen'>(</span><span class='id identifier rubyid_m1'>m1</span><span class='comma'>,</span> <span class='id identifier rubyid_m2'>m2</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Done.</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_multiline'>multiline</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -995,7 +1115,7 @@ Wraps a block in an opening and closing info message.
       <div class="method_details ">
   <h3 class="signature " id="log-instance_method">
   
-    - (<tt>Object</tt>) <strong>log</strong>(m) 
+    - (<tt>void</tt>) <strong>log</strong>(m) 
   
 
   
@@ -1003,14 +1123,9 @@ Wraps a block in an opening and closing info message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_log'>log</span> <span class='id identifier rubyid_method'>method</span>
-
-<span class='const'>Empty</span> <span class='id identifier rubyid_method'>method</span> <span class='id identifier rubyid_so'>so</span> <span class='id identifier rubyid_that'>that</span> <span class='const'>Messenging</span> <span class='id identifier rubyid_doesn'>doesn</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>t freak
-out when passed a debug message.
-@return Void
-</span></span></code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Empty method so that Messenging doesn&#39;t freak out when passed a debug
+message.</p>
 
 
   </div>
@@ -1024,10 +1139,10 @@ out when passed a debug message.
       <pre class="lines">
 
 
-120</pre>
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -1038,7 +1153,7 @@ out when passed a debug message.
       <div class="method_details ">
   <h3 class="signature " id="prompt-instance_method">
   
-    - (<tt>Object</tt>) <strong>prompt</strong>(prompt, default = nil, start_dir = &#39;&#39;) 
+    - (<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>) <strong>prompt</strong>(prompt, default = nil, start_dir = &#39;&#39;) 
   
 
   
@@ -1046,22 +1161,83 @@ out when passed a debug message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">prompt method
-
-Outputs a prompt, collects the user&#39;s response, and
-returns it.
-@param prompt The prompt to output
-@param default The default option
-@return String
-----------------------------------------------------</code></pre>
+    
+<p>Outputs a prompt, collects the user&#39;s response, and returns it.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>prompt</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The prompt to output</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>default</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The default option</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>start_dir</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>&#39;&#39;</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The directory to start from for autocompletion</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1069,24 +1245,24 @@ returns it.
       <pre class="lines">
 
 
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145</pre>
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prompt'>prompt</span><span class='lparen'>(</span><span class='id identifier rubyid_prompt'>prompt</span><span class='comma'>,</span> <span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_start_dir'>start_dir</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='const'>Readline</span><span class='period'>.</span><span class='id identifier rubyid_completion_append_character'>completion_append_character</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -1111,7 +1287,7 @@ returns it.
       <div class="method_details ">
   <h3 class="signature " id="section-instance_method">
   
-    - (<tt>Object</tt>) <strong>section</strong>(m) 
+    - (<tt>void</tt>) <strong>section</strong>(m) 
   
 
   
@@ -1119,20 +1295,34 @@ returns it.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">section method
-
-Outputs a formatted-purple section message.
-@param m The message to output
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Outputs a formatted-purple section message.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>m</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The message to output</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -1140,12 +1330,12 @@ Outputs a formatted-purple section message.
       <pre class="lines">
 
 
-154
-155
-156</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 114</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_section'>section</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid__word_wrap'>_word_wrap</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>---&gt; </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_purple'>purple</span>
@@ -1158,7 +1348,7 @@ Outputs a formatted-purple section message.
       <div class="method_details ">
   <h3 class="signature " id="section_block-instance_method">
   
-    - (<tt>Object</tt>) <strong>section_block</strong>(m, multiline = true) 
+    - (<tt>void</tt>) <strong>section_block</strong>(m, multiline = true) { ... }
   
 
   
@@ -1166,23 +1356,65 @@ Outputs a formatted-purple section message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">section_block method
-
-Wraps a block in an opening and closing section
-message.
-@param m1 The opening message to output
-@param m2 The closing message to output
-@param multiline A multiline message or not
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Wraps a block in an opening and closing section message.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>m</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The opening message to output</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>multiline</span>
+      
+      
+        <span class='type'>(<tt>&lt;True, False&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>true</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Whether the message should be multiline</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1190,22 +1422,22 @@ message.
       <pre class="lines">
 
 
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180</pre>
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_section_block'>section_block</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='id identifier rubyid_multiline'>multiline</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -1228,7 +1460,7 @@ message.
       <div class="method_details ">
   <h3 class="signature " id="success-instance_method">
   
-    - (<tt>Object</tt>) <strong>success</strong>(m) 
+    - (<tt>void</tt>) <strong>success</strong>(m) 
   
 
   
@@ -1236,20 +1468,34 @@ message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">success method
-
-Outputs a formatted-green success message.
-@param m The message to output
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Outputs a formatted-green success message.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>m</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The message to output</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -1257,12 +1503,12 @@ Outputs a formatted-green success message.
       <pre class="lines">
 
 
-189
-190
-191</pre>
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_success'>success</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid__word_wrap'>_word_wrap</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'># </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_green'>green</span>
@@ -1275,7 +1521,7 @@ Outputs a formatted-green success message.
       <div class="method_details ">
   <h3 class="signature " id="warn-instance_method">
   
-    - (<tt>Object</tt>) <strong>warn</strong>(m) 
+    - (<tt>void</tt>) <strong>warn</strong>(m) 
   
 
   
@@ -1283,20 +1529,34 @@ Outputs a formatted-green success message.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">warning method
-
-Outputs a formatted-yellow warning message.
-@param m The message to output
-@return Void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Outputs a formatted-yellow warning message.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>m</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The message to output</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -1304,12 +1564,12 @@ Outputs a formatted-yellow warning message.
       <pre class="lines">
 
 
-200
-201
-202</pre>
+147
+148
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 200</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/pretty-io.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid__word_wrap'>_word_wrap</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'># </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_yellow'>yellow</span>
@@ -1324,7 +1584,7 @@ Outputs a formatted-yellow warning message.
 </div>
 
     <div id="footer">
-  Generated on Sat Mar 29 17:22:03 2014 by
+  Generated on Sat Mar 29 18:18:03 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.1.0).
 </div>

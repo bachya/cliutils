@@ -1,17 +1,12 @@
 require 'logger'
 
-#  ======================================================
-#  Logger Class
-#  ======================================================
+#  Logger Class extensions
 class Logger
-  #  ----------------------------------------------------
-  #  custom_level method
-  #
-  #  Creates a custom Logger level based on the passed
-  #  tag.
-  #  @param tag The Logger level to create
-  #  @return Void
-  #  ----------------------------------------------------
+
+  # Creates a custom Logger level based on the passed
+  # tag.
+  # @param [String] tag The Logger level to create
+  # @return [void]
   def self.custom_level(tag)
     SEV_LABEL << tag 
     idx = SEV_LABEL.size - 1 

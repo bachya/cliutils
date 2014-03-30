@@ -1,28 +1,15 @@
 require 'yaml'
 
 module CLIUtils
-  #  ======================================================
   #  Configuration Class
-  #
   #  Manages any configuration values and the flat YAML file
   #  into which they get stored.
-  #  ======================================================
   class Configurator
-    #  ====================================================
-    #  Attributes
-    #  ====================================================
     attr_reader :config_path, :data
 
-    #  ====================================================
-    #  Methods
-    #  ====================================================
-    #  ----------------------------------------------------
-    #  initialize method
-    #
-    #  Initializes configuration from a flat file.
-    #  @param path The filepath to the config YAML
-    #  @return void
-    #  ----------------------------------------------------
+    # Initializes configuration from a flat file.
+    # @param [String] path The filepath to the config YAML
+    # @return [void]
     def initialize(path)
       _path = File.expand_path(path)
       @config_path = _path
@@ -34,14 +21,10 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  add_section method
-    #
-    #  Adds a new section to the config file (if it doesn't
-    #  already exist).
-    #  @param section_name The section to add
-    #  @return Void
-    #  ----------------------------------------------------
+    # Adds a new section to the config file (if it doesn't
+    # already exist).
+    # @param [String] section_name The section to add
+    # @return [void]
     def add_section(section_name)
       if !@data.key?(section_name)
         @data[section_name] = {}
@@ -50,13 +33,9 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  delete_section method
-    #
-    #  Removes a section to the config file (if it exists).
-    #  @param section_name The section to remove
-    #  @return Void
-    #  ----------------------------------------------------
+    # Removes a section to the config file (if it exists).
+    # @param [String] section_name The section to remove
+    # @return [void]
     def delete_section(section_name)
       if @data.key?(section_name)
         @data.delete(section_name)
@@ -65,14 +44,10 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  ingest_prefs method
-    #
-    #  Ingests a Prefs class and adds its answers to the
-    #  configuration data.
-    #  @param prefs The Prefs class to examine
-    #  @return Void
-    #  ----------------------------------------------------
+    # Ingests a Prefs class and adds its answers to the
+    # configuration data.
+    # @param [Prefs] prefs The Prefs class to examine
+    # @return [void]
     def ingest_prefs(prefs)
       fail 'Invaid Prefs class' if !prefs.kind_of?(Prefs) || prefs.answers.nil?
       prefs.answers.each do |p|
@@ -81,37 +56,23 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  method_missing method
-    #
-    #  Allows this module to return data from the config
-    #  Hash when given a method name that matches a key.
-    #  @param name
-    #  @param *args
-    #  @param &block
-    #  @return Hash
-    #  ----------------------------------------------------
+    # Hook that fires when a non-existent method is called.
+    # Allows this module to return data from the config
+    # Hash when given a method name that matches a key.
+    # @return [Hash]
     def method_missing(name, *args, &block)
       @data[name.to_sym] || @data.merge!(name.to_sym => {})
     end
 
-    #  ----------------------------------------------------
-    #  reset method
-    #
-    #  Clears the configuration data.
-    #  @return Void
-    #  ----------------------------------------------------
+    # Clears the configuration data.
+    # @return [void]
     def reset
       @data = {}
     end
 
-    #  ----------------------------------------------------
-    #  save method
-    #
-    #  Saves the configuration data to the previously
-    #  stored flat file.
-    #  @return Void
-    #  ----------------------------------------------------
+    # Saves the configuration data to the previously
+    # stored flat file.
+    # @return [void]
     def save
       File.open(@config_path, 'w') { |f| f.write(@data.deep_stringify_keys.to_yaml) }
     end

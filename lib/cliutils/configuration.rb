@@ -1,46 +1,28 @@
 require 'yaml'
 
 module CLIUtils
-  #  ======================================================
-  #  Configuration Class
-  #
-  #  Manages any configuration values and the flat YAML file
-  #  into which they get stored.
-  #  ======================================================
+  # Configuration Module
+  # Manages any configuration values and the flat YAML file
+  # into which they get stored.
   module Configuration
-    #  ====================================================
-    #  Methods
-    #  ====================================================
-    #  ----------------------------------------------------
-    #  included method
-    #
-    #  Hook called when this module gets mixed in; extends
-    #  the includer with the methods defined here.
-    #  @param k The includer
-    #  @return Void
-    #  ----------------------------------------------------
+    # Hook that triggers when this module is included.
+    # @param [Object] k The includer object
+    # @return [void]
     def self.included(k)
       k.extend(self)
     end
 
-    #  ----------------------------------------------------
-    #  configuration method
-    #
-    #  Singleton method to return (or initialize, if needed)
-    #  a Configurator.
-    #  @return Configurator
-    #  ----------------------------------------------------
+    # Singleton method to return (or initialize, if needed)
+    # a Configurator.
+    # @return [Configurator]
     def configuration
       @configuration ||= Configurator.new('~/.default-cliutils')
     end
 
-    #  ----------------------------------------------------
-    #  load_configuration method
-    #
-    #  Initializes a Configurator with the passed filepath.
-    #  @param path The path to the config file
-    #  @return Void
-    #  ----------------------------------------------------
+    # Singleton method to return (or initialize, if needed)
+    # a Configurator.
+    # @param [String] path The filepath to use
+    # @return [void]
     def load_configuration(path)
       @configuration = Configurator.new(path)
     end

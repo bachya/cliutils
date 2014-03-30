@@ -1,33 +1,19 @@
 module CLIUtils
-  #  ======================================================
   #  CLIMessenger Module
-  #  Outputs color-coordinated messages to a CLI
-  #  ======================================================
+  #  Outputs coordinated messages to a variety of targets.
   module Messenging
     include CLIUtils::PrettyIO
 
-    #  ====================================================
-    #  Methods
-    #  ====================================================
-    #  ----------------------------------------------------
-    #  included method
-    #
-    #  Hook called when this module gets mixed in; extends
-    #  the includer with the methods defined here.
-    #  @param k The includer
-    #  @return Void
-    #  ----------------------------------------------------
+    # Hook that triggers when this module is included.
+    # @param [Object] k The includer object
+    # @return [void]
     def self.included(k)
       k.extend(self)
     end
 
-    #  ----------------------------------------------------
-    #  default_instance method
-    #
-    #  Returns a default instance of LoggerDelegator that
-    #  delegates to STDOUT only.
-    #  @return LoggerDelegator
-    #  ----------------------------------------------------
+    # Returns a default instance of LoggerDelegator that
+    # delegates to STDOUT only.
+    # @return [LoggerDelegator]
     def default_instance
       stdout_logger = Logger.new(STDOUT)
       stdout_logger.formatter = proc do |severity, datetime, progname, msg|
@@ -37,13 +23,9 @@ module CLIUtils
       LoggerDelegator.new(stdout_logger)
     end
 
-    #  ----------------------------------------------------
-    #  messenger method
-    #
-    #  Singleton method to return (or initialize, if needed)
-    #  a LoggerDelegator.
-    #  @return LoggerDelegator
-    #  ----------------------------------------------------
+    # Singleton method to return (or initialize, if needed)
+    # a LoggerDelegator.
+    # @return [LoggerDelegator]
     def messenger
       @messenger ||= default_instance
     end

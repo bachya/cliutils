@@ -1,26 +1,13 @@
 module CLIUtils
-  #  ======================================================
-  #  PrefManager Class
-  #
-  #  Engine to derive preferences from a YAML file, deliver
-  #  those to a user via a prompt, and collect the results.
-  #  ======================================================
+  # Engine to derive preferences from a YAML file, deliver
+  # those to a user via a prompt, and collect the results.
   class Prefs
     include PrettyIO
-    #  ====================================================
-    #  Attributes
-    #  ====================================================
     attr_reader :answers, :config_path, :prompts
 
-    #  ====================================================
-    #  Methods
-    #  ====================================================
-    #  ----------------------------------------------------
-    #  initialize method
-    #
-    #  Reads prompt data from YAML file.
-    #  @return Void
-    #  ----------------------------------------------------
+    # Reads prompt data from and stores it.
+    # @param [<String, Array>] data Either a filepath or an array
+    # @return [void]
     def initialize(data)
       @answers = []
       @prompts = {}
@@ -45,15 +32,11 @@ module CLIUtils
       end
     end
 
-    #  ----------------------------------------------------
-    #  ask method
-    #
-    #  Runs through all of the prompt questions and collects
-    #  answers from the user. Note that all questions w/o
-    #  requirements are examined first; once those are
-    #  complete, questions w/ requirements are examined.
-    #  @return Void
-    #  ----------------------------------------------------
+    # Runs through all of the prompt questions and collects
+    # answers from the user. Note that all questions w/o
+    # requirements are examined first; once those are
+    # complete, questions w/ requirements are examined.
+    # @return [void]
     def ask
       @prompts[:prompts].reject { |p| p[:requirements] }.each do |p|
         _deliver_prompt(p)
@@ -66,14 +49,10 @@ module CLIUtils
 
     private
 
-    #  ----------------------------------------------------
-    #  _deliver_prompt method
-    #
-    #  Utility method for prompting the user to answer the
-    #  question (taking into account any options).
-    #  @param p The prompt
-    #  @return Void
-    #  ----------------------------------------------------
+    # Utility method for prompting the user to answer the
+    # question (taking into account any options).
+    # @param [Hash] p The prompt
+    # @return [void]
     def _deliver_prompt(p)
       if p[:options].nil?
         pref = prompt(p[:prompt], p[:default])
@@ -93,14 +72,10 @@ module CLIUtils
       @answers << p
     end
 
-    #  ----------------------------------------------------
-    #  _requirements_fulfilled? method
-    #
-    #  Utility method for determining whether a prompt's
-    #  requirements have already been fulfilled.
-    #  @param p The prompt
-    #  @return Void
-    #  ----------------------------------------------------
+    # Utility method for determining whether a prompt's
+    # requirements have already been fulfilled.
+    # @param [Hash] p The prompt
+    # @return [void]
     def _requirements_fulfilled?(p)
       ret = true
       p[:requirements].each do |req|

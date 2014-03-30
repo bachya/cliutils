@@ -102,13 +102,8 @@
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
     
-<h6 id="label-"></h6>
-
-<pre class="code ruby"><code class="ruby">LoggerDelegator Class
-
-Manages any configuration values and the flat YAML file
-into which they get stored.
-======================================================</code></pre>
+<p>LoggerDelegator Class Delegates certain Logger methods to a number of
+different targets.</p>
 
 
   </div>
@@ -126,7 +121,7 @@ into which they get stored.
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#devices-instance_method" title="#devices (instance method)">- (Object) <strong>devices</strong> </a>
+      <a href="#targets-instance_method" title="#targets (instance method)">- (Object) <strong>targets</strong> </a>
     
 
     
@@ -146,7 +141,7 @@ into which they get stored.
 
   
     <span class="summary_desc"><div class='inline'>
-<h6 id="label-Attributes++%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D.">Attributes  ====================================================.</h6>
+<p>Returns the value of attribute targets.</p>
 </div></span>
   
 </li>
@@ -168,7 +163,7 @@ into which they get stored.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#delegate-class_method" title="delegate (class method)">+ (Object) <strong>delegate</strong> </a>
+      <a href="#delegate-class_method" title="delegate (class method)">+ (void) <strong>delegate</strong> </a>
     
 
     
@@ -183,7 +178,7 @@ into which they get stored.
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  delegate_all method.</p>
+<p>Creates delegator methods for a specific list of Logger functions.</p>
 </div></span>
   
 </li>
@@ -201,7 +196,7 @@ into which they get stored.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attach-instance_method" title="#attach (instance method)">- (Object) <strong>attach</strong>(target) </a>
+      <a href="#attach-instance_method" title="#attach (instance method)">- (void) <strong>attach</strong>(target) </a>
     
 
     
@@ -216,7 +211,7 @@ into which they get stored.
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  attach method.</p>
+<p>Attaches a new target to delegate to.</p>
 </div></span>
   
 </li>
@@ -225,7 +220,7 @@ into which they get stored.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#detach-instance_method" title="#detach (instance method)">- (Object) <strong>detach</strong>(target) </a>
+      <a href="#detach-instance_method" title="#detach (instance method)">- (void) <strong>detach</strong>(target) </a>
     
 
     
@@ -240,7 +235,7 @@ into which they get stored.
 
   
     <span class="summary_desc"><div class='inline'>
-<p>—————————————————-  detach method.</p>
+<p>Detaches a delegation target.</p>
 </div></span>
   
 </li>
@@ -249,7 +244,7 @@ into which they get stored.
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (LoggerDelegator) <strong>initialize</strong>(*targets) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (void) <strong>initialize</strong>(*targets) </a>
     
 
     
@@ -266,7 +261,7 @@ into which they get stored.
 
   
     <span class="summary_desc"><div class='inline'>
-<h6 id="label-Methods++%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D%3D++----------------------------------------------------++initialize+method.">Methods  ====================================================  —————————————————-  initialize method.</h6>
+<p>Initializes and creates methods for the passed targets.</p>
 </div></span>
   
 </li>
@@ -281,7 +276,7 @@ into which they get stored.
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="CLIUtils::LoggerDelegator (class)">LoggerDelegator</a></span></tt>) <strong>initialize</strong>(*targets) 
+    - (<tt>void</tt>) <strong>initialize</strong>(*targets) 
   
 
   
@@ -290,23 +285,33 @@ into which they get stored.
 </h3><div class="docstring">
   <div class="discussion">
     
-<h6 id="label-"></h6>
-
-<pre class="code ruby"><code class="ruby">Methods
-====================================================
-----------------------------------------------------
-initialize method
-
-Initializer
-@param *targets The endpoints to delegate to
-@return void
-----------------------------------------------------</code></pre>
+<p>Initializes and creates methods for the passed targets.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>targets</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Logger.html" title="Logger (class)">Logger</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The endpoints to delegate to</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -314,13 +319,13 @@ Initializer
       <pre class="lines">
 
 
-24
-25
-26
-27</pre>
+11
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 11</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_targets'>targets</span><span class='rparen'>)</span>
   <span class='ivar'>@targets</span> <span class='op'>=</span> <span class='id identifier rubyid_targets'>targets</span>
@@ -339,9 +344,9 @@ Initializer
       
       <span id=""></span>
       <div class="method_details first">
-  <h3 class="signature first" id="devices-instance_method">
+  <h3 class="signature first" id="targets-instance_method">
   
-    - (<tt>Object</tt>) <strong>devices</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Object</tt>) <strong>targets</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -350,10 +355,7 @@ Initializer
 </h3><div class="docstring">
   <div class="discussion">
     
-<h6 id="label-"></h6>
-
-<pre class="code ruby"><code class="ruby">Attributes
-====================================================</code></pre>
+<p>Returns the value of attribute targets</p>
 
 
   </div>
@@ -367,15 +369,15 @@ Initializer
       <pre class="lines">
 
 
-12
-13
-14</pre>
+6
+7
+8</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 6</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_devices'>devices</span>
-  <span class='ivar'>@devices</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_targets'>targets</span>
+  <span class='ivar'>@targets</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -392,7 +394,7 @@ Initializer
       <div class="method_details first">
   <h3 class="signature first" id="delegate-class_method">
   
-    + (<tt>Object</tt>) <strong>delegate</strong> 
+    + (<tt>void</tt>) <strong>delegate</strong> 
   
 
   
@@ -400,14 +402,8 @@ Initializer
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">delegate_all method
-
-Creates delegator methods for all of the methods
-on IO.
-@return void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Creates delegator methods for a specific list of Logger functions.</p>
 
 
   </div>
@@ -421,16 +417,16 @@ on IO.
       <pre class="lines">
 
 
-47
-48
-49
-50
-51
-52
-53</pre>
+27
+28
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_delegate'>delegate</span>
   <span class='qwords_beg'>%w(</span><span class='tstring_content'>log</span><span class='words_sep'> </span><span class='tstring_content'>debug</span><span class='words_sep'> </span><span class='tstring_content'>info</span><span class='words_sep'> </span><span class='tstring_content'>warn</span><span class='words_sep'> </span><span class='tstring_content'>error</span><span class='words_sep'> </span><span class='tstring_content'>section</span><span class='words_sep'> </span><span class='tstring_content'>success</span><span class='words_sep'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_m'>m</span><span class='op'>|</span>
@@ -453,7 +449,7 @@ on IO.
       <div class="method_details first">
   <h3 class="signature first" id="attach-instance_method">
   
-    - (<tt>Object</tt>) <strong>attach</strong>(target) 
+    - (<tt>void</tt>) <strong>attach</strong>(target) 
   
 
   
@@ -461,19 +457,34 @@ on IO.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">attach method
-
-Attaches a new target to delegate to.
-@return void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Attaches a new target to delegate to.</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>target</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Logger.html" title="Logger (class)">Logger</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>The targets to delegate to</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -481,13 +492,13 @@ Attaches a new target to delegate to.
       <pre class="lines">
 
 
-35
-36
-37
-38</pre>
+19
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attach'>attach</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='ivar'>@targets</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_target'>target</span>
@@ -501,7 +512,7 @@ Attaches a new target to delegate to.
       <div class="method_details ">
   <h3 class="signature " id="detach-instance_method">
   
-    - (<tt>Object</tt>) <strong>detach</strong>(target) 
+    - (<tt>void</tt>) <strong>detach</strong>(target) 
   
 
   
@@ -509,13 +520,8 @@ Attaches a new target to delegate to.
   
 </h3><div class="docstring">
   <div class="discussion">
-    <hr>
-
-<pre class="code ruby"><code class="ruby">detach method
-
-Detaches a delegation target.
-@return void
-----------------------------------------------------</code></pre>
+    <p class="note returns_void">This method returns an undefined value.</p>
+<p>Detaches a delegation target.</p>
 
 
   </div>
@@ -529,13 +535,13 @@ Detaches a delegation target.
       <pre class="lines">
 
 
-61
-62
-63
-64</pre>
+37
+38
+39
+40</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/cliutils/logger-delegator.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_detach'>detach</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
   <span class='ivar'>@targets</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
@@ -551,7 +557,7 @@ Detaches a delegation target.
 </div>
 
     <div id="footer">
-  Generated on Sat Mar 29 17:22:03 2014 by
+  Generated on Sat Mar 29 18:18:03 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.4 (ruby-2.1.0).
 </div>
