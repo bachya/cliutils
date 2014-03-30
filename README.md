@@ -45,7 +45,7 @@ include CLIUtils
 
 Alternatively, as described below, mix in only the libraries that you want.
 
-Note that although this README.md is extensive, it may not cover all methods. Check out the [tests](https://github.com/bachya/cli-utils/tree/master/test) to see more examples.
+Note that although this README.md is extensive, it may not cover all methods. Check out the [YARD documentation](http://rubydoc.info/github/bachya/cli-utils/master/frames) and the [tests](https://github.com/bachya/cli-utils/tree/master/test) to see more examples.
 
 # Libraries
 
