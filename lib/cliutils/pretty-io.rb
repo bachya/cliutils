@@ -12,7 +12,12 @@ module CLIUtils
   module PrettyIO
 
     class << self
+      # Determines whether wrapping should be enabled.
+      # @return [Boolean]
       attr_accessor :wrap
+
+      # Determines when strings should begin to wrap
+      # @return [Integer]
       attr_accessor :wrap_char_limit
     end
     

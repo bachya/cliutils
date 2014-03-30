@@ -5,7 +5,13 @@ module CLIUtils
   #  Manages any configuration values and the flat YAML file
   #  into which they get stored.
   class Configurator
-    attr_reader :config_path, :data
+    # Stores the path to the configuration file.
+    # @return [String]
+    attr_reader :config_path
+    
+    # Stores the configuration data itself.
+    # @return [Hash]
+    attr_reader :data
 
     # Initializes configuration from a flat file.
     # @param [String] path The filepath to the config YAML

@@ -3,6 +3,8 @@ module CLIUtils
   # Delegates certain Logger methods to a number of different
   # targets.
   class LoggerDelegator
+    # The endpoints to which delegation occurs.
+    # @return [Array]
     attr_reader :targets
 
     # Initializes and creates methods for the passed targets.

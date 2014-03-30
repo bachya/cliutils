@@ -5,7 +5,17 @@ module CLIUtils
   # those to a user via a prompt, and collect the results.
   class Prefs
     include PrettyIO
-    attr_reader :answers, :config_path, :prompts
+    # Stores answers to prompt questions.
+    # @return [Hash]
+    attr_reader :answers
+    
+    # Stores the filepath (if it exists) to the prefs file.
+    # @return [String]
+    attr_reader :config_path
+    
+    # Stores answers to prompt questions.
+    # @return [Hash]
+    attr_reader :prompts
 
     # Reads prompt data from and stores it.
     # @param [<String, Hash, Array>] data Filepath to YAML, Hash, or Array
