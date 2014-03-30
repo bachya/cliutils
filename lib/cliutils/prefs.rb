@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), 'pretty-io')
+require 'cliutils/pretty-io'
 
 module CLIUtils
   # Engine to derive preferences from a YAML file, deliver
