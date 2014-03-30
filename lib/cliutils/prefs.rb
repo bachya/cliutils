@@ -8,7 +8,7 @@ module CLIUtils
     attr_reader :answers, :config_path, :prompts
 
     # Reads prompt data from and stores it.
-    # @param [<String, Array>] data Either a filepath or an array
+    # @param [<String, Hash, Array>] data Filepath to YAML, Hash, or Array
     # @return [void]
     def initialize(data)
       @answers = []
@@ -24,10 +24,15 @@ module CLIUtils
         else
           fail "Invalid configuration file: #{ yaml_path }"
         end
+      when Hash
+        @config_path = nil
+        
+        data = {:prompts => data} unless data.keys[0] == :prompts
+        @prompts.deep_merge!(data).deep_symbolize_keys!
       when Array
         @config_path = nil
 
-        data = {:prompts => data} unless data.keys[0] == :prompts
+        prompts = {:prompts => data}
         @prompts.deep_merge!(prompts).deep_symbolize_keys!
       else
         fail 'Invalid configuration data'
