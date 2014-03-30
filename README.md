@@ -148,13 +148,13 @@ messenger.info_block('Starting up...', 'Done!', multiline = false) { # do stuff 
 PrettyIO also gives `messenger` the ability to wrap your messages so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
 
 ```Ruby
-CLIUtils::PrettyIO::wrap_at(50)
+CLIUtils::PrettyIO.wrap_char_limit = 50
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
-CLIUtils::PrettyIO::wrap_at(20)
+CLIUtils::PrettyIO.wrap_char_limit = 20
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 puts ''
-CLIUtils::PrettyIO::wrap(false)
+CLIUtils::PrettyIO.wrap = false
 messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/wrapping.png "Text Wrapping")

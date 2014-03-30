@@ -10,8 +10,14 @@ module CLIUtils
   # CLIMessenger Module
   # Outputs color-coordinated messages to a CLI
   module PrettyIO
-    @@wrap = true
-    @@wrap_char_limit = 40
+
+    class << self
+      attr_accessor :wrap
+      attr_accessor :wrap_char_limit
+    end
+    
+    self.wrap = true
+    self.wrap_char_limit = 40
 
     # Hook that triggers when this module is included.
     # @param [Object] k The includer object
@@ -148,26 +154,6 @@ module CLIUtils
       puts _word_wrap(m, '# ').yellow
     end
 
-    # Toggles wrapping on or off
-    # @param [<True, False>] on
-    # @return [void]
-    def self.wrap(on)
-      @@wrap = on
-    end
-
-    # Returns the current character wrap amount
-    # @return [Integer]
-    def self.wrap_limit
-      @@wrap_char_limit
-    end
-
-    # Sets the number of characters at which to wrap
-    # @param [Integer] chars The number of chars to output before wrapping
-    # @return [void]
-    def self.wrap_at(chars)
-      @@wrap_char_limit = chars
-    end
-    
     private
 
     # Outputs a wrapped string (where each line is limited
@@ -176,9 +162,9 @@ module CLIUtils
     # @param [String] prefix_str The prefix for each line
     # @return [String]
     def _word_wrap(text, prefix_str) 
-      if @@wrap
-        return text if @@wrap_char_limit <= 0
-        text.gsub(/\n/, ' ').gsub(/(.{1,#{@@wrap_char_limit - prefix_str.length}})(\s+|$)/, "#{ prefix_str }\\1\n").strip
+      if PrettyIO.wrap
+        return text if PrettyIO.wrap_char_limit <= 0
+        text.gsub(/\n/, ' ').gsub(/(.{1,#{PrettyIO.wrap_char_limit - prefix_str.length}})(\s+|$)/, "#{ prefix_str }\\1\n").strip
       else
         text
       end

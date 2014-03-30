@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'cliutils'
+
+include CLIUtils::Messenging
+
+CLIUtils::PrettyIO::wrap_char_limit = 50
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+puts ''
+CLIUtils::PrettyIO::wrap_char_limit = 20
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+puts ''
+CLIUtils::PrettyIO::wrap = false
+messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
