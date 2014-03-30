@@ -29,7 +29,7 @@ module CLIUtils
     # a LoggerDelegator.
     # @return [LoggerDelegator]
     def messenger
-      @messenger ||= default_instance
+      @@messenger ||= default_instance
     end
   end
 end

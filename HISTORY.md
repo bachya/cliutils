@@ -1,3 +1,8 @@
+# 1.0.5 (2014-03-30)
+
+* Fixed a bug with Configuration singleton
+* Fixed a bug with Messenging singleton
+
 # 1.0.4 (2014-03-29)
 
 * Fixed several bugs

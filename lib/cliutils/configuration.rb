@@ -16,7 +16,7 @@ module CLIUtils
     # a Configurator.
     # @return [Configurator]
     def configuration
-      @configuration ||= Configurator.new('~/.default-cliutils')
+      @@configuration ||= Configurator.new('~/.default-cliutils')
     end
 
     # Singleton method to return (or initialize, if needed)
@@ -24,7 +24,8 @@ module CLIUtils
     # @param [String] path The filepath to use
     # @return [void]
     def load_configuration(path)
-      @configuration = Configurator.new(path)
+      @@configuration = Configurator.new(path)
     end
+    alias configuration= load_configuration
   end
 end
