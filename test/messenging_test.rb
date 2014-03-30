@@ -47,7 +47,7 @@ class TestMessenging < Test::Unit::TestCase
     messenger.send(:warn, 'Warn test')
     
     File.open(@file1path, 'r') do |f|
-      assert_output("INFO: Info test\nERROR: Error test\n") { puts f.read.lines[1..-1].join }
+      assert_output("INFO: Info test\nERROR: Error test\n") { puts f.read.lines.to_a[1..-1].join }
     end
   end
 end
