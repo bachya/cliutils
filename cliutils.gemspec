@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email            = ["bachya1208@googlemail.com"]
   spec.summary          = 'Sugary goodness for Ruby CLI apps.'
   spec.description      = 'A library of functionality designed to alleviate common tasks and headaches when developing command-line (CLI) apps in Ruby.'
-  spec.homepage         = "https://github.com/bachya/cli-utils"
+  spec.homepage         = "http://www.bachyaproductions.com/cliutils-ruby-library-cli-apps/"
   spec.license          = "MIT"
                         
   spec.files            = `git ls-files -z`.split("\x0")
