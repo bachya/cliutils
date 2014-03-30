@@ -27,7 +27,7 @@ module CLIUtils
       when Array
         @config_path = nil
 
-        prompts = {:prompts => data}
+        data = {:prompts => data} unless data.keys[0] == :prompts
         @prompts.deep_merge!(prompts).deep_symbolize_keys!
       else
         fail 'Invalid configuration data'
