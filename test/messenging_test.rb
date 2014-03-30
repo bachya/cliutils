@@ -1,4 +1,3 @@
-require 'fileutils'
 require 'logger'
 require 'test/unit'
 
@@ -27,10 +26,10 @@ class TestMessenging < Test::Unit::TestCase
   end
   
   def test_wrapping
-    CLIUtils::PrettyIO.wrap_at(35)
+    CLIUtils::PrettyIO.wrap_char_limit = 35
     
     long_str = 'This is a really long string that should wrap itself at some point, okay?'
-    expected_str = long_str.gsub(/\n/, ' ').gsub(/(.{1,#{CLIUtils::PrettyIO.wrap_limit - 2}})(\s+|$)/, "# \\1\n").strip
+    expected_str = long_str.gsub(/\n/, ' ').gsub(/(.{1,#{CLIUtils::PrettyIO.wrap_char_limit - 2}})(\s+|$)/, "# \\1\n").strip
     assert_output(expected_str.blue + "\n") { messenger.send(:info, long_str) }
   end
 
