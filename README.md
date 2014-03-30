@@ -306,6 +306,30 @@ prompts:
         value: password
 ```
 
+Assuming the above, `Prefs` is instantiated like so:
+
+```Ruby
+prefs = CLIUtils::Prefs.new('path/to/yaml/file')
+```
+
+With valid preferences loaded, simply use `ask` to begin prompting your user:
+
+```Ruby
+prefs.ask
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask.png "Prefs.ask")
+
+Once the user has answered all the preference prompts, you can fold those answers back into a Configurator using the `ingest` method:
+
+```Ruby
+configuration.ingest(prefs)
+configuration.save
+```
+
+### Why a Prefs Class?
+
+I've written apps that need to request user input at various times for multiple different things; as such, I thought it'd be easier to have those scenarios chunked up. You can always wrap `Prefs` into a module singleton if you wish.
+
 # Known Issues
 
 * LoggerDelegator doesn't currently know what to do with `messenger.prompt`, so you'll have to manually log a `debug` message if you want that information logged.
