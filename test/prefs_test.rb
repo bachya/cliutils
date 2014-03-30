@@ -26,4 +26,9 @@ class TestPrefs < Test::Unit::TestCase
     p = CLIUtils::Prefs.new(@prefs_arr)
     assert_equal({:prompts => @prefs_arr}.deep_symbolize_keys!, p.prompts)
   end
+
+  def test_ask
+    p = CLIUtils::Prefs.new(@prefs_arr)
+    p.ask
+  end
 end
