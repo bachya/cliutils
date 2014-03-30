@@ -257,6 +257,55 @@ user_data:
   username: bob
 ```
 
+## Prefs
+
+Many times, CLI apps need to ask their users some questions, collect the feedback, validate it, and store it. CLIUtils makes this a breeze via the `Prefs` class.
+
+`Prefs` can load preferences information from either a YAML file (via a filepath) or from an array of preferences. In either case, the schema is the same; each prompt includes the following:
+
+* prompt (**required**): the string to prompt your user with
+* default (*optional*): an optional default to offer
+* key (**required**): the key that refers to this preference
+* section (**required**): the Configuration section that this preference applies to
+* options (*optional*): an optional array of values; the user's choice must be in this array
+* requirements (*optional*): an optional list of key/value pairs that must exist for this preference to be displayed
+
+Here's an example YAML preferences file.
+
+```YAML
+prompts:
+  - prompt: What is the hostname of your DD-WRT router?
+    default: 192.168.1.1
+    key: hostname
+    section: ssh_info
+  - prompt: What is the SSH username of your DD-WRT router?
+    default: root
+    key: username
+    section: ssh_info
+  - prompt: What SSH port does your DD-WRT router use?
+    default: 22
+    key: port
+    section: ssh_info
+  - prompt: Do you use password or key authentication?
+    default: password
+    key: auth_method
+    section: ssh_info
+    options: ['password', 'key']
+  - prompt: Where is your key located?
+    default: ~/.ssh
+    key: key_location
+    section: ssh_info
+    requirements:
+      - key: auth_method
+        value: key
+  - prompt: What is your password?
+    key: password
+    section: ssh_info
+    requirements:
+      - key: auth_method
+        value: password
+```
+
 # Known Issues
 
 * LoggerDelegator doesn't currently know what to do with `messenger.prompt`, so you'll have to manually log a `debug` message if you want that information logged.
