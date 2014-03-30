@@ -2,7 +2,7 @@ module CLIUtils
   # Engine to derive preferences from a YAML file, deliver
   # those to a user via a prompt, and collect the results.
   class Prefs
-    include PrettyIO
+    include CLIUtils::PrettyIO
     attr_reader :answers, :config_path, :prompts
 
     # Reads prompt data from and stores it.
