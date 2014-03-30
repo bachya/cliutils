@@ -1,8 +1,10 @@
+require 'cliutils/pretty-io'
+
 module CLIUtils
   #  CLIMessenger Module
   #  Outputs coordinated messages to a variety of targets.
   module Messenging
-    include CLIUtils::PrettyIO
+    include PrettyIO
 
     # Hook that triggers when this module is included.
     # @param [Object] k The includer object
