@@ -176,17 +176,19 @@ Often, it's desirable to log messages as they appear to your user. `messenging` 
 For instance, let's say you wanted to log a few messages to both your user's STDOUT and to `file.txt`:
 
 ```Ruby
-file_logger = Logger.new('file.txt')
-
 messenger.info('This should only appear in STDOUT.')
 
-messenger.attach(file_logger)
+#messenger.attach takes a Hash of string/symbol keys
+# and Logger values (so you can refer to them later on).
+messenger.attach(MY\_FILE\_LOGGER: Logger.new('file.txt'))
 
 messenger.warn('This warning should appear in STDOUT and file.txt')
 messenger.error('This error should appear in STDOUT and file.txt')
 messenger.debug('This debug message should only appear in file.txt')
 
-messenger.detach(file_logger)
+# messenger.detach takes the string/symbol key
+# defined earlier.
+messenger.detach(:MY\_FILE\_LOGGER)
 
 messenger.section('This section message should appear only in STDOUT')
 ```

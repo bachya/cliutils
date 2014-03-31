@@ -10,7 +10,7 @@ module CLIUtils
     # Initializes and creates methods for the passed targets.
     # @param [Logger] targets The endpoints to delegate to
     # @return [void]
-    def initialize(*targets)
+    def initialize(targets)
       @targets = targets
       LoggerDelegator.delegate
     end
@@ -19,7 +19,8 @@ module CLIUtils
     # @param [Logger] target The targets to delegate to
     # @return [void]
     def attach(target)
-      @targets << target
+      fail "Cannot add invalid target: #{ target }" unless target.is_a?(Hash)
+      @targets.merge!(target)
       LoggerDelegator.delegate
     end
 
@@ -29,15 +30,17 @@ module CLIUtils
     def self.delegate
       %w(log debug info warn error section success).each do |m|
         define_method(m) do |*args|
-          @targets.map { |t| t.send(m, *args) }
+          @targets.each_value { |v| v.send(m, *args) }
         end
       end
     end
 
     # Detaches a delegation target.
+    # @param [<String, Symbol>] target_name The target to remove
     # @return [void]
-    def detach(target)
-      @targets.delete(target)
+    def detach(target_name)
+      fail "Cannot delete invalid target: #{ target_name }" unless @targets.key?(target_name)
+      @targets.delete(target_name)
       LoggerDelegator.delegate
     end
   end

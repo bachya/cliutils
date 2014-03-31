@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cliutils (1.0.6)
+    cliutils (1.0.7)
 
 GEM
   remote: https://rubygems.org/

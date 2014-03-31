@@ -22,7 +22,7 @@ module CLIUtils
         send(severity.downcase, msg)
       end
       
-      LoggerDelegator.new(stdout_logger)
+      LoggerDelegator.new(STDOUT: stdout_logger)
     end
 
     # Singleton method to return (or initialize, if needed)

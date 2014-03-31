@@ -1,3 +1,7 @@
+# 1.0.7 (2014-03-30)
+
+* Modified Messenging targets to be a Hash for easier lookup/deletion
+
 # 1.0.6 (2014-03-30)
 
 * Added convenience logging constant to Configuration

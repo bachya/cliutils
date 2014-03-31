@@ -39,10 +39,10 @@ class TestMessenging < Test::Unit::TestCase
       "#{ severity }: #{ msg }\n"
     end
     
-    messenger.attach(file_logger)
+    messenger.attach(FILE: file_logger)
     messenger.send(:info, 'Info test')
     messenger.send(:error, 'Error test')
-    messenger.detach(file_logger)
+    messenger.detach(:FILE)
     messenger.send(:warn, 'Warn test')
     
     File.open(@file1path, 'r') do |f|

@@ -32,7 +32,7 @@ module CLIUtils
           prompts = YAML::load_file(data)
           @prompts.deep_merge!(prompts).deep_symbolize_keys!
         else
-          fail "Invalid configuration file: #{ yaml_path }"
+          fail "Invalid configuration file: #{ data }"
         end
       when Hash
         @config_path = nil
