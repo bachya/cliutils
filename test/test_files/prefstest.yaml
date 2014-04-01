@@ -1,7 +1,10 @@
 prompts:
-  - prompt: What is the hostname of your DD-WRT router?
+  - prompt: What is the local hostname of your DD-WRT router?
     default: 192.168.1.1
-    key: hostname
+    key: local_hostname
+    section: ssh_info
+  - prompt: What is the remote hostname of your DD-WRT router?
+    key: remote_hostname
     section: ssh_info
   - prompt: What is the SSH username of your DD-WRT router?
     default: root

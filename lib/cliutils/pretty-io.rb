@@ -10,7 +10,6 @@ module CLIUtils
   # CLIMessenger Module
   # Outputs color-coordinated messages to a CLI
   module PrettyIO
-
     class << self
       # Determines whether wrapping should be enabled.
       # @return [Boolean]
@@ -22,7 +21,7 @@ module CLIUtils
     end
     
     self.wrap = true
-    self.wrap_char_limit = 40
+    self.wrap_char_limit = 80
 
     # Hook that triggers when this module is included.
     # @param [Object] k The includer object

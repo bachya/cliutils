@@ -1,4 +1,5 @@
 require 'cliutils/pretty-io'
+require 'cliutils/configuration'
 
 module CLIUtils
   # Engine to derive preferences from a YAML file, deliver
@@ -6,12 +7,16 @@ module CLIUtils
   class Prefs
     include PrettyIO
     # Stores answers to prompt questions.
-    # @return [Hash]
+    # @return [Array]
     attr_reader :answers
     
     # Stores the filepath (if it exists) to the prefs file.
     # @return [String]
     attr_reader :config_path
+
+    # Stores a Configurator instance.
+    # @return [Configurator]
+    attr_reader :configurator
     
     # Stores answers to prompt questions.
     # @return [Hash]
@@ -19,9 +24,11 @@ module CLIUtils
 
     # Reads prompt data from and stores it.
     # @param [<String, Hash, Array>] data Filepath to YAML, Hash, or Array
+    # @param [Configurator] configurator The configurator to take default values from
     # @return [void]
-    def initialize(data)
+    def initialize(data, configurator = nil)
       @answers = []
+      @configurator = configurator
       @prompts = {}
 
       case data
@@ -71,20 +78,28 @@ module CLIUtils
     # @param [Hash] p The prompt
     # @return [void]
     def _deliver_prompt(p)
+      default = p[:default]
+      
+      unless @configurator.nil?
+        unless @configurator.data[p[:section].to_sym].nil?
+          config_val = @configurator.data[p[:section].to_sym][p[:key].to_sym]
+          default = config_val unless config_val.nil?
+        end
+      end
+      
       if p[:options].nil?
-        pref = prompt(p[:prompt], p[:default])
+        pref = prompt(p[:prompt], default)
       else
         valid_option_chosen = false
         until valid_option_chosen
-          pref = prompt(p[:prompt], p[:default])
+          pref = prompt(p[:prompt], default)
           if p[:options].include?(pref)
             valid_option_chosen = true
           else
-            error("Invalid option chosen: #{ pref }")
+            error("Invalid option chosen (\"#{ pref }\"); valid options are: #{ p[:options] }")
           end
         end
       end
-
       p[:answer] = pref
       @answers << p
     end

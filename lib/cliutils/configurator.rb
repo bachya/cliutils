@@ -57,8 +57,8 @@ module CLIUtils
     def ingest_prefs(prefs)
       fail 'Invaid Prefs class' if !prefs.kind_of?(Prefs) || prefs.answers.nil?
       prefs.answers.each do |p|
-        add_section(p[:section]) unless @data.key?(p[:section])
-        @data[p[:section]].merge!(p[:key] => p[:answer])
+        add_section(p[:section].to_sym) unless @data.key?(p[:section].to_sym)
+        @data[p[:section].to_sym].merge!(p[:key].to_sym => p[:answer])
       end
     end
 

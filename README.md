@@ -178,7 +178,7 @@ For instance, let's say you wanted to log a few messages to both your user's STD
 ```Ruby
 messenger.info('This should only appear in STDOUT.')
 
-#messenger.attach takes a Hash of string/symbol keys
+# messenger.attach takes a Hash of string/symbol keys
 # and Logger values (so you can refer to them later on).
 messenger.attach(MY\_FILE\_LOGGER: Logger.new('file.txt'))
 
@@ -327,6 +327,14 @@ Once the user has answered all the preference prompts, you can fold those answer
 configuration.ingest(prefs)
 configuration.save
 ```
+
+Note that you can also initialize a `Prefs` object with a Configurator:
+
+```Ruby
+prefs = CLIUtils::Prefs.new('path/to/yaml/file', my_configurator)
+```
+
+In this case, `Prefs` will look to see if any values already exist for a specific prompt; if so, that value will be used as the default, rather than the default specified in the YAML.
 
 ### Why a Prefs Class?
 

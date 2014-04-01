@@ -1,3 +1,10 @@
+# 1.1.0 (2014-04-01)
+
+* Added notice of valid options in Prefs
+* Added ability for Prefs to use defaults from Configuration values
+* Increased default wrapping to 80 characters
+* Fixed a bug in which Prefs would not convert answer keys to symbols
+
 # 1.0.7 (2014-03-30)
 
 * Modified Messenging targets to be a Hash for easier lookup/deletion
