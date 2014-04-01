@@ -1,3 +1,4 @@
+require 'logger'
 require 'yaml'
 
 module CLIUtils
