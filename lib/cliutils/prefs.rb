@@ -1,5 +1,4 @@
 require 'cliutils/pretty-io'
-require 'cliutils/configuration'
 
 module CLIUtils
   # Engine to derive preferences from a YAML file, deliver
