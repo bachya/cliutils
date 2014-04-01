@@ -3,7 +3,7 @@ require 'rubygems'
 
 def version
   contents = File.read File.expand_path('../lib/cliutils/version.rb', __FILE__)
-  contents[/VERSION = "([^"]+)"/, 1]
+  contents[/VERSION = '([^']+)'/, 1]
 end
 
 spec = eval(File.read('cliutils.gemspec'))
