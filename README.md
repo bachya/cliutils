@@ -450,9 +450,9 @@ In this case, `Prefs` will look to see if any values already exist for a specifi
 
 # Bugs and Feature Requests
 
-To report bugs with or suggest features/changes for CLIUtils, please use the [Issues Page](http://github.com/bachya/cli-utils/issues).
+To view my current roadmap and objectives, check out the [Trello board](https://trello.com/b/qXs7Yeir/cliutils "CLIUtils on Trello").
 
-* Trello Board: [https://trello.com/b/qXs7Yeir/cliutils](https://trello.com/b/qXs7Yeir/cliutils "CLIUtils on Trello")
+To report bugs with or suggest features/changes for CLIUtils, please use the [Issues Page](http://github.com/bachya/cli-utils/issues).
 
 # Contributing
 
