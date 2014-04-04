@@ -211,7 +211,7 @@ Since you can attach Logger objects, each can have it's own format and severity 
 
 ## Configuration
 
-CLIUtils offers two "things" -- a `Configurator` class and a `Configuration` module that provides access to a shared instance of `Configurator` -- that make managing a user's configuration parameters easy. Mix it in!
+CLIUtils offers a `Configurator` class and a `Configuration` module (which provides access to a shared instance of `Configurator`) that make managing a user's configuration parameters easy. Mix it in!
 
 ```Ruby
 include CLIUtils::Configuration
