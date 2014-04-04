@@ -43,7 +43,7 @@ module CLIUtils
         @prefs = _generate_prefs(data)
       when Array
         @config_path = nil
-        data = {:prompts => data.deep_symbolize_keys}
+        data = {:prompts => data}.deep_symbolize_keys
         @prefs = _generate_prefs(data)
       else
         fail 'Invalid configuration data'

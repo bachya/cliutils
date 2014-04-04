@@ -1,13 +1,13 @@
-require 'fileutils'
+require 'cliutils/ext/hash+extensions'
+require 'cliutils/prefs'
+require 'cliutils/prefs/pref'
 require 'test/unit'
 require 'yaml'
 
-require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/Hash+Extensions')
-require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs')
-
 class TestPrefs < Test::Unit::TestCase
   def setup
-    @prefs_arr = [{:prompt=>"What is the hostname of your DD-WRT router?", :default=>"192.168.1.1", :key=>"hostname", :section=>"ssh_info"}, {:prompt=>"What is the SSH username of your DD-WRT router?", :default=>"root", :key=>"username", :section=>"ssh_info"}, {:prompt=>"What SSH port does your DD-WRT router use?", :default=>22, :key=>"port", :section=>"ssh_info"}, {:prompt=>"How do you use password or key authentication?", :default=>"password", :key=>"auth_method", :section=>"ssh_info", :options=>["password", "key"]}, {:prompt=>"Where is your key located?", :default=>"~/.ssh", :key=>"key_location", :section=>"ssh_info", :requirements=>[{:key=>"auth_method", :value=>"key"}]}, {:prompt=>"What is your password?", :key=>"password", :section=>"ssh_info", :requirements=>[{:key=>"auth_method", :value=>"password"}]}]
+    @prefs_arr = [{:prompt=>"Where is your SSH public key located?", :config_key=>"pub_key", :config_section=>"personal_info", :behaviors=>["local_filepath"]}]
+    @prefs_hash = {:prompts=>@prefs_arr}
     
     @prefs_filepath = '/tmp/prefstest.yaml'
     FileUtils.cp(File.join(File.dirname(__FILE__), '..', 'test/test_files/prefstest.yaml'), @prefs_filepath)
@@ -19,11 +19,22 @@ class TestPrefs < Test::Unit::TestCase
 
   def test_file_creation
     p = CLIUtils::Prefs.new(@prefs_filepath)
-    assert_equal(YAML::load_file(@prefs_filepath).deep_symbolize_keys!, p.prefs)
+    prefs = YAML::load_file(@prefs_filepath).deep_symbolize_keys
+
+    assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prefs)
+  end
+
+  def test_array_creation
+    p = CLIUtils::Prefs.new(@prefs_arr)
+    prefs = @prefs_hash.deep_symbolize_keys
+  
+    assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prefs)    
   end
 
   def test_hash_creation
-    p = CLIUtils::Prefs.new(@prefs_arr)
-    assert_equal({:prompts => @prefs_arr}.deep_symbolize_keys!, p.prefs)
+    p = CLIUtils::Prefs.new(@prefs_hash)
+    prefs = @prefs_hash.deep_symbolize_keys
+  
+    assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prefs)
   end
 end

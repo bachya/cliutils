@@ -55,6 +55,22 @@ module CLIUtils
       params.each { |key, value| send("#{ key }=", value) }
     end
 
+    # Custom equality operator for this class.
+    # @param [Pref] other
+    # @return [Boolean]
+    def ==(other)
+      return self.answer == other.answer &&
+             self.behaviors == other.behaviors &&
+             self.config_key == other.config_key &&
+             self.config_section == other.config_section &&
+             self.default == other.default &&
+             self.last_error_message == other.last_error_message &&
+             self.options == other.options &&
+             self.prereqs == other.prereqs &&
+             self.prompt == other.prompt &&
+             self.validators == other.validators
+    end
+
     # Runs the passed text through this Pref's behaviors.
     # @param [String] text The text to evaluate
     # @return [String]
