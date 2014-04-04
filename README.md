@@ -406,6 +406,25 @@ prefs.ask
 * `numeric`: must be made up of numbers
 * `url`: must be a fully-qualified URL
 
+### Behaviors
+
+Finally, a common desire might be to modify the user's answer in some way:
+
+```YAML
+prompts:
+  - prompt: Where is your SSH public key located?
+    config_key: pub_key
+    config_section: personal_info
+    behaviors:
+      - local_filepath
+```
+
+This will expand the user's answer as a filepath (e.g., `~/.ssh` will get saved as `/Users/bachya/.ssh/`).
+
+`Prefs` currently supports these behaviors:
+
+* `local_filepath`: runs File.expand_path on the answer
+
 ### Adding Pref Responses to a Configurator
 
 Once the user has answered all the preference prompts, you can fold those answers back into a Configurator using the `ingest` method:

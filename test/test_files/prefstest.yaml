@@ -1,11 +1,6 @@
 prompts:
-  - prompt: What is your name?
-    config_key: name
+  - prompt: Where is your SSH public key located?
+    config_key: pub_key
     config_section: personal_info
-    validators:
-      - alphabetic
-  - prompt: How old are you?
-    config_key: age
-    config_section: personal_info
-    validators:
-      - numeric
+    behaviors:
+      - local_filepath

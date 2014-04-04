@@ -56,7 +56,6 @@ module CLIUtils
     # complete, questions w/ prerequisites are examined.
     # @return [void]
     def ask
-      puts ""
       @prefs.reject { |p| p.prereqs }.each do |p|
         _deliver_prompt(p)
       end
@@ -64,7 +63,6 @@ module CLIUtils
       @prefs.find_all { |p| p.prereqs }.each do |p|
         _deliver_prompt(p) if _prereqs_fulfilled?(p)
       end
-      puts ""
     end
 
     private
