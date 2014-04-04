@@ -19,11 +19,11 @@ class TestPrefs < Test::Unit::TestCase
 
   def test_file_creation
     p = CLIUtils::Prefs.new(@prefs_filepath)
-    assert_equal(YAML::load_file(@prefs_filepath).deep_symbolize_keys!, p.prompts)
+    assert_equal(YAML::load_file(@prefs_filepath).deep_symbolize_keys!, p.prefs)
   end
 
   def test_hash_creation
     p = CLIUtils::Prefs.new(@prefs_arr)
-    assert_equal({:prompts => @prefs_arr}.deep_symbolize_keys!, p.prompts)
+    assert_equal({:prompts => @prefs_arr}.deep_symbolize_keys!, p.prefs)
   end
 end

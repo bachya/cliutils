@@ -169,6 +169,8 @@ messenger.info("You answered: #{ p }")
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prompting.png "Prompting")
 
+When you pass a default to `messenging.prompt`, hitting `Enter` (i.e., leaving the prompt blank) will return the value of the default.
+
 ### Logging
 
 Often, it's desirable to log messages as they appear to your user. `messenging` makes this a breeze by allowing you to attach and detach Logger instances at will.
@@ -188,7 +190,7 @@ messenger.debug('This debug message should only appear in file.txt')
 
 # messenger.detach takes the string/symbol key
 # defined earlier.
-messenger.detach(:MY\_FILE\_LOGGER)
+messenger.detach(:MY_FILE_LOGGER)
 
 messenger.section('This section message should appear only in STDOUT')
 ```
@@ -263,49 +265,31 @@ user_data:
 
 Many times, CLI apps need to ask their users some questions, collect the feedback, validate it, and store it. CLIUtils makes this a breeze via the `Prefs` class.
 
+### Basic Schema
+
 `Prefs` can load preferences information from either a YAML file (via a filepath) or from an array of preferences. In either case, the schema is the same; each prompt includes the following:
 
 * prompt (**required**): the string to prompt your user with
 * default (*optional*): an optional default to offer
-* key (**required**): the key that refers to this preference
-* section (**required**): the Configuration section that this preference applies to
-* options (*optional*): an optional array of values; the user's choice must be in this array
-* requirements (*optional*): an optional list of key/value pairs that must exist for this preference to be displayed
+* config_key (**required**): the Configurator key that this preference will use
+* config_section (**required**): the Configurator section that this preference applies to
 
 Here's an example YAML preferences file.
 
 ```YAML
 prompts:
-  - prompt: What is the hostname of your DD-WRT router?
-    default: 192.168.1.1
-    key: hostname
-    section: ssh_info
-  - prompt: What is the SSH username of your DD-WRT router?
-    default: root
-    key: username
-    section: ssh_info
-  - prompt: What SSH port does your DD-WRT router use?
-    default: 22
-    key: port
-    section: ssh_info
-  - prompt: Do you use password or key authentication?
-    default: password
-    key: auth_method
-    section: ssh_info
-    options: ['password', 'key']
-  - prompt: Where is your key located?
-    default: ~/.ssh
-    key: key_location
-    section: ssh_info
-    requirements:
-      - key: auth_method
-        value: key
-  - prompt: What is your password?
-    key: password
-    section: ssh_info
-    requirements:
-      - key: auth_method
-        value: password
+  - prompt: What is your name?
+    default: Bob Cobb
+    config_key: name
+    config_section: personal_info
+  - prompt: What is your age?
+    default: 45
+    config_key: age
+    config_section: personal_info
+  - prompt: Batman or Superman?
+    default: Batman
+    config_key: superhero
+    config_section: personal_info
 ```
 
 Assuming the above, `Prefs` is instantiated like so:
@@ -321,12 +305,85 @@ prefs.ask
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask.png "Prefs.ask")
 
+### Prerequisites
+
+Sometimes, you need to answer certain prompts before others become relevant. `Prefs` allows this via a `prereqs` key, which can contain multiple already-answered key/value pairs to check for. For instance, imagine we want to drill into a user's superhero preference a bit further:
+
+```YAML
+prompts:
+  - prompt: Batman or Superman?
+    default: Batman
+    config_key: superhero
+    config_section: personal_info
+  - prompt: Do you feel smart for preferring Batman?
+    default: Y
+    config_key: batman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Batman
+  - prompt: Why do you prefer Superman?!
+    default: No clue
+    config_key: superman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman
+```
+
+`prereqs` checks for already-answered preferences (based on a Configurator key and value); assuming everything checks out, the subsequent preferences are collected:
+
+```Ruby
+prefs.ask
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-prereqs.png "Prerequisities")
+
+Be careful tht you don't define any circular prerequisities (e.g., A requires B and B requires A). In that case, neither preference will be collected.
+
+### Options
+
+What if you want to limit a preference to a certain set of options? Easy! Imagine we want to expand the previous example and force the user to choose either "Batman" or "Superman":
+
+```YAML
+prompts:
+  - prompt: Batman or Superman?
+    default: Batman
+    config_key: superhero
+    config_section: personal_info
+    options: ['Batman', 'Superman']
+  - prompt: Do you feel smart for preferring Batman?
+    default: Y
+    config_key: batman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Batman
+  - prompt: Why do you prefer Superman?!
+    default: No clue
+    config_key: superman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman
+```
+
+Once in place:
+
+```Ruby
+prefs.ask
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-options.png "Options")
+
+### Adding Pref Responses to a Configurator
+
 Once the user has answered all the preference prompts, you can fold those answers back into a Configurator using the `ingest` method:
 
 ```Ruby
-configuration.ingest(prefs)
+configuration.ingest_prefs(prefs)
 configuration.save
 ```
+
+### Using Configurator Values as Defaults
 
 Note that you can also initialize a `Prefs` object with a Configurator:
 
@@ -335,10 +392,6 @@ prefs = CLIUtils::Prefs.new('path/to/yaml/file', my_configurator)
 ```
 
 In this case, `Prefs` will look to see if any values already exist for a specific prompt; if so, that value will be used as the default, rather than the default specified in the YAML.
-
-### Why a Prefs Class?
-
-I've written apps that need to request user input at various times for multiple different things; as such, I thought it'd be easier to have those scenarios chunked up. You can always wrap `Prefs` into a module singleton if you wish.
 
 # Known Issues
 

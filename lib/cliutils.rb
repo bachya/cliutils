@@ -8,6 +8,7 @@ require 'cliutils/configuration'
 require 'cliutils/logger-delegator'
 require 'cliutils/messenging'
 require 'cliutils/prefs'
+require 'cliutils/prefs/pref'
 require 'cliutils/version'
 
 # The CLIUtils module, which wraps everything

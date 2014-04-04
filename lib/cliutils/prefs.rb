@@ -1,14 +1,11 @@
+require 'cliutils/prefs/pref'
 require 'cliutils/pretty-io'
 
 module CLIUtils
   # Engine to derive preferences from a YAML file, deliver
   # those to a user via a prompt, and collect the results.
   class Prefs
-    include PrettyIO
-    # Stores answers to prompt questions.
-    # @return [Array]
-    attr_reader :answers
-    
+    include Messenging
     # Stores the filepath (if it exists) to the prefs file.
     # @return [String]
     attr_reader :config_path
@@ -18,8 +15,8 @@ module CLIUtils
     attr_reader :configurator
     
     # Stores answers to prompt questions.
-    # @return [Hash]
-    attr_reader :prompts
+    # @return [Array]
+    attr_reader :prefs
 
     # Reads prompt data from and stores it.
     # @param [<String, Hash, Array>] data Filepath to YAML, Hash, or Array
@@ -28,28 +25,26 @@ module CLIUtils
     def initialize(data, configurator = nil)
       @answers = []
       @configurator = configurator
-      @prompts = {}
+      @prefs = []
 
       case data
       when String
         if File.exists?(data)
           @config_path = data
-
-          prompts = YAML::load_file(data)
-          @prompts.deep_merge!(prompts).deep_symbolize_keys!
+          data = YAML::load_file(data).deep_symbolize_keys
+          @prefs = _generate_prefs(data)
         else
-          fail "Invalid configuration file: #{ data }"
+          fail "Invalid configuration file: #{ data }" 
         end
       when Hash
         @config_path = nil
-        
         data = {:prompts => data} unless data.keys[0] == :prompts
-        @prompts.deep_merge!(data).deep_symbolize_keys!
+        data.deep_symbolize_keys!
+        @prefs = _generate_prefs(data)
       when Array
         @config_path = nil
-
-        prompts = {:prompts => data}
-        @prompts.deep_merge!(prompts).deep_symbolize_keys!
+        data = {:prompts => data.deep_symbolize_keys}
+        @prefs = _generate_prefs(data)
       else
         fail 'Invalid configuration data'
       end
@@ -57,17 +52,19 @@ module CLIUtils
 
     # Runs through all of the prompt questions and collects
     # answers from the user. Note that all questions w/o
-    # requirements are examined first; once those are
-    # complete, questions w/ requirements are examined.
+    # prerequisites are examined first; once those are
+    # complete, questions w/ prerequisites are examined.
     # @return [void]
     def ask
-      @prompts[:prompts].reject { |p| p[:requirements] }.each do |p|
+      puts ""
+      @prefs.reject { |p| p.prereqs }.each do |p|
         _deliver_prompt(p)
       end
-
-      @prompts[:prompts].find_all { |p| p[:requirements] }.each do |p|
-        _deliver_prompt(p) if _requirements_fulfilled?(p)
+      
+      @prefs.find_all { |p| p.prereqs }.each do |p|
+        _deliver_prompt(p) if _prereqs_fulfilled?(p)
       end
+      puts ""
     end
 
     private
@@ -77,42 +74,46 @@ module CLIUtils
     # @param [Hash] p The prompt
     # @return [void]
     def _deliver_prompt(p)
-      default = p[:default]
+      default = p.default
       
       unless @configurator.nil?
-        unless @configurator.data[p[:section].to_sym].nil?
-          config_val = @configurator.data[p[:section].to_sym][p[:key].to_sym]
+        unless @configurator.data[p.section.to_sym].nil?
+          config_val = @configurator.data[p.config_section.to_sym][p.config_key.to_sym]
           default = config_val unless config_val.nil?
         end
       end
-      
-      if p[:options].nil?
-        pref = prompt(p[:prompt], default)
-      else
-        valid_option_chosen = false
-        until valid_option_chosen
-          pref = prompt(p[:prompt], default)
-          if p[:options].include?(pref)
-            valid_option_chosen = true
-          else
-            error("Invalid option chosen (\"#{ pref }\"); valid options are: #{ p[:options] }")
-          end
+
+      valid_option_chosen = false
+      until valid_option_chosen
+        response = prompt(p.prompt, default)
+
+        if p.validate(response)
+          valid_option_chosen = true
+          p.answer = p.evaluate_behaviors(response)
+        else
+          messenger.error(p.last_error_message)
         end
       end
-      p[:answer] = pref
-      @answers << p
+    end
+
+    # Generates an Array of Prefs based on passed
+    # in data.
+    # @param [Hash] pref_data Loaded pref data
+    # @return [Array]
+    def _generate_prefs(pref_data_hash)
+      pref_data_hash[:prompts].map { |p| CLIUtils::Pref.new(p) }
     end
 
     # Utility method for determining whether a prompt's
-    # requirements have already been fulfilled.
+    # prerequisites have already been fulfilled.
     # @param [Hash] p The prompt
     # @return [void]
-    def _requirements_fulfilled?(p)
+    def _prereqs_fulfilled?(p)
       ret = true
-      p[:requirements].each do |req|
-        a = @answers.detect do |answer|
-          answer[:key] == req[:key] &&
-          answer[:answer] == req[:value]
+      p.prereqs.each do |req|
+        a = @prefs.detect do |answer|
+          answer.config_key == req[:config_key] &&
+          answer.answer == req[:config_value]
         end
         ret = false if a.nil?
       end

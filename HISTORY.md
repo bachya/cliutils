@@ -1,3 +1,9 @@
+# 1.1.0 (2014-04-03)
+
+* Changed Requirements => Prerequisites in Prefs
+* Added Validators to Prefs
+* Added Behaviors to Prefs
+
 # 1.1.0 (2014-04-01)
 
 * Added notice of valid options in Prefs
