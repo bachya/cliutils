@@ -1,3 +1,8 @@
+# 1.1.1 (2014-04-03)
+
+* Updated documentation
+* Added additional testing
+
 # 1.1.0 (2014-04-03)
 
 * Changed Requirements => Prerequisites in Prefs
