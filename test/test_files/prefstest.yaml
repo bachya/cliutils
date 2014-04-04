@@ -1,20 +1,13 @@
 prompts:
+  - prompt: What is your name?
+    default: Bob Cobb
+    config_key: name
+    config_section: personal_info
+  - prompt: What is your age?
+    default: 45
+    config_key: age
+    config_section: personal_info
   - prompt: Batman or Superman?
     default: Batman
     config_key: superhero
     config_section: personal_info
-    options: ['Batman', 'Superman']
-  - prompt: Do you feel smart for preferring Batman?
-    default: Y
-    config_key: batman_answer
-    config_section: personal_info
-    prereqs:
-      - config_key: superhero
-        config_value: Batman
-  - prompt: Why do you prefer Superman?!
-    default: No clue
-    config_key: superman_answer
-    config_section: personal_info
-    prereqs:
-      - config_key: superhero
-        config_value: Superman
