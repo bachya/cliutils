@@ -1,13 +1,11 @@
 prompts:
   - prompt: What is your name?
-    default: Bob Cobb
     config_key: name
     config_section: personal_info
-  - prompt: What is your age?
-    default: 45
+    validators:
+      - alphabetic
+  - prompt: How old are you?
     config_key: age
     config_section: personal_info
-  - prompt: Batman or Superman?
-    default: Batman
-    config_key: superhero
-    config_section: personal_info
+    validators:
+      - numeric

@@ -182,7 +182,7 @@ messenger.info('This should only appear in STDOUT.')
 
 # messenger.attach takes a Hash of string/symbol keys
 # and Logger values (so you can refer to them later on).
-messenger.attach(MY\_FILE\_LOGGER: Logger.new('file.txt'))
+messenger.attach(MY_FILE_LOGGER: Logger.new('file.txt'))
 
 messenger.warn('This warning should appear in STDOUT and file.txt')
 messenger.error('This error should appear in STDOUT and file.txt')
@@ -269,10 +269,10 @@ Many times, CLI apps need to ask their users some questions, collect the feedbac
 
 `Prefs` can load preferences information from either a YAML file (via a filepath) or from an array of preferences. In either case, the schema is the same; each prompt includes the following:
 
-* prompt (**required**): the string to prompt your user with
-* default (*optional*): an optional default to offer
-* config_key (**required**): the Configurator key that this preference will use
-* config_section (**required**): the Configurator section that this preference applies to
+* `prompt` (**required**): the string to prompt your user with
+* `default` (*optional*): an optional default to offer
+* `config_key` (**required**): the Configurator key that this preference will use
+* `config_section` (**required**): the Configurator section that this preference applies to
 
 Here's an example YAML preferences file.
 
@@ -373,6 +373,38 @@ Once in place:
 prefs.ask
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-options.png "Options")
+
+### Validators
+
+"But," you say, "I want to ensure that my user gives answers that conform to certain specifications!" Not a problem, dear user, `Prefs` has you covered:
+
+```YAML
+prompts:
+  - prompt: What is your name?
+    config_key: name
+    config_section: personal_info
+    validators:
+      - alphabetic
+  - prompt: How old are you?
+    config_key: age
+    config_section: personal_info
+    validators:
+      - numeric
+```
+
+```Ruby
+prefs.ask
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-validators.png "Validators")
+
+`Prefs` currently supports these validators:
+
+* `alphabetic`: must be made up of letters and spaces
+* `alphanumeric`: must be made up of letters, numbers, and spaces
+* `date`: must be a parsable date (e.g., 2014-04-03)
+* `non_nil`: must be a non-nil value
+* `numeric`: must be made up of numbers
+* `url`: must be a fully-qualified URL
 
 ### Adding Pref Responses to a Configurator
 
