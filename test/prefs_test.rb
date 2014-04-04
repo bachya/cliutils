@@ -1,8 +1,9 @@
-require 'cliutils/ext/hash+extensions'
-require 'cliutils/prefs'
-require 'cliutils/prefs/pref'
 require 'test/unit'
 require 'yaml'
+
+require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/Hash+Extensions')
+require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs')
+require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs/pref')
 
 class TestPrefs < Test::Unit::TestCase
   def setup
