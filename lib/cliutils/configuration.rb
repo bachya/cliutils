@@ -33,9 +33,8 @@ module CLIUtils
     # a Configurator.
     # @param [String] path The filepath to use
     # @return [void]
-    def load_configuration(path)
+    def self.configuration=(path)
       @@configuration = Configurator.new(path)
     end
-    alias configuration= load_configuration
   end
 end

@@ -33,7 +33,7 @@ module CLIUtils
     # Displays a chart of all the possible ANSI foreground
     # and background color combinations.
     # @return [void]
-    def color_chart
+    def self.color_chart
       [0, 1, 4, 5, 7].each do |attr|
         puts '----------------------------------------------------------------'
         puts "ESC[#{attr};Foreground;Background"

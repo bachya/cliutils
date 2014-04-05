@@ -7,9 +7,40 @@ require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs/pref')
 
 class TestPrefs < Test::Unit::TestCase
   def setup
-    @prefs_arr = [{:prompt=>"Where is your SSH public key located?", :config_key=>"pub_key", :config_section=>"personal_info", :behaviors=>["local_filepath"]}]
-    @prefs_hash = {:prompts=>@prefs_arr}
+    @prefs_arr = [
+      {
+        "prompt" => "Batman or Superman?",
+        "default" => "Batman",
+        "config_key" => "superhero",
+        "config_section" => "personal_info"
+      },
+      {
+        "prompt" => "Do you feel smart for preferring Batman?",
+        "default" => "Y",
+        "config_key" => "batman_answer",
+        "config_section" => "personal_info",
+        "prereqs" => [
+          {
+            "config_key" => "superhero",
+            "config_value" => "Batman"
+          }
+        ]
+      },
+      {
+        "prompt" => "Why do you prefer Superman?!",
+        "default" => "No clue",
+        "config_key" => "superman_answer",
+        "config_section" => "personal_info",
+        "prereqs" => [
+          {
+            "config_key" => "superhero",
+            "config_value" => "Superman"
+          }
+        ]
+      }
+    ]
     
+    @prefs_hash = {:prompts=>@prefs_arr}
     @prefs_filepath = '/tmp/prefstest.yaml'
     FileUtils.cp(File.join(File.dirname(__FILE__), '..', 'test/test_files/prefstest.yaml'), @prefs_filepath)
   end

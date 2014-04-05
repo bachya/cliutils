@@ -95,7 +95,7 @@ puts 'A sample string'.colorize('35;42')
 Naturally, memorizing the ANSI color scheme is a pain, so PrettyIO gives you a convenient method to look up these color combinations:
 
 ```ruby
-color_chart
+CLIUtils::PrettyIO.color_chart
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
 
@@ -220,7 +220,7 @@ include CLIUtils::Configuration
 ### Loading a Configuration File
 
 ```Ruby
-load_configuration('~/.my-app-config')
+CLIUtils::Configuration.configuration = ('~/.my-app-config')
 ```
 
 If there's data in there, it will be consumed into `configuration`'s `data` property.

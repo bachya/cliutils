@@ -1,6 +1,19 @@
 prompts:
-  - prompt: Where is your SSH public key located?
-    config_key: pub_key
+  - prompt: Batman or Superman?
+    default: Batman
+    config_key: superhero
     config_section: personal_info
-    behaviors:
-      - local_filepath
+  - prompt: Do you feel smart for preferring Batman?
+    default: Y
+    config_key: batman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Batman
+  - prompt: Why do you prefer Superman?!
+    default: No clue
+    config_key: superman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman

@@ -1,5 +1,10 @@
 # 1.1.1 (2014-04-03)
 
+* Modified loading of configuration values
+* Updated documentation
+
+# 1.1.1 (2014-04-03)
+
 * Updated documentation
 * Added additional testing
 
