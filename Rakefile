@@ -2,7 +2,7 @@ require 'rake/clean'
 require 'rubygems'
 
 def version
-  contents = File.read File.expand_path('../lib/cliutils/version.rb', __FILE__)
+  contents = File.read File.expand_path('../lib/cliutils/constants.rb', __FILE__)
   contents[/VERSION = '([^']+)'/, 1]
 end
 

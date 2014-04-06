@@ -1,7 +1,9 @@
 begin
-   require 'Win32/Console/ANSI' if (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+  unless (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM).nil?
+    require 'Win32/Console/ANSI'
+  end
 rescue LoadError
-   raise 'You must run `gem install win32console` to use CLIMessage on Windows'
+  raise 'You must run `gem install win32console` to use CLIMessage on Windows'
 end
 
 require 'readline'
@@ -19,7 +21,7 @@ module CLIUtils
       # @return [Integer]
       attr_accessor :wrap_char_limit
     end
-    
+
     self.wrap = true
     self.wrap_char_limit = 80
 
@@ -41,7 +43,7 @@ module CLIUtils
           40.upto(47) do |bg|
             print "\033[#{attr};#{fg};#{bg}m #{fg};#{bg}  "
           end
-        puts "\033[0m"
+          puts "\033[0m"
         end
       end
     end
@@ -106,11 +108,11 @@ module CLIUtils
       Readline.completion_append_character = nil
       Readline.completion_proc = lambda do |prefix|
         files = Dir["#{start_dir}#{prefix}*"]
-        files.
-          map { |f| File.expand_path(f) }.
-          map { |f| File.directory?(f) ? f + "/" : f }
+        files.map { |f| File.expand_path(f) }
+             .map { |f| File.directory?(f) ? "#{ f }/" : f }
       end
-      choice = Readline.readline("# #{ prompt }#{ default.nil? ? ':' : " [default: #{ default }]:" } ".cyan)
+      p = "# #{ prompt }#{ default.nil? ? ':' : " [default: #{ default }]:" } "
+      choice = Readline.readline(p.cyan)
       if choice.empty?
         default
       else
@@ -165,10 +167,14 @@ module CLIUtils
     # @param [String] text The text to wrap
     # @param [String] prefix_str The prefix for each line
     # @return [String]
-    def _word_wrap(text, prefix_str) 
+    def _word_wrap(text, prefix_str)
       if PrettyIO.wrap
         return text if PrettyIO.wrap_char_limit <= 0
-        text.gsub(/\n/, ' ').gsub(/(.{1,#{PrettyIO.wrap_char_limit - prefix_str.length}})(\s+|$)/, "#{ prefix_str }\\1\n").strip
+
+        limit = PrettyIO.wrap_char_limit - prefix_str.length
+        text.gsub(/\n/, ' ')
+            .gsub(/(.{1,#{ limit }})(\s+|$)/, "#{ prefix_str }\\1\n")
+            .strip
       else
         text
       end

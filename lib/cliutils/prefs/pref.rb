@@ -1,6 +1,6 @@
 require 'cliutils/messenging'
-require 'cliutils/prefs/pref-behavior'
-require 'cliutils/prefs/pref-validation'
+require 'cliutils/prefs/pref_behavior'
+require 'cliutils/prefs/pref_validation'
 
 module CLIUtils
   # Pref Class
@@ -43,7 +43,7 @@ module CLIUtils
     # Stores the prompt text.
     # @return [String]
     attr_accessor :prompt
-    
+
     # Stores key/value combinations required to show this Pref.
     # @return [Hash]
     attr_accessor :validators
@@ -59,16 +59,9 @@ module CLIUtils
     # @param [Pref] other
     # @return [Boolean]
     def ==(other)
-      return self.answer == other.answer &&
-             self.behaviors == other.behaviors &&
-             self.config_key == other.config_key &&
-             self.config_section == other.config_section &&
-             self.default == other.default &&
-             self.last_error_message == other.last_error_message &&
-             self.options == other.options &&
-             self.prereqs == other.prereqs &&
-             self.prompt == other.prompt &&
-             self.validators == other.validators
+      @config_key == other.config_key &&
+      @config_section == other.config_section &&
+      @prompt == other.prompt
     end
 
     # Runs the passed text through this Pref's behaviors.
@@ -84,7 +77,6 @@ module CLIUtils
             messenger.warn("Skipping undefined Pref behavior: #{ b }")
           end
         end
-        
         modified_text
       else
         text
@@ -99,7 +91,7 @@ module CLIUtils
       _confirm_options(text) &&
       _confirm_validators(text)
     end
-    
+
     private
 
     # Validates a text against the options for this Pref
@@ -109,11 +101,11 @@ module CLIUtils
       ret = true
       if @options
         unless @options.include?(text)
-          @last_error_message = "Invalid option chosen (\"#{ text }\"); valid options are: #{ options }"
+          @last_error_message = "Invalid option chosen (\"#{ text }\");"\
+          "valid options are: #{ options }"
           ret = false
         end
       end
-
       ret
     end
 
@@ -135,7 +127,6 @@ module CLIUtils
           end
         end
       end
-      
       ret
     end
   end

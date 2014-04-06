@@ -39,7 +39,9 @@ module CLIUtils
     # @param [<String, Symbol>] target_name The target to remove
     # @return [void]
     def detach(target_name)
-      fail "Cannot delete invalid target: #{ target_name }" unless @targets.key?(target_name)
+      unless @targets.key?(target_name)
+        fail "Cannot delete invalid target: #{ target_name }"
+      end
       @targets.delete(target_name)
       LoggerDelegator.delegate
     end

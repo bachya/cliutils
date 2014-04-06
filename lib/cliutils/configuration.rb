@@ -12,7 +12,7 @@ module CLIUtils
       'INFO'  => Logger::INFO,
       'WARN'  => Logger::WARN,
       'ERROR' => Logger::ERROR,
-      'FATAL' => Logger::FATAL,
+      'FATAL' => Logger::FATAL
     }
 
     # Hook that triggers when this module is included.

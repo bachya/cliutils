@@ -1,5 +1,5 @@
 require 'cliutils/prefs/pref'
-require 'cliutils/pretty-io'
+require 'cliutils/pretty_io'
 
 module CLIUtils
   # Engine to derive preferences from a YAML file, deliver
@@ -13,14 +13,14 @@ module CLIUtils
     # Stores a Configurator instance.
     # @return [Configurator]
     attr_reader :configurator
-    
+
     # Stores answers to prompt questions.
     # @return [Array]
     attr_reader :prompts
 
     # Reads prompt data from and stores it.
     # @param [<String, Hash, Array>] data Filepath to YAML, Hash, or Array
-    # @param [Configurator] configurator The configurator to take default values from
+    # @param [Configurator] configurator Source of defailt values
     # @return [void]
     def initialize(data, configurator = nil)
       @answers = []
@@ -29,21 +29,21 @@ module CLIUtils
 
       case data
       when String
-        if File.exists?(data)
+        if File.exist?(data)
           @config_path = data
-          data = YAML::load_file(data).deep_symbolize_keys
+          data = YAML.load_file(data).deep_symbolize_keys
           @prompts = _generate_prefs(data)
         else
-          fail "Invalid configuration file: #{ data }" 
+          fail "Invalid configuration file: #{ data }"
         end
       when Hash
         @config_path = nil
-        data = {:prompts => data} unless data.keys[0] == :prompts
+        data = { prompts: data } unless data.keys[0] == :prompts
         data.deep_symbolize_keys!
         @prompts = _generate_prefs(data)
       when Array
         @config_path = nil
-        data = {:prompts => data}.deep_symbolize_keys
+        data = { prompts: data }.deep_symbolize_keys
         @prompts = _generate_prefs(data)
       else
         fail 'Invalid configuration data'
@@ -59,8 +59,8 @@ module CLIUtils
       @prompts.reject { |p| p.prereqs }.each do |p|
         _deliver_prompt(p)
       end
-      
-      @prompts.find_all { |p| p.prereqs }.each do |p|
+
+      @prompts.select { |p| p.prereqs }.each do |p|
         _deliver_prompt(p) if _prereqs_fulfilled?(p)
       end
     end
@@ -75,8 +75,9 @@ module CLIUtils
       default = p.default
 
       unless @configurator.nil?
-        unless @configurator.data[p.config_section.to_sym].nil?
-          config_val = @configurator.data[p.config_section.to_sym][p.config_key.to_sym]
+        section_sym = p.config_section.to_sym
+        unless @configurator.data[section_sym].nil?
+          config_val = @configurator.data[section_sym][p.config_key.to_sym]
           default = config_val unless config_val.nil?
         end
       end
@@ -84,7 +85,6 @@ module CLIUtils
       valid_option_chosen = false
       until valid_option_chosen
         response = prompt(p.prompt, default)
-
         if p.validate(response)
           valid_option_chosen = true
           p.answer = p.evaluate_behaviors(response)
@@ -109,7 +109,7 @@ module CLIUtils
     def _prereqs_fulfilled?(p)
       ret = true
       p.prereqs.each do |req|
-        a = @prompts.detect do |answer|
+        a = @prompts.find do |answer|
           answer.config_key == req[:config_key] &&
           answer.answer == req[:config_value]
         end

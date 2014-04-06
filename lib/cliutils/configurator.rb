@@ -8,7 +8,7 @@ module CLIUtils
     # Stores the path to the configuration file.
     # @return [String]
     attr_reader :config_path
-    
+
     # Stores the configuration data itself.
     # @return [Hash]
     attr_reader :data
@@ -21,8 +21,8 @@ module CLIUtils
       @config_path = _path
       @data = {}
 
-      if File.exists?(_path)
-        data = YAML::load_file(_path)
+      if File.exist?(_path)
+        data = YAML.load_file(_path)
         @data.deep_merge!(data).deep_symbolize_keys!
       end
     end
@@ -55,10 +55,11 @@ module CLIUtils
     # @param [Prefs] prefs The Prefs class to examine
     # @return [void]
     def ingest_prefs(prefs)
-      fail 'Invaid Prefs class' if !prefs.kind_of?(Prefs)
+      fail 'Invaid Prefs class' unless prefs.kind_of?(Prefs)
       prefs.prompts.each do |p|
-        add_section(p.config_section.to_sym) unless @data.key?(p.config_section.to_sym)
-        @data[p.config_section.to_sym].merge!(p.config_key.to_sym => p.answer)
+        section_sym = p.config_section.to_sym
+        add_section(section_sym) unless @data.key?(section_sym)
+        @data[section_sym].merge!(p.config_key.to_sym => p.answer)
       end
     end
 
@@ -80,7 +81,9 @@ module CLIUtils
     # stored flat file.
     # @return [void]
     def save
-      File.open(@config_path, 'w') { |f| f.write(@data.deep_stringify_keys.to_yaml) }
+      File.open(@config_path, 'w') do |f|
+        f.write(@data.deep_stringify_keys.to_yaml)
+      end
     end
   end
 end

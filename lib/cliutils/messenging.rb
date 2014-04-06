@@ -1,4 +1,4 @@
-require 'cliutils/pretty-io'
+require 'cliutils/pretty_io'
 
 module CLIUtils
   #  CLIMessenger Module
@@ -21,7 +21,7 @@ module CLIUtils
       stdout_logger.formatter = proc do |severity, datetime, progname, msg|
         send(severity.downcase, msg)
       end
-      
+
       LoggerDelegator.new(STDOUT: stdout_logger)
     end
 

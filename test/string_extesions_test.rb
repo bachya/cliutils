@@ -1,7 +1,8 @@
 require 'test/unit'
 
-require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/String+Extensions')
+require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/string_extensions')
 
+# Tests for the String extension methods
 class TestStringExtensions < Test::Unit::TestCase
   def test_custom_colors
     assert_output("\e[34mtest\e[0m\n") { puts 'test'.blue }

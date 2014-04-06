@@ -23,7 +23,7 @@ module CLIUtils
       c = text.to_s =~ /\A[A-Za-z0-9\s]+\z/
       Validator.new(c, m)
     end
-    
+
     # Validates that a value is a date.
     # @param [String] text The text to inspect
     # @return [Boolean]
@@ -38,7 +38,7 @@ module CLIUtils
     # @param [String] text The text to inspect
     # @return [Boolean]
     def self.non_nil(text)
-      m = "Nil text not allowed"
+      m = 'Nil text not allowed'
       c = !text.nil? && !text.empty?
       Validator.new(c, m)
     end
