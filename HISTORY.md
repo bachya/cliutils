@@ -1,14 +1,20 @@
-# 1.1.1 (2014-04-03)
+# 1.2.3 (2014-04-05)
+
+* Fixed a bug in ingest_prefs
+* Fixed a bug in pref prompting
+* Fixed a bug with including a Configurator in prefs
+
+# 1.2.2 (2014-04-03)
 
 * Modified loading of configuration values
 * Updated documentation
 
-# 1.1.1 (2014-04-03)
+# 1.2.1 (2014-04-03)
 
 * Updated documentation
 * Added additional testing
 
-# 1.1.0 (2014-04-03)
+# 1.2.0 (2014-04-03)
 
 * Changed Requirements => Prerequisites in Prefs
 * Added Validators to Prefs

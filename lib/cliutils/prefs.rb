@@ -16,7 +16,7 @@ module CLIUtils
     
     # Stores answers to prompt questions.
     # @return [Array]
-    attr_reader :prefs
+    attr_reader :prompts
 
     # Reads prompt data from and stores it.
     # @param [<String, Hash, Array>] data Filepath to YAML, Hash, or Array
@@ -25,14 +25,14 @@ module CLIUtils
     def initialize(data, configurator = nil)
       @answers = []
       @configurator = configurator
-      @prefs = []
+      @prompts = []
 
       case data
       when String
         if File.exists?(data)
           @config_path = data
           data = YAML::load_file(data).deep_symbolize_keys
-          @prefs = _generate_prefs(data)
+          @prompts = _generate_prefs(data)
         else
           fail "Invalid configuration file: #{ data }" 
         end
@@ -40,11 +40,11 @@ module CLIUtils
         @config_path = nil
         data = {:prompts => data} unless data.keys[0] == :prompts
         data.deep_symbolize_keys!
-        @prefs = _generate_prefs(data)
+        @prompts = _generate_prefs(data)
       when Array
         @config_path = nil
         data = {:prompts => data}.deep_symbolize_keys
-        @prefs = _generate_prefs(data)
+        @prompts = _generate_prefs(data)
       else
         fail 'Invalid configuration data'
       end
@@ -56,11 +56,11 @@ module CLIUtils
     # complete, questions w/ prerequisites are examined.
     # @return [void]
     def ask
-      @prefs.reject { |p| p.prereqs }.each do |p|
+      @prompts.reject { |p| p.prereqs }.each do |p|
         _deliver_prompt(p)
       end
       
-      @prefs.find_all { |p| p.prereqs }.each do |p|
+      @prompts.find_all { |p| p.prereqs }.each do |p|
         _deliver_prompt(p) if _prereqs_fulfilled?(p)
       end
     end
@@ -73,9 +73,9 @@ module CLIUtils
     # @return [void]
     def _deliver_prompt(p)
       default = p.default
-      
+
       unless @configurator.nil?
-        unless @configurator.data[p.section.to_sym].nil?
+        unless @configurator.data[p.config_section.to_sym].nil?
           config_val = @configurator.data[p.config_section.to_sym][p.config_key.to_sym]
           default = config_val unless config_val.nil?
         end
@@ -109,7 +109,7 @@ module CLIUtils
     def _prereqs_fulfilled?(p)
       ret = true
       p.prereqs.each do |req|
-        a = @prefs.detect do |answer|
+        a = @prompts.detect do |answer|
           answer.config_key == req[:config_key] &&
           answer.answer == req[:config_value]
         end

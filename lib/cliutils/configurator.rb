@@ -55,10 +55,10 @@ module CLIUtils
     # @param [Prefs] prefs The Prefs class to examine
     # @return [void]
     def ingest_prefs(prefs)
-      fail 'Invaid Prefs class' if !prefs.kind_of?(Prefs) || prefs.answers.nil?
-      prefs.answers.each do |p|
-        add_section(p[:section].to_sym) unless @data.key?(p[:section].to_sym)
-        @data[p[:section].to_sym].merge!(p[:key].to_sym => p[:answer])
+      fail 'Invaid Prefs class' if !prefs.kind_of?(Prefs)
+      prefs.prompts.each do |p|
+        add_section(p.config_section.to_sym) unless @data.key?(p.config_section.to_sym)
+        @data[p.config_section.to_sym].merge!(p.config_key.to_sym => p.answer)
       end
     end
 
