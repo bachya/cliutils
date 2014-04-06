@@ -220,7 +220,7 @@ include CLIUtils::Configuration
 ### Loading a Configuration File
 
 ```Ruby
-CLIUtils::Configuration.configuration = ('~/.my-app-config')
+CLIUtils::Configuration.configuration = '~/.my-app-config'
 ```
 
 If there's data in there, it will be consumed into `configuration`'s `data` property.
