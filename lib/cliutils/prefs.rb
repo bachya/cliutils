@@ -96,7 +96,7 @@ module CLIUtils
 
     # Generates an Array of Prefs based on passed
     # in data.
-    # @param [Hash] pref_data Loaded pref data
+    # @param [Hash] pref_data_hash Loaded pref data
     # @return [Array]
     def _generate_prefs(pref_data_hash)
       pref_data_hash[:prompts].map { |p| CLIUtils::Pref.new(p) }

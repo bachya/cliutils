@@ -4,6 +4,8 @@ module CLIUtils
   # PrefValidation Module
   # Validation rules that can be applied to a Pref.
   module PrefValidation
+    # Struct to contain a validation result
+    # and a result message.
     Validator = Struct.new(:code, :message)
 
     # Validates that a value is only letters.
