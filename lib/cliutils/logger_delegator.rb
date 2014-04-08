@@ -16,7 +16,7 @@ module CLIUtils
     end
 
     # Attaches a new target to delegate to.
-    # @param [Logger] target The targets to delegate to
+    # @param [Hash] target A hash describing a reference key and a Logger
     # @return [void]
     def attach(target)
       fail "Cannot add invalid target: #{ target }" unless target.is_a?(Hash)
