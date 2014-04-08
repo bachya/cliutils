@@ -17,3 +17,11 @@ prompts:
     prereqs:
       - config_key: superhero
         config_value: Superman
+  - prompt: Why don't you have a clue?
+    config_key: no_clue
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman
+      - config_key: superman_answer
+        config_value: No clue

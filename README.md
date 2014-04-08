@@ -73,7 +73,7 @@ puts 'A sample string'.red
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-red-text.png "Colored Text via PrettyIO")
 
-PrettyIO gives you utility methods for the common ANSI color codes:
+You get a stable of utility methods for the common ANSI color codes:
 
 ```ruby
 String.blue
@@ -95,7 +95,7 @@ puts 'A sample string'.colorize('35;42')
 Naturally, memorizing the ANSI color scheme is a pain, so PrettyIO gives you a convenient method to look up these color combinations:
 
 ```ruby
-CLIUtils::PrettyIO.color_chart
+color_chart
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
 
@@ -178,6 +178,7 @@ Often, it's desirable to log messages as they appear to your user. `messenging` 
 For instance, let's say you wanted to log a few messages to both your user's STDOUT and to `file.txt`:
 
 ```Ruby
+# By default, messenger only outputs to STDOUT.
 messenger.info('This should only appear in STDOUT.')
 
 # messenger.attach takes a Hash of string/symbol keys
@@ -230,6 +231,7 @@ If there's data in there, it will be consumed into the `configurator`'s `data` p
 Sections are top levels of the configuration file and are managed via the `configurator` object:
 
 ```Ruby
+configuration.add_section(:app_data)
 configuration.add_section(:user_data)
 configuration.add_section(:program_data)
 configuration.delete_section(:program_data)
@@ -257,6 +259,7 @@ Note that all your keys are converted to strings before saving (and, likewise, a
 
 ```YAML
 ---
+app_data:
 user_data:
   username: bob
 ```
@@ -270,8 +273,13 @@ Assume you have a config file that looks like this:
 ```YAML
 ---
 app_data:
+  # The current version of the app
   APP_VERSION: 1.0.0
+
+  # The last version that required
+  # a configuration change
   NEWEST_CONFIG_VERSION: 1.8.0
+
   # ...other keys...
 ```
 
@@ -280,11 +288,13 @@ app_data:
 ```Ruby
 # Tell your configurator the name of the key that
 # stores the app's version in its configuration file.
+# NOTE that you don't have to specify the section.
 configuration.cur_version_key = :APP_VERSION
 
 # Tell your configurator the name of the key that
 # stores the last version that needed a configuration
 # change.
+# NOTE that you don't have to specify the section.
 configuration.last_version_key = :NEWEST_CONFIG_VERSION
 
 # Run the check and use a block to get
@@ -337,6 +347,63 @@ Assuming the above, `Prefs` is instantiated like so:
 prefs = CLIUtils::Prefs.new('path/to/yaml/file')
 ```
 
+`Prefs` can also be instantiated via a Hash or an array of prompts; the overall schema remains the same:
+
+```Ruby
+# Instantiation through a Hash
+h = {
+  prompts: [
+    {
+      prompt: What is your name?
+      default: Bob Cobb
+      config_key: name
+      config_section: personal_info
+    },
+    {
+      prompt: What is your age?
+      default: 45
+      config_key: age
+      config_section: personal_info
+    },
+    {
+      prompt: Batman or Superman?
+      default: Batman
+      config_key: superhero
+      config_section: personal_info
+    }
+  ]
+}
+
+prefs = CLIUtils::Prefs.new(h)
+
+# Instantiation through an Array
+
+a = [
+  {
+    prompt: What is your name?
+    default: Bob Cobb
+    config_key: name
+    config_section: personal_info
+  },
+  {
+    prompt: What is your age?
+    default: 45
+    config_key: age
+    config_section: personal_info
+  },
+  {
+    prompt: Batman or Superman?
+    default: Batman
+    config_key: superhero
+    config_section: personal_info
+  }
+]
+
+prefs = CLIUtils::Prefs.new(a)
+```
+
+### Prompting the User
+
 With valid preferences loaded, simply use `ask` to begin prompting your user:
 
 ```Ruby
@@ -368,6 +435,14 @@ prompts:
     prereqs:
       - config_key: superhero
         config_value: Superman
+  - prompt: Why don't you have a clue?
+    config_key: no_clue
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman
+      - config_key: superman_answer
+        config_value: No clue
 ```
 
 `prereqs` checks for already-answered preferences (based on a Configurator key and value); assuming everything checks out, the subsequent preferences are collected:
@@ -458,7 +533,7 @@ prompts:
       - local_filepath
 ```
 
-The `local_filepath` behavior will expand the user's answer as a filepath (e.g., `~/.ssh` will get saved as `/Users/bachya/.ssh/`).
+The `local_filepath` behavior will expand the user's answer as a filepath (e.g., `~/.ssh` will get saved as `/Users/bob/.ssh/`).
 
 `Prefs` currently supports these behaviors:
 
