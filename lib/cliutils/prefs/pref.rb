@@ -1,4 +1,4 @@
-require 'cliutils/messenging'
+require 'cliutils/messaging'
 require 'cliutils/prefs/pref_behavior'
 require 'cliutils/prefs/pref_validation'
 
@@ -6,7 +6,7 @@ module CLIUtils
   # Pref Class
   # An individual preference
   class Pref
-    include Messenging
+    include Messaging
 
     # Stores the answer to this Pref.
     # @return [String, Symbol]

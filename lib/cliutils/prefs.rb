@@ -5,7 +5,7 @@ module CLIUtils
   # Engine to derive preferences from a YAML file, deliver
   # those to a user via a prompt, and collect the results.
   class Prefs
-    include Messenging
+    include Messaging
     # Stores the filepath (if it exists) to the prefs file.
     # @return [String]
     attr_reader :config_path

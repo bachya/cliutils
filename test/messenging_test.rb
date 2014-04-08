@@ -4,11 +4,11 @@ require 'test/unit'
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/string_extensions')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/pretty_io')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/logger_delegator')
-require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/messenging')
+require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/messaging')
 
 # Tests for the Hash extension methods
-class TestMessenging < Test::Unit::TestCase
-  include CLIUtils::Messenging
+class TestMessaging < Test::Unit::TestCase
+  include CLIUtils::Messaging
 
   def setup
     @file1path = '/tmp/file1.txt'

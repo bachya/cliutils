@@ -54,7 +54,7 @@ Note that although this README.md is extensive, it may not cover all methods. Ch
 CLIUtils offers:
 
 * [PrettyIO](#prettyio): nicer-looking CLI messages
-* [Messenging](#messenging): a system to display nicely-formatted messages to one or more tagets
+* [Messaging](#messaging): a system to display nicely-formatted messages to one or more tagets
 * [Configuration](#configuration): a app configuration manager
 * [Prefs](#prefs): a preferences prompter and manager
 
@@ -99,12 +99,12 @@ color_chart
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
 
-## Messenging
+## Messaging
 
-Throughout the life of your application, you will most likely want to send several messages to your user (warnings, errors, info, etc.). Messenging makes this a snap. It, too, is a mixin:
+Throughout the life of your application, you will most likely want to send several messages to your user (warnings, errors, info, etc.). `Messaging` makes this a snap. It, too, is a mixin:
 
 ```ruby
-include CLIUtils::Messenging
+include CLIUtils::Messaging
 ```
 
 Once mixed in, you get access to `messenger`, a type of Logger that uses `PrettyIO` to send nicely-formatted messages to your user. For example, if you'd like to warn your user:
@@ -114,7 +114,7 @@ messenger.warn('Hey pal, you need to be careful.')
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-warn.png "A Warning from Messenger")
 
-### Messenging Methods
+### Messaging Methods
 
 `messenger` gives you access to several basic methods:
 
@@ -169,11 +169,11 @@ messenger.info("You answered: #{ p }")
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prompting.png "Prompting")
 
-When you pass a default to `messenging.prompt`, hitting `Enter` (i.e., leaving the prompt blank) will return the value of the default.
+When you pass a default to `messaging.prompt`, hitting `Enter` (i.e., leaving the prompt blank) will return the value of the default.
 
 ### Logging
 
-Often, it's desirable to log messages as they appear to your user. `messenging` makes this a breeze by allowing you to attach and detach Logger instances at will.
+Often, it's desirable to log messages as they appear to your user. `messaging` makes this a breeze by allowing you to attach and detach Logger instances at will.
 
 For instance, let's say you wanted to log a few messages to both your user's STDOUT and to `file.txt`:
 

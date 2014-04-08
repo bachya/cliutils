@@ -3,7 +3,7 @@ require 'cliutils/pretty_io'
 module CLIUtils
   #  CLIMessenger Module
   #  Outputs coordinated messages to a variety of targets.
-  module Messenging
+  module Messaging
     include PrettyIO
 
     # Hook that triggers when this module is included.

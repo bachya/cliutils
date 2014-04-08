@@ -48,7 +48,7 @@ module CLIUtils
       end
     end
 
-    # Empty method so that Messenging doesn't freak
+    # Empty method so that Messaging doesn't freak
     # out when passed a debug message.
     # @return [void]
     def debug(m); end
@@ -93,7 +93,7 @@ module CLIUtils
       end
     end
 
-    # Empty method so that Messenging doesn't freak
+    # Empty method so that Messaging doesn't freak
     # out when passed a debug message.
     # @return [void]
     def log(m); end

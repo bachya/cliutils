@@ -1,3 +1,8 @@
+# 1.2.8 (2014-04-08)
+
+* Global name changes
+* Some cleanup
+
 # 1.2.7 (2014-04-08)
 
 * Added more Behaviors
@@ -46,7 +51,7 @@
 
 # 1.0.7 (2014-03-30)
 
-* Modified Messenging targets to be a Hash for easier lookup/deletion
+* Modified Messaging targets to be a Hash for easier lookup/deletion
 
 # 1.0.6 (2014-03-30)
 
@@ -55,7 +60,7 @@
 # 1.0.5 (2014-03-30)
 
 * Fixed a bug with Configuration singleton
-* Fixed a bug with Messenging singleton
+* Fixed a bug with Messaging singleton
 
 # 1.0.4 (2014-03-29)
 

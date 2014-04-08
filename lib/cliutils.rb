@@ -7,7 +7,7 @@ require 'cliutils/pretty_io'
 require 'cliutils/configurator'
 require 'cliutils/configuration'
 require 'cliutils/logger_delegator'
-require 'cliutils/messenging'
+require 'cliutils/messaging'
 require 'cliutils/prefs'
 require 'cliutils/prefs/pref'
 
