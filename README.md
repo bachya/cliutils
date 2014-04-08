@@ -220,14 +220,14 @@ include CLIUtils::Configuration
 ### Loading a Configuration File
 
 ```Ruby
-CLIUtils::Configuration.configuration = '~/.my-app-config'
+load_configuration('~/.my-app-config')
 ```
 
-If there's data in there, it will be consumed into `configuration`'s `data` property.
+If there's data in there, it will be consumed into the `configurator`'s `data` property.
 
 ### Adding/Removing Sections
 
-Sections are top levels of the configuration file and are managed via the `configuration` object:
+Sections are top levels of the configuration file and are managed via the `configurator` object:
 
 ```Ruby
 configuration.add_section(:user_data)
@@ -237,7 +237,7 @@ configuration.delete_section(:program_data)
 
 ### Adding Data to Sections
 
-There are two ways data can be managed in `configuration`: via its `@data` property or via some magic methods; your call:
+There are two ways data can be managed in `configurator`: via its `@data` property or via some magic methods; your call:
 
 ```Ruby
 configuration.data[:user_data].merge!(username: 'bob')
@@ -259,6 +259,33 @@ Note that all your keys are converted to strings before saving (and, likewise, a
 ---
 user_data:
   username: bob
+```
+
+### Checking Configuration Versions
+
+Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change. `configurator` allows for this via its `compare_version` method:
+
+```Ruby
+# Tell your configurator the name of the key that
+# stores the app's version in its configuration file.
+configuration.cur_version_key = :APP_VERSION
+
+# Tell your configurator the name of the key that
+# stores the last version that needed a configuration
+# change.
+configuration.last_version_key = :NEWEST_CONFIG_VERSION
+
+# Run the check and use a block to get
+# the current and "last-needing-changes"
+# versions (and do something about it).
+configuration.compare_version do |c, l|
+  if c < l
+    puts "You need to update your app; here's how:"
+    # ...do stuff...
+  else
+    puts "No need to update your app's config file!"
+  end
+end
 ```
 
 ## Prefs
@@ -419,7 +446,7 @@ prompts:
       - local_filepath
 ```
 
-This will expand the user's answer as a filepath (e.g., `~/.ssh` will get saved as `/Users/bachya/.ssh/`).
+The `local_filepath` behavior will expand the user's answer as a filepath (e.g., `~/.ssh` will get saved as `/Users/bachya/.ssh/`).
 
 `Prefs` currently supports these behaviors:
 
@@ -430,7 +457,11 @@ This will expand the user's answer as a filepath (e.g., `~/.ssh` will get saved 
 Once the user has answered all the preference prompts, you can fold those answers back into a Configurator using the `ingest` method:
 
 ```Ruby
+# Ingest the Prefs answers into our
+# Configurator.
 configuration.ingest_prefs(prefs)
+
+# Save it to the filesystem.
 configuration.save
 ```
 
@@ -439,6 +470,9 @@ configuration.save
 Note that you can also initialize a `Prefs` object with a Configurator:
 
 ```Ruby
+# Scans my_configurator for values to the
+# questions posed by prefs; if found, use
+# them as defaults.
 prefs = CLIUtils::Prefs.new('path/to/yaml/file', my_configurator)
 ```
 

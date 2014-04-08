@@ -33,7 +33,7 @@ module CLIUtils
     # a Configurator.
     # @param [String] path The filepath to use
     # @return [void]
-    def self.configuration=(path)
+    def load_configuration(path)
       @@configuration = Configurator.new(path)
     end
   end

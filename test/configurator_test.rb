@@ -48,4 +48,16 @@ class TestConfigurator < Test::Unit::TestCase
       assert_output("---\nsection1:\n  a: test\n  b: test\n") { puts f.read }
     end
   end
+  
+  def test_compare_version
+    @config.add_section(:app_data)
+    @config.app_data.merge!({ VERSION: '1.0.0', NEWEST_CONFIG_VERSION: '1.8.8' })
+
+    @config.cur_version_key = :VERSION
+    @config.last_version_key = :NEWEST_CONFIG_VERSION
+
+    @config.compare_version do |c, l|
+      assert_output('true') { print c < l }
+    end
+  end
 end
