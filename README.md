@@ -263,7 +263,19 @@ user_data:
 
 ### Checking Configuration Versions
 
-Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change. `configurator` allows for this via its `compare_version` method:
+Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change. `configurator` allows for this via its `compare_version` method.
+
+Assume you have a config file that looks like this:
+
+```YAML
+---
+app_data:
+  VERSION: 1.0.0
+  NEWEST_CONFIG_VERSION: 1.8.0
+  # ...other keys...
+```
+
+...this will initiate a version check (and give you the option to do something with that information):
 
 ```Ruby
 # Tell your configurator the name of the key that
