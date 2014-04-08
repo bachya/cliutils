@@ -354,22 +354,22 @@ prefs = CLIUtils::Prefs.new('path/to/yaml/file')
 h = {
   prompts: [
     {
-      prompt: What is your name?
-      default: Bob Cobb
-      config_key: name
-      config_section: personal_info
+      prompt: 'What is your name?'
+      default: 'Bob Cobb'
+      config_key: :name
+      config_section: :personal_info
     },
     {
-      prompt: What is your age?
-      default: 45
-      config_key: age
-      config_section: personal_info
+      prompt: 'What is your age?'
+      default: '45'
+      config_key: :age
+      config_section: :personal_info
     },
     {
-      prompt: Batman or Superman?
-      default: Batman
-      config_key: superhero
-      config_section: personal_info
+      prompt: 'Batman or Superman?'
+      default: 'Batman'
+      config_key: :superhero
+      config_section: :personal_info
     }
   ]
 }
@@ -380,22 +380,22 @@ prefs = CLIUtils::Prefs.new(h)
 
 a = [
   {
-    prompt: What is your name?
-    default: Bob Cobb
-    config_key: name
-    config_section: personal_info
+    prompt: 'What is your name?'
+    default: 'Bob Cobb'
+    config_key: :name
+    config_section: :personal_info
   },
   {
-    prompt: What is your age?
-    default: 45
-    config_key: age
-    config_section: personal_info
+    prompt: 'What is your age?'
+    default: '45'
+    config_key: :age
+    config_section: :personal_info
   },
   {
-    prompt: Batman or Superman?
-    default: Batman
-    config_key: superhero
-    config_section: personal_info
+    prompt: 'Batman or Superman?'
+    default: 'Batman'
+    config_key: :superhero
+    config_section: :personal_info
   }
 ]
 
