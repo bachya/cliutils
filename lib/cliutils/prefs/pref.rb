@@ -101,7 +101,7 @@ module CLIUtils
       ret = true
       if @options
         unless @options.include?(text)
-          @last_error_message = "Invalid option chosen (\"#{ text }\");"\
+          @last_error_message = "Invalid option chosen (\"#{ text }\"); " \
           "valid options are: #{ options }"
           ret = false
         end

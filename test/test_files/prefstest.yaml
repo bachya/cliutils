@@ -3,6 +3,7 @@ prompts:
     default: Batman
     config_key: superhero
     config_section: personal_info
+    options: ['Batman', 'Superman']
   - prompt: Do you feel smart for preferring Batman?
     default: Y
     config_key: batman_answer

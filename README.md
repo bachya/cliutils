@@ -452,7 +452,7 @@ prefs.ask
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-prereqs.png "Prerequisities")
 
-Be careful tht you don't define any circular prerequisities (e.g., A requires B and B requires A). In that case, neither preference will be collected.
+Be careful that you don't define any circular prerequisities (e.g., A requires B and B requires A). In that case, both preferences will be ignored by `Prefs.ask`.
 
 ### Options
 
@@ -479,6 +479,14 @@ prompts:
     prereqs:
       - config_key: superhero
         config_value: Superman
+  - prompt: Why don't you have a clue?
+    config_key: no_clue
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman
+      - config_key: superman_answer
+        config_value: No clue
 ```
 
 Once in place:
