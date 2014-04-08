@@ -502,7 +502,7 @@ prefs.ask
 
 ```YAML
 validators:
-  - numeric
+  - numeric      # Must be a number
   - alphabetic   # Must be made up of letters and spaces
   - alphanumeric # Must be made up of letters, numbers, and spaces
   - date         # Must be a parsable date (e.g., 2014-04-03)
