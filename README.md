@@ -54,7 +54,7 @@ Note that although this README.md is extensive, it may not cover all methods. Ch
 CLIUtils offers:
 
 * [PrettyIO](#prettyio): nicer-looking CLI messages
-* [Messenging](#messenging): a full-featured Logger
+* [Messenging](#messenging): a system to display nicely-formatted messages to one or more tagets
 * [Configuration](#configuration): a app configuration manager
 * [Prefs](#prefs): a preferences prompter and manager
 
