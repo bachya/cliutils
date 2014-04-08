@@ -316,7 +316,7 @@ Many times, CLI apps need to ask their users some questions, collect the feedbac
 
 ### Basic Schema
 
-`Prefs` can load preferences information from either a YAML file (via a filepath) or from an array of preferences. In either case, the schema is the same; each prompt includes the following:
+`Prefs` can load preferences information from either a YAML file (via a filepath) or from an Array of preferences. In either case, the schema is the same; each prompt includes the following:
 
 * `prompt` (**required**): the string to prompt your user with
 * `default` (*optional*): an optional default to offer
@@ -347,7 +347,7 @@ Assuming the above, `Prefs` is instantiated like so:
 prefs = CLIUtils::Prefs.new('path/to/yaml/file')
 ```
 
-`Prefs` can also be instantiated via a Hash or an array of prompts; the overall schema remains the same:
+`Prefs` can also be instantiated via a Hash or an Array of prompts; the overall schema remains the same:
 
 ```Ruby
 # Instantiation through a Hash
