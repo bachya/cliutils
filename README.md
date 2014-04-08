@@ -354,21 +354,21 @@ prefs = CLIUtils::Prefs.new('path/to/yaml/file')
 h = {
   prompts: [
     {
-      prompt: 'What is your name?'
-      default: 'Bob Cobb'
-      config_key: :name
+      prompt: 'What is your name?',
+      default: 'Bob Cobb',
+      config_key: :name,
       config_section: :personal_info
     },
     {
-      prompt: 'What is your age?'
-      default: '45'
-      config_key: :age
+      prompt: 'What is your age?',
+      default: '45',
+      config_key: :age,
       config_section: :personal_info
     },
     {
-      prompt: 'Batman or Superman?'
-      default: 'Batman'
-      config_key: :superhero
+      prompt: 'Batman or Superman?',
+      default: 'Batman',
+      config_key: :superhero,
       config_section: :personal_info
     }
   ]
@@ -380,21 +380,21 @@ prefs = CLIUtils::Prefs.new(h)
 
 a = [
   {
-    prompt: 'What is your name?'
-    default: 'Bob Cobb'
-    config_key: :name
+    prompt: 'What is your name?',
+    default: 'Bob Cobb',
+    config_key: :name,
     config_section: :personal_info
   },
   {
-    prompt: 'What is your age?'
-    default: '45'
-    config_key: :age
+    prompt: 'What is your age?',
+    default: '45',
+    config_key: :age,
     config_section: :personal_info
   },
   {
-    prompt: 'Batman or Superman?'
-    default: 'Batman'
-    config_key: :superhero
+    prompt: 'Batman or Superman?',
+    default: 'Batman',
+    config_key: :superhero,
     config_section: :personal_info
   }
 ]
@@ -413,7 +413,7 @@ prefs.ask
 
 ### Prerequisites
 
-Sometimes, you need to answer certain prompts before others become relevant. `Prefs` allows this via a `prereqs` key, which can contain multiple already-answered key/value pairs to check for. For instance, imagine we want to drill into a user's superhero preference a bit further:
+Sometimes, you need to answer certain prompts before others become relevant. `Prefs` allows this via a `prereqs` key, which can contain multiple already-answered key/value pairs to check for. For instance, imagine we want to drill into a user's superhero preference a bit further; using our previously-used YAML prefs file:
 
 ```YAML
 prompts:
