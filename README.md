@@ -545,7 +545,7 @@ validators:
   - lowercase       # Turns "AnSwEr" into "answer"
   - prefix: 'test ' # Prepends 'test ' to the answer
   - suffix: 'test ' # Appends 'test ' to the answer 
-  - titlecase       # Turns "my test" into "My Test"
+  - titlecase       # Turns "the answer" into "The Answer"
   - uppercase       # Turns "answer" to "ANSWER"
 ```
 
