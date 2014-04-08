@@ -532,7 +532,7 @@ prefs.ask
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-validators.png "Validators")
 
-Note that validators are run in order, from top to bottom. If any validator fails, `messenger` will display an error and prompt the user to try again.
+Note that validators are evaluated in order, from top to bottom. If any validator fails, `messenger` will display an error and prompt the user to try again.
 
 ### Behaviors
 
@@ -567,8 +567,9 @@ prompts:
 ```Ruby
 prefs.ask
 ```
-
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-behaviors.png "Behaviors")
+
+Note that behaviors are executed in order, which might give you different results than you're expecting. In the example above, for example, placing the `uppercase` behavior last in the list will uppercase *the entire string* (including prefix and suffix).
 
 ### Adding Pref Responses to a Configurator
 
