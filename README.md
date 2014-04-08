@@ -270,7 +270,7 @@ Assume you have a config file that looks like this:
 ```YAML
 ---
 app_data:
-  VERSION: 1.0.0
+  APP_VERSION: 1.0.0
   NEWEST_CONFIG_VERSION: 1.8.0
   # ...other keys...
 ```
