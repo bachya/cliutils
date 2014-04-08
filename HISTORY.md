@@ -1,3 +1,8 @@
+# 1.2.6 (2014-04-08)
+
+* More documentation
+* Small refactorings
+
 # 1.2.5 (2014-04-07)
 
 * Added Configurator version checking
