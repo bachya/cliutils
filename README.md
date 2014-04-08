@@ -498,7 +498,7 @@ prefs.ask
 
 ### Validators
 
-"But," you say, "I want to ensure that my user gives answers that conform to certain specifications!" Not a problem, dear user, `Prefs` gives you Validators. Currently supported Validators are:
+"But," you say, "I want to ensure that my user gives answers that conform to certain specifications!" Not a problem, dear user: `Prefs` gives you Validators. Currently supported Validators are:
 
 ```YAML
 validators:
