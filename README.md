@@ -60,13 +60,13 @@ CLIUtils offers:
 
 ## PrettyIO
 
-First stop on our journey is better client IO. To activate, simply mix into your project:
+First stop on our journey is better client IO via `PrettyIO`. To activate, simply mix into your project:
 
 ```ruby
 include CLIUtils::PrettyIO
 ```
 
-PrettyIO affords you colorized strings:
+To start, `PrettyIO` affords you colorized strings:
 
 ```ruby
 puts 'A sample string'.red
@@ -92,7 +92,7 @@ puts 'A sample string'.colorize('35;42')
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-gnarly-text.png "Complex Colored Text via PrettyIO")
 
-Naturally, memorizing the ANSI color scheme is a pain, so PrettyIO gives you a convenient method to look up these color combinations:
+Naturally, memorizing the ANSI color scheme is a pain, so `PrettyIO` gives you a convenient method to look up these color combinations:
 
 ```ruby
 color_chart
@@ -107,7 +107,7 @@ Throughout the life of your application, you will most likely want to send sever
 include CLIUtils::Messenging
 ```
 
-Once mixed in, you get access to `messenger`, a type of Logger that uses PrettyIO to send nicely-formatted messages to your user. For example, if you'd like to warn your user:
+Once mixed in, you get access to `messenger`, a type of Logger that uses `PrettyIO` to send nicely-formatted messages to your user. For example, if you'd like to warn your user:
 
 ```ruby
 messenger.warn('Hey pal, you need to be careful.')
@@ -145,7 +145,7 @@ messenger.info_block('Starting up...', 'Done!', multiline = false) { # do stuff 
 
 ### Message Wrapping
 
-PrettyIO also gives `messenger` the ability to wrap your messages so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
+`PrettyIO` also gives `messenger` the ability to wrap your messages so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
 
 ```Ruby
 CLIUtils::PrettyIO.wrap_char_limit = 50
