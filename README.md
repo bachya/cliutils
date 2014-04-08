@@ -498,7 +498,20 @@ prefs.ask
 
 ### Validators
 
-"But," you say, "I want to ensure that my user gives answers that conform to certain specifications!" Not a problem, dear user, `Prefs` has you covered:
+"But," you say, "I want to ensure that my user gives answers that conform to certain specifications!" Not a problem, dear user, `Prefs` gives you Validators. Currently supported Validators are:
+
+```YAML
+validators:
+  - numeric
+  - alphabetic   # Must be made up of letters and spaces
+  - alphanumeric # Must be made up of letters, numbers, and spaces
+  - date         # Must be a parsable date (e.g., 2014-04-03)
+  - non_nil      # Must be a non-nil value
+  - numeric      # Must be made up of numbers
+  - url          # Must be a fully-qualified URL
+```
+
+An example:
 
 ```YAML
 prompts:
@@ -519,33 +532,43 @@ prefs.ask
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-validators.png "Validators")
 
-`Prefs` currently supports these validators:
-
-* `alphabetic`: must be made up of letters and spaces
-* `alphanumeric`: must be made up of letters, numbers, and spaces
-* `date`: must be a parsable date (e.g., 2014-04-03)
-* `non_nil`: must be a non-nil value
-* `numeric`: must be made up of numbers
-* `url`: must be a fully-qualified URL
+Note that validators are run in order, from top to bottom. If any validator fails, `messenger` will display an error and prompt the user to try again.
 
 ### Behaviors
 
-Finally, a common desire might be to modify the user's answer in some way:
+Finally, a common desire might be to modify the user's answer in some way before storing it. `Prefs` accomplishes this via Behaviors. Currently supported Behaviors are:
+
+```YAML
+validators:
+  - capitalize      # Turns "answer" into "Answer"
+  - local_filepath  # Runs File.expand_path on the answer
+  - lowercase       # Turns "AnSwEr" into "answer"
+  - prefix: 'test ' # Prepends 'test ' to the answer
+  - suffix: 'test ' # Appends 'test ' to the answer 
+  - titlecase       # Turns "my test" into "My Test"
+  - uppercase       # Turns "answer" to "ANSWER"
+```
+
+An example:
 
 ```YAML
 prompts:
-  - prompt: Where is your SSH public key located?
-    config_key: pub_key
+  - prompt: What is your favorite food?
+    config_key: food
     config_section: personal_info
+    validators:
+      - non_nil
     behaviors:
-      - local_filepath
+      - uppercase
+      - prefix: 'My favorite food: '
+      - suffix: ' (soooo good!)'
 ```
 
-The `local_filepath` behavior will expand the user's answer as a filepath (e.g., `~/.ssh` will get saved as `/Users/bob/.ssh/`).
+```Ruby
+prefs.ask
+```
 
-`Prefs` currently supports these behaviors:
-
-* `local_filepath`: runs File.expand_path on the answer
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-behaviors.png "Behaviors")
 
 ### Adding Pref Responses to a Configurator
 
@@ -604,5 +627,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-

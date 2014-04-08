@@ -1,28 +1,10 @@
 prompts:
-  - prompt: Batman or Superman?
-    default: Batman
-    config_key: superhero
+  - prompt: What is your favorite food?
+    config_key: food
     config_section: personal_info
-    options: ['Batman', 'Superman']
-  - prompt: Do you feel smart for preferring Batman?
-    default: Y
-    config_key: batman_answer
-    config_section: personal_info
-    prereqs:
-      - config_key: superhero
-        config_value: Batman
-  - prompt: Why do you prefer Superman?!
-    default: No clue
-    config_key: superman_answer
-    config_section: personal_info
-    prereqs:
-      - config_key: superhero
-        config_value: Superman
-  - prompt: Why don't you have a clue?
-    config_key: no_clue
-    config_section: personal_info
-    prereqs:
-      - config_key: superhero
-        config_value: Superman
-      - config_key: superman_answer
-        config_value: No clue
+    validators:
+      - non_nil
+    behaviors:
+      - uppercase
+      - prefix: 'My favorite food: '
+      - suffix: ' (Italian food FTW!)'

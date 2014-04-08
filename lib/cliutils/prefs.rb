@@ -88,6 +88,7 @@ module CLIUtils
         if p.validate(response)
           valid_option_chosen = true
           p.answer = p.evaluate_behaviors(response)
+          puts p.answer
         else
           messenger.error(p.last_error_message)
         end

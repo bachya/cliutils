@@ -71,10 +71,22 @@ module CLIUtils
       if @behaviors
         modified_text = text
         @behaviors.each do |b|
-          if PrefBehavior.respond_to?(b)
-            modified_text = PrefBehavior.send(b, modified_text)
-          else
-            messenger.warn("Skipping undefined Pref behavior: #{ b }")
+          case b
+          when String
+            if PrefBehavior.respond_to?(b)
+              modified_text = PrefBehavior.send(b, modified_text)
+            else
+              messenger.warn("Skipping undefined Pref behavior: #{ b }")
+            end
+          when Hash
+            method = b.keys[0]
+            parameter = b.values[0]
+
+            if PrefBehavior.respond_to?(method)
+              modified_text = PrefBehavior.send(method, modified_text, parameter)
+            else
+              messenger.warn("Skipping undefined Pref behavior: #{ method }")
+            end
           end
         end
         modified_text
