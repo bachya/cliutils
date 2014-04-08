@@ -1,3 +1,7 @@
+# 1.2.7 (2014-04-08)
+
+* Added more Behaviors
+
 # 1.2.6 (2014-04-08)
 
 * More documentation
