@@ -122,7 +122,7 @@ messenger.warn('Hey pal, you need to be careful.')
 * `messenger.info`: used to show a formatted-blue infomational message.
 * `messenger.section`: used to show a formatted-purple sectional message.
 * `messenger.success`: used to show a formatted-green success message.
-* `messenger.yellow`: used to show a formatted-yellow warning message.
+* `messenger.warn`: used to show a formatted-yellow warning message.
 
 Let's see an example that uses them all:
 
@@ -138,7 +138,13 @@ messenger.success('But Luke still blew up the Death Star!')
 `messenger` also includes two "block" methods that allow you to wrap program execution in messages that are "longer-term".
 
 ```Ruby
-messenger.info_block('Starting up...', 'Done!', multiline = false) { # do stuff here }
+messenger.info_block('Starting up...', 'Done!', multiline = false) { 
+  # ...do stuff here...
+}
+
+section_block(m, multiline = true) {
+  # ...do stuff here...
+}
 ```
 
 `messenger` outputs 'Starting up...', runs the code in `# do stuff here`, and once complete, outputs 'Done!' on the same line. Note that `section_block` is the same exact signature (except for the method name, of course!).
@@ -208,7 +214,7 @@ E, [2014-03-29T15:14:34.844553 #4497] ERROR -- : This error should appear in STD
 D, [2014-03-29T15:14:34.844609 #4497] DEBUG -- : This debug message should only appear in file.txt
 ```
 
-Since you can attach Logger objects, each can have it's own format and severity level. Cool!
+Since you are attaching Logger objects, each can have it's own format and severity level. Cool!
 
 ## Configuration
 
@@ -292,8 +298,7 @@ app_data:
 configuration.cur_version_key = :APP_VERSION
 
 # Tell your configurator the name of the key that
-# stores the last version that needed a configuration
-# change.
+# stores the last version that needed a configuration change.
 # NOTE that you don't have to specify the section.
 configuration.last_version_key = :NEWEST_CONFIG_VERSION
 

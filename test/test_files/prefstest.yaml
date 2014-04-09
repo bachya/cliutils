@@ -7,4 +7,4 @@ prompts:
     behaviors:
       - uppercase
       - prefix: 'My favorite food: '
-      - suffix: ' (Italian food FTW!)'
+      - suffix: ' (soooo good!)'
