@@ -515,12 +515,15 @@ prefs.ask
 
 ```YAML
 validators:
-  - alphabetic   # Must be made up of letters and spaces
-  - alphanumeric # Must be made up of letters, numbers, and spaces
-  - date         # Must be a parsable date (e.g., 2014-04-03)
-  - non_nil      # Must be a non-nil value
-  - numeric      # Must be made up of numbers
-  - url          # Must be a fully-qualified URL
+  - alphabetic       # Must be made up of letters and spaces
+  - alphanumeric     # Must be made up of letters, numbers, and spaces
+  - date             # Must be a parsable date (e.g., 2014-04-03)
+  - datetime         # Must be a parsable datetime (e.g., 2014-04-03 9:34am)
+  - non_nil          # Must be a non-nil value
+  - number           # Must be made up of numbers
+  - filepath_exists  # Must be a local filepath that exists (e.g., `/tmp/`)
+  - time             # Must be a parsable time (e.g., 12:45pm or 21:08)
+  - url              # Must be a fully-qualified URL
 ```
 
 An example:
@@ -536,7 +539,7 @@ prompts:
     config_key: age
     config_section: personal_info
     validators:
-      - numeric
+      - number
 ```
 
 ```Ruby
@@ -553,7 +556,7 @@ Finally, a common desire might be to modify the user's answer in some way before
 ```YAML
 validators:
   - capitalize      # Turns "answer" into "Answer"
-  - local_filepath  # Runs File.expand_path on the answer
+  - expand_filepath # Runs File.expand_path on the answer
   - lowercase       # Turns "AnSwEr" into "answer"
   - prefix: 'test ' # Prepends 'test ' to the answer
   - suffix: 'test ' # Appends 'test ' to the answer 

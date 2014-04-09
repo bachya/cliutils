@@ -1,3 +1,11 @@
+# 1.2.9 (2014-04-09)
+
+* Added time Pref validator
+* Added datetime Pref validator
+* Added filepath_exists Pref validator
+* Pref Validator change: numeric => number
+* Pref Behavior change: local_filepath => expand_filepath
+
 # 1.2.8 (2014-04-08)
 
 * Global name changes

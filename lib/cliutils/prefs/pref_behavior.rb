@@ -14,7 +14,7 @@ module CLIUtils
     # is a filepath).
     # @param [String] args[0] The text to evaluate
     # @return [String]
-    def self.local_filepath(*args)
+    def self.expand_filepath(*args)
       File.expand_path(args[0])
     end
 
