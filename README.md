@@ -380,9 +380,9 @@ h = {
 }
 
 prefs = CLIUtils::Prefs.new(h)
-
+```
+```Ruby
 # Instantiation through an Array
-
 a = [
   {
     prompt: 'What is your name?',
