@@ -138,16 +138,20 @@ messenger.success('But Luke still blew up the Death Star!')
 `messenger` also includes two "block" methods that allow you to wrap program execution in messages that are "longer-term".
 
 ```Ruby
+# Outputs 'Starting up...', runs the code in
+# `# do stuff here`, and once complete,
+# outputs 'Done!' on the same line.
 messenger.info_block('Starting up...', 'Done!', multiline = false) { 
   # ...do stuff here...
 }
 
-section_block(m, multiline = true) {
+# Outputs 'MY SECTION' and then runs
+# the code in `# do stuff here` before
+# proceeding.
+section_block('MY SECTION', multiline = true) {
   # ...do stuff here...
 }
 ```
-
-`messenger` outputs 'Starting up...', runs the code in `# do stuff here`, and once complete, outputs 'Done!' on the same line. Note that `section_block` is the same exact signature (except for the method name, of course!).
 
 ### Message Wrapping
 
