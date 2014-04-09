@@ -158,14 +158,17 @@ section_block('MY SECTION', multiline = true) {
 `PrettyIO` also gives `messenger` the ability to wrap your messages so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
 
 ```Ruby
+long_string = 'This is a really long message, okay? ' \
+'It should wrap at some point. Seriously. Wrapping is nice.'
+
 CLIUtils::PrettyIO.wrap_char_limit = 50
-messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+messenger.info(long_string)
 puts ''
 CLIUtils::PrettyIO.wrap_char_limit = 20
-messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+messenger.info(long_string)
 puts ''
 CLIUtils::PrettyIO.wrap = false
-messenger.info('This is a really long message, okay? It should wrap at some point. Seriously. Wrapping is nice.')
+messenger.info(long_string)
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/wrapping.png "Text Wrapping")
 
