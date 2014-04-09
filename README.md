@@ -255,9 +255,9 @@ configuration.delete_section(:program_data)
 There are two ways data can be managed in `configurator`: via its `@data` property or via some magic methods; your call:
 
 ```Ruby
-configuration.data[:user_data].merge!(username: 'bob')
+configuration.data[:user_data].merge!({ username: 'bob', age: 45 })
 # OR
-configuration.user_data.merge!(username: 'bob')
+configuration.user_data.merge!({ username: 'bob', age: 45 })
 ```
 
 ### Saving to a File
@@ -275,6 +275,7 @@ Note that all your keys are converted to strings before saving (and, likewise, a
 app_data:
 user_data:
   username: bob
+  age: 45
 ```
 
 ### Checking Configuration Versions
