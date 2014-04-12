@@ -66,6 +66,8 @@ First stop on our journey is better client IO via `PrettyIO`. To activate, simpl
 include CLIUtils::PrettyIO
 ```
 
+### Colored Strings
+
 To start, `PrettyIO` affords you colorized strings:
 
 ```ruby
