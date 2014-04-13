@@ -118,7 +118,7 @@ messenger.warn('Hey pal, you need to be careful.')
 
 ### Messaging Methods
 
-`messenger` gives you access to several basic methods:
+`messenger` gives you access to several basic "read-only" methods:
 
 * `messenger.error`: used to show a formatted-red error message.
 * `messenger.info`: used to show a formatted-blue infomational message.
