@@ -94,7 +94,7 @@ module CLIUtils
     end
 
     # Empty method so that Messaging doesn't freak
-    # out when passed a debug message.
+    # out when passed a log message.
     # @return [void]
     def log(m); end
 

@@ -1,3 +1,8 @@
+# 1.3.9 (2014-04-12)
+
+* Revised Configurator version checking
+* Added some documentation
+
 # 1.2.9 (2014-04-09)
 
 * Added time Pref validator

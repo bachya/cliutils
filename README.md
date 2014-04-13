@@ -280,6 +280,49 @@ user_data:
   age: 45
 ```
 
+### Checking Configuration Versions
+
+Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change. `configurator` allows for this via its `compare_version` method.
+
+Assume you have a config file that looks like this:
+
+```YAML
+---
+app_data:
+  # The current version of the app
+  APP_VERSION: 0.8.8
+
+  # ...other keys...
+```
+
+...and that, somewhere in your app, you store a constant that contains the config version that requires a re-configuration:
+
+```Ruby
+LATEST_CONFIG_VERSION = 0.9.5
+```
+
+...this will initiate a version check (and give you the option to do something with that information):
+
+```Ruby
+# Store the current version of your app in a
+# property of the Configurator.
+configuration.current_version = configuration.app_data['APP_VERSION']
+
+# Store the last version of your app that required
+# a re-configuration in a property of the Configurator.
+configuration.last_version = LATEST_CONFIG_VERSION
+
+# Run the check and use a block to get
+# the current and "last-needing-changes"
+# versions (and do something about it).
+configuration.compare_version do |c, l|
+  puts "We need to update from #{c} to #{l}..."
+  # ...do stuff...
+end
+```
+
+Note that if the current version is *later* than the last version that required re-configuration, the whole block is skipped over (allowing your app to get on with its day).
+
 ## Prefs
 
 Many times, CLI apps need to ask their users some questions, collect the feedback, validate it, and store it. CLIUtils makes this a breeze via the `Prefs` class.

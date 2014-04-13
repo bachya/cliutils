@@ -8,13 +8,13 @@ module CLIUtils
     # Stores the Configurator key that refers
     # to the current configuration version.
     # @return [Symbol]
-    attr_accessor :cur_version_key
+    attr_accessor :current_version
 
     # Stores the Configurator key that refers
     # to the value at which the app last changed
     # config versions.
     # @return [Symbol]
-    attr_accessor :last_version_key
+    attr_accessor :last_version
 
     # Stores the path to the configuration file.
     # @return [String]
@@ -55,15 +55,6 @@ module CLIUtils
       end
     end
 
-    # Checks to see whether the passed key (and a
-    # non-nil value) exist in the @data Hash.
-    # @param [Symbol] key The key to search for
-    # @return [Boolean]
-    def check_key_and_value(key)
-      !@data.recursive_find_by_key(key).nil? &&
-      !@data.recursive_find_by_key(key).empty?
-    end
-
     # Compares the current version (if it exists) to
     # the last version that needed a configuration
     # change (if it exists). Assuming they exist and
@@ -71,22 +62,11 @@ module CLIUtils
     # version, execute a passed block.
     # @return [void]
     def compare_version
-      unless check_key_and_value(@cur_version_key)
-        fail 'Cannot check version; no current version found'
-      end
-      
-      unless check_key_and_value(@last_version_key)
-        fail 'Cannot check version; no previous version found'
-      end
-      
-      c_version = @data.recursive_find_by_key(@cur_version_key)
-      c_version_gem = Gem::Version.new(c_version)
+      c_version = Gem::Version.new(@current_version)
+      l_version = Gem::Version.new(@last_version)
 
-      l_version = @data.recursive_find_by_key(@last_version_key)
-      l_version_gem = Gem::Version.new(l_version)
-
-      if c_version_gem < l_version_gem
-        yield c_version, l_version
+      if c_version < l_version
+        yield @current_version, @last_version
       end
     end
 
