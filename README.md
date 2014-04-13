@@ -188,7 +188,7 @@ When you pass a default to `messaging.prompt`, hitting `Enter` (i.e., leaving th
 
 ### Logging
 
-Often, it's desirable to log messages as they appear to your user. `messaging` makes this a breeze by allowing you to attach and detach Logger instances at will.
+Often, it's desirable to log messages as they appear to your user. `Messaging` makes this a breeze by allowing you to attach and detach Logger instances at will.
 
 For instance, let's say you wanted to log a few messages to both your user's STDOUT and to `file.txt`:
 
