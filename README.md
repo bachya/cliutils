@@ -35,7 +35,7 @@ $ gem install cliutils
 
 # Usage
 
-```ruby
+```rub
 require 'cliutils'
 ```
 
@@ -227,7 +227,9 @@ Since you are attaching Logger objects, each can have it's own format and severi
 
 ## Configuration
 
-CLIUtils offers a `Configurator` class and a `Configuration` module (which provides access to a shared instance of `Configurator`) that make managing a user's configuration parameters easy. Mix it in!
+CLIUtils offers a `Configurator` class and a `Configuration` module (which provides access to a shared instance of `Configurator`) that make managing a user's configuration parameters easy. Although the examples in this README use that shared instance, you should note that you can always use your own `Configurator`.
+
+To use, mix it in!
 
 ```Ruby
 include CLIUtils::Configuration
@@ -239,11 +241,11 @@ include CLIUtils::Configuration
 load_configuration('~/.my-app-config')
 ```
 
-If there's data in there, it will be consumed into the `configurator`'s `data` property.
+If there's data in there, it will be consumed into a `Configurator`'s `data` property.
 
 ### Adding/Removing Sections
 
-Sections are top levels of the configuration file and are managed via the `configurator` object:
+Sections are top levels of the configuration file and are managed via the `Configurator` object:
 
 ```Ruby
 configuration.add_section(:app_data)
@@ -254,7 +256,7 @@ configuration.delete_section(:program_data)
 
 ### Adding Data to Sections
 
-There are two ways data can be managed in `configurator`: via its `@data` property or via some magic methods; your call:
+There are two ways data can be managed in a `Configurator`: via its `@data` property or via some magic methods; your call:
 
 ```Ruby
 configuration.data[:user_data].merge!({ username: 'bob', age: 45 })
@@ -284,7 +286,7 @@ user_data:
 
 Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change; moreover, you'll want to run some "re-configuration" steps if the user's version is older than the last version that required a configuration update.
 
-`configurator` allows for this via its `compare_version` method.
+A `Configurator` allows for this via its `compare_version` method.
 
 Assume you have a config file that looks like this:
 
