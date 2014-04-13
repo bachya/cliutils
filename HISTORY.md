@@ -1,4 +1,8 @@
-# 1.3.9 (2014-04-12)
+# 1.3.1 (2014-04-12)
+
+* Modified version check to include missing current version
+
+# 1.3.0 (2014-04-12)
 
 * Revised Configurator version checking
 * Added some documentation

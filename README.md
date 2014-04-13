@@ -143,7 +143,7 @@ messenger.success('But Luke still blew up the Death Star!')
 # Outputs 'Starting up...', runs the code in
 # `# do stuff here`, and once complete,
 # outputs 'Done!' on the same line.
-messenger.info_block('Starting up...', 'Done!', multiline = false) { 
+messenger.info_block('Starting up...', 'Done!', multiline = false) {
   # ...do stuff here...
 }
 
@@ -282,7 +282,9 @@ user_data:
 
 ### Checking Configuration Versions
 
-Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change. `configurator` allows for this via its `compare_version` method.
+Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change; moreover, you'll want to run some "re-configuration" steps if the user's version is older than the last version that required a configuration update.
+
+`configurator` allows for this via its `compare_version` method.
 
 Assume you have a config file that looks like this:
 
@@ -312,16 +314,19 @@ configuration.current_version = configuration.app_data['APP_VERSION']
 # a re-configuration in a property of the Configurator.
 configuration.last_version = LATEST_CONFIG_VERSION
 
-# Run the check and use a block to get
-# the current and "last-needing-changes"
-# versions (and do something about it).
+# Run the check. If the current version is older than
+# the "last" version, use a block to tell the Configurator
+# what to do.
 configuration.compare_version do |c, l|
   puts "We need to update from #{c} to #{l}..."
   # ...do stuff...
 end
 ```
 
-Note that if the current version is *later* than the last version that required re-configuration, the whole block is skipped over (allowing your app to get on with its day).
+Two items to note:
+
+1. If the `current_version` parameter is `nil`, the Configurator will assume that it the app needs to be updated when `compare_version` is run.
+2. Note that if the current version is *later* than the last version that required re-configuration, the whole block is skipped over (allowing your app to get on with its day).
 
 ## Prefs
 
@@ -559,7 +564,7 @@ validators:
   - expand_filepath # Runs File.expand_path on the answer
   - lowercase       # Turns "AnSwEr" into "answer"
   - prefix: 'test ' # Prepends 'test ' to the answer
-  - suffix: 'test ' # Appends 'test ' to the answer 
+  - suffix: 'test ' # Appends 'test ' to the answer
   - titlecase       # Turns "the answer" into "The Answer"
   - uppercase       # Turns "answer" to "ANSWER"
 ```

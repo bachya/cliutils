@@ -65,7 +65,7 @@ module CLIUtils
       c_version = Gem::Version.new(@current_version)
       l_version = Gem::Version.new(@last_version)
 
-      if c_version < l_version
+      if @current_version.nil? || c_version < l_version
         yield @current_version, @last_version
       end
     end
