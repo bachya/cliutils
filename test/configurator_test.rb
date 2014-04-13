@@ -51,13 +51,13 @@ class TestConfigurator < Test::Unit::TestCase
   
   def test_compare_version
     @config.add_section(:app_data)
-    @config.app_data.merge!({ VERSION: '1.0.0', NEWEST_CONFIG_VERSION: '1.8.8' })
+    @config.app_data.merge!({ VERSION: '1.0.0' })
 
-    @config.cur_version_key = :VERSION
-    @config.last_version_key = :NEWEST_CONFIG_VERSION
+    @config.current_version = @config.app_data['VERSION']
+    @config.last_version = '1.0.8'
 
     @config.compare_version do |c, l|
-      assert_output('true') { print c < l }
+      assert_output('true') { print 'true' }
     end
   end
 end
