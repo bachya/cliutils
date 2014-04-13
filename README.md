@@ -13,6 +13,10 @@ It's fairly simple:
 2. I found myself copy/pasting common code from one to another.
 3. I decided to do something about it.
 
+# Can I use it with...?
+
+I often get asked how nicely CLIUtils plays with other Ruby-based CLI libraries (like Dave Copeland's excellent [Methadone](https://github.com/davetron5000/methadone "Methadone") and [GLI](https://github.com/davetron5000/gli "GLI")). Answer: they play very nicely. I use CLIUtils in [Sifttter Redux](https://github.com/bachya/Sifttter-Redux "Sifttter Redux") (which is built on GLI) and [ExpandSync](https://github.com/bachya/ExpandSync "ExpandSync") (which is built on Methadone).
+
 # Installation
 
 Add this line to your application's Gemfile:
@@ -241,7 +245,7 @@ include CLIUtils::Configuration
 load_configuration('~/.my-app-config')
 ```
 
-If there's data in there, it will be consumed into a `Configurator`'s `data` property.
+If there's data in there, it will be consumed into the `Configurator`'s `data` property.
 
 ### Adding/Removing Sections
 
@@ -256,7 +260,7 @@ configuration.delete_section(:program_data)
 
 ### Adding Data to Sections
 
-There are two ways data can be managed in a `Configurator`: via its `@data` property or via some magic methods; your call:
+There are two ways data can be managed in the `Configurator`: via its `@data` property or via some magic methods; your call:
 
 ```Ruby
 configuration.data[:user_data].merge!({ username: 'bob', age: 45 })
@@ -286,7 +290,7 @@ user_data:
 
 Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change; moreover, you'll want to run some "re-configuration" steps if the user's version is older than the last version that required a configuration update.
 
-A `Configurator` allows for this via its `compare_version` method.
+The `Configurator` allows for this via its `compare_version` method.
 
 Assume you have a config file that looks like this:
 
