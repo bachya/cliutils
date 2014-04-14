@@ -4,6 +4,11 @@ module CLIUtils
   class PrefAction
     include Messaging
 
+    # Holds a reference to the pref that
+    # is implementing this action.
+    # @return [Pref]
+    attr_accessor :pref
+
     # Runs the plugin. Note that the
     # method implemented here shows
     # an error (indicating that it

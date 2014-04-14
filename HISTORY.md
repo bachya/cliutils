@@ -1,6 +1,10 @@
+# 1.4.1 (2014-04-14)
+
+* Added Pref reference to PrefAction
+
 # 1.4.0 (2014-04-14)
 
-* Added Pref actions
+* Added PrefAction
 
 # 1.3.1 (2014-04-12)
 

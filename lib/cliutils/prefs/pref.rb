@@ -179,6 +179,7 @@ module CLIUtils
       
       if (@pre[:action])
         action_obj = _load_action(@pre[:action])
+        action_obj.pref = self
         action_obj.run(@pre[:action_parameters][0])
       end
     end
@@ -190,6 +191,7 @@ module CLIUtils
 
       if (@post[:action])
         action_obj = _load_action(@post[:action])
+        action_obj.pref = self
         action_obj.run(@post[:action_parameters][0])
       end
     end

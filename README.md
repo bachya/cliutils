@@ -646,7 +646,8 @@ Several items to note:
 1. The action class needs to be wrapped in the CLIUtils module.
 2. The class name needs to be the camel-case version of the `action` key in the YAML.
 3. The class name needs to end with "Action".
-4. The class needs to inherit from the PrefAction class.
+4. The class needs to inherit from the PrefAction class. This allows it to have access to:
+  * `@pref`: the Pref that implemented this action
 5. The class needs to implement one method: `run(parameters = {})`
 
 ### Testing
