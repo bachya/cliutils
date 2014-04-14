@@ -647,7 +647,7 @@ Several items to note:
 2. The class name needs to be the camel-case version of the `action` key in the YAML.
 3. The class name needs to end with "Action".
 4. The class needs to inherit from the PrefAction class.
-5. The class needs to implement one method: `method(parameters)`
+5. The class needs to implement one method: `run(parameters = {})`
 
 ### Testing
 
