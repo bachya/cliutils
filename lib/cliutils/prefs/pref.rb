@@ -204,6 +204,7 @@ module CLIUtils
       if File.exist?(path_or_name)
         # If the file exists, we're assuming that the user
         # passed a filepath.
+        action_path = File.expand_path(path_or_name) if path_or_name.start_with?('~') 
         action_path = "#{ path_or_name }_action"
         action_name = File.basename(path_or_name, '.*').camelize
       else
