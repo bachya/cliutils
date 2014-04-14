@@ -1,3 +1,7 @@
+# 1.4.0 (2014-04-14)
+
+* Added Pref actions
+
 # 1.3.1 (2014-04-12)
 
 * Modified version check to include missing current version

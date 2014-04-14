@@ -73,7 +73,6 @@ module CLIUtils
     # @return [void]
     def _deliver_prompt(p)
       default = p.default
-
       unless @configurator.nil?
         section_sym = p.config_section.to_sym
         unless @configurator.data[section_sym].nil?
@@ -82,16 +81,7 @@ module CLIUtils
         end
       end
 
-      valid_option_chosen = false
-      until valid_option_chosen
-        response = prompt(p.prompt, default)
-        if p.validate(response)
-          valid_option_chosen = true
-          p.answer = p.evaluate_behaviors(response)
-        else
-          messenger.error(p.last_error_message)
-        end
-      end
+      p.deliver(default)
     end
 
     # Generates an Array of Prefs based on passed

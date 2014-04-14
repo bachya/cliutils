@@ -62,7 +62,7 @@ CLIUtils offers:
 * [Configuration](#configuration): a app configuration manager
 * [Prefs](#prefs): a preferences prompter and manager
 
-## PrettyIO
+# PrettyIO
 
 First stop on our journey is better client IO via `PrettyIO`. To activate, simply mix into your project:
 
@@ -70,7 +70,7 @@ First stop on our journey is better client IO via `PrettyIO`. To activate, simpl
 include CLIUtils::PrettyIO
 ```
 
-### Colored Strings
+## Colored Strings
 
 To start, `PrettyIO` affords you colorized strings:
 
@@ -105,7 +105,7 @@ color_chart
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
 
-## Messaging
+# Messaging
 
 Throughout the life of your application, you will most likely want to send several messages to your user (warnings, errors, info, etc.). `Messaging` makes this a snap. It, too, is a mixin:
 
@@ -120,7 +120,7 @@ messenger.warn('Hey pal, you need to be careful.')
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-warn.png "A Warning from Messenger")
 
-### Messaging Methods
+## Messaging Methods
 
 `messenger` gives you access to several basic "read-only" methods:
 
@@ -159,7 +159,7 @@ section_block('MY SECTION', multiline = true) {
 }
 ```
 
-### Message Wrapping
+## Message Wrapping
 
 `PrettyIO` also gives `messenger` the ability to wrap your messages so that they don't span off into infinity. You can even control what the wrap limit (in characters) is:
 
@@ -178,7 +178,7 @@ messenger.info(long_string)
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/wrapping.png "Text Wrapping")
 
-### Prompting
+## Prompting
 
 `messenger` also carries a convenient method to prompt your users to give input (including an optional default). It makes use of `readline`, so you can do cool things like text expansion of paths.
 
@@ -190,7 +190,7 @@ messenger.info("You answered: #{ p }")
 
 When you pass a default to `messaging.prompt`, hitting `Enter` (i.e., leaving the prompt blank) will return the value of the default.
 
-### Logging
+## Logging
 
 Often, it's desirable to log messages as they appear to your user. `Messaging` makes this a breeze by allowing you to attach and detach Logger instances at will.
 
@@ -229,7 +229,7 @@ D, [2014-03-29T15:14:34.844609 #4497] DEBUG -- : This debug message should only 
 
 Since you are attaching Logger objects, each can have it's own format and severity level. Cool!
 
-## Configuration
+# Configuration
 
 CLIUtils offers a `Configurator` class and a `Configuration` module (which provides access to a shared instance of `Configurator`) that make managing a user's configuration parameters easy. Although the examples in this README use that shared instance, you should note that you can always use your own `Configurator`.
 
@@ -239,7 +239,7 @@ To use, mix it in!
 include CLIUtils::Configuration
 ```
 
-### Loading a Configuration File
+## Loading a Configuration File
 
 ```Ruby
 load_configuration('~/.my-app-config')
@@ -247,7 +247,7 @@ load_configuration('~/.my-app-config')
 
 If there's data in there, it will be consumed into the `Configurator`'s `data` property.
 
-### Adding/Removing Sections
+## Adding/Removing Sections
 
 Sections are top levels of the configuration file and are managed via the `Configurator` object:
 
@@ -258,7 +258,7 @@ configuration.add_section(:program_data)
 configuration.delete_section(:program_data)
 ```
 
-### Adding Data to Sections
+## Adding Data to Sections
 
 There are two ways data can be managed in the `Configurator`: via its `@data` property or via some magic methods; your call:
 
@@ -268,7 +268,7 @@ configuration.data[:user_data].merge!({ username: 'bob', age: 45 })
 configuration.user_data.merge!({ username: 'bob', age: 45 })
 ```
 
-### Saving to a File
+## Saving to a File
 
 When you're ready to save your configuration data to a YAML file:
 
@@ -286,7 +286,7 @@ user_data:
   age: 45
 ```
 
-### Checking Configuration Versions
+## Checking Configuration Versions
 
 Often, you'll want to check the user's current version of your app against the last version that required some sort of configuration change; moreover, you'll want to run some "re-configuration" steps if the user's version is older than the last version that required a configuration update.
 
@@ -334,15 +334,15 @@ Two items to note:
 1. If the `current_version` parameter is `nil`, the Configurator will assume that it the app needs to be updated when `compare_version` is run.
 2. Note that if the current version is *later* than the last version that required re-configuration, the whole block is skipped over (allowing your app to get on with its day).
 
-## Prefs
+# Prefs
 
 Many times, CLI apps need to ask their users some questions, collect the feedback, validate it, and store it. CLIUtils makes this a breeze via the `Prefs` class.
 
-### Basic Schema
+## Basic Schema
 
 `Prefs` can load preferences information from either a YAML file (via a filepath) or from an Array of preferences. In either case, the schema is the same; each prompt includes the following:
 
-* `prompt` (**required**): the string to prompt your user with
+* `prompt_text` (**required**): the string to prompt your user with
 * `default` (*optional*): an optional default to offer
 * `config_key` (**required**): the Configurator key that this preference will use
 * `config_section` (**required**): the Configurator section that this preference applies to
@@ -351,15 +351,15 @@ Here's an example YAML preferences file.
 
 ```YAML
 prompts:
-  - prompt: What is your name?
+  - prompt_text: What is your name?
     default: Bob Cobb
     config_key: name
     config_section: personal_info
-  - prompt: What is your age?
+  - prompt_text: What is your age?
     default: 45
     config_key: age
     config_section: personal_info
-  - prompt: Batman or Superman?
+  - prompt_text: Batman or Superman?
     default: Batman
     config_key: superhero
     config_section: personal_info
@@ -378,19 +378,19 @@ prefs = CLIUtils::Prefs.new('path/to/yaml/file')
 h = {
   prompts: [
     {
-      prompt: 'What is your name?',
+      prompt_text: 'What is your name?',
       default: 'Bob Cobb',
       config_key: :name,
       config_section: :personal_info
     },
     {
-      prompt: 'What is your age?',
+      prompt_text: 'What is your age?',
       default: '45',
       config_key: :age,
       config_section: :personal_info
     },
     {
-      prompt: 'Batman or Superman?',
+      prompt_text: 'Batman or Superman?',
       default: 'Batman',
       config_key: :superhero,
       config_section: :personal_info
@@ -404,19 +404,19 @@ prefs = CLIUtils::Prefs.new(h)
 # Instantiation through an Array
 a = [
   {
-    prompt: 'What is your name?',
+    prompt_text: 'What is your name?',
     default: 'Bob Cobb',
     config_key: :name,
     config_section: :personal_info
   },
   {
-    prompt: 'What is your age?',
+    prompt_text: 'What is your age?',
     default: '45',
     config_key: :age,
     config_section: :personal_info
   },
   {
-    prompt: 'Batman or Superman?',
+    prompt_text: 'Batman or Superman?',
     default: 'Batman',
     config_key: :superhero,
     config_section: :personal_info
@@ -426,7 +426,7 @@ a = [
 prefs = CLIUtils::Prefs.new(a)
 ```
 
-### Prompting the User
+## Prompting the User
 
 With valid preferences loaded, simply use `ask` to begin prompting your user:
 
@@ -435,31 +435,31 @@ prefs.ask
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask.png "Prefs.ask")
 
-### Prerequisites
+## Prerequisites
 
 Sometimes, you need to answer certain prompts before others become relevant. `Prefs` allows this via a `prereqs` key, which can contain multiple already-answered key/value pairs to check for. For instance, imagine we want to drill into a user's superhero preference a bit further; using our previously-used YAML prefs file:
 
 ```YAML
 prompts:
-  - prompt: Batman or Superman?
+  - prompt_text: Batman or Superman?
     default: Batman
     config_key: superhero
     config_section: personal_info
-  - prompt: Do you feel smart for preferring Batman?
+  - prompt_text: Do you feel smart for preferring Batman?
     default: Y
     config_key: batman_answer
     config_section: personal_info
     prereqs:
       - config_key: superhero
         config_value: Batman
-  - prompt: Why do you prefer Superman?!
+  - prompt_text: Why do you prefer Superman?!
     default: No clue
     config_key: superman_answer
     config_section: personal_info
     prereqs:
       - config_key: superhero
         config_value: Superman
-  - prompt: Why don't you have a clue?
+  - prompt_text: Why don't you have a clue?
     config_key: no_clue
     config_section: personal_info
     prereqs:
@@ -478,32 +478,32 @@ prefs.ask
 
 Be careful that you don't define any circular prerequisities (e.g., A requires B and B requires A). In that case, both preferences will be ignored by `Prefs.ask`.
 
-### Options
+## Options
 
 What if you want to limit a preference to a certain set of options? Easy! Imagine we want to expand the previous example and force the user to choose either "Batman" or "Superman":
 
 ```YAML
 prompts:
-  - prompt: Batman or Superman?
+  - prompt_text: Batman or Superman?
     default: Batman
     config_key: superhero
     config_section: personal_info
     options: ['Batman', 'Superman']
-  - prompt: Do you feel smart for preferring Batman?
+  - prompt_text: Do you feel smart for preferring Batman?
     default: Y
     config_key: batman_answer
     config_section: personal_info
     prereqs:
       - config_key: superhero
         config_value: Batman
-  - prompt: Why do you prefer Superman?!
+  - prompt_text: Why do you prefer Superman?!
     default: No clue
     config_key: superman_answer
     config_section: personal_info
     prereqs:
       - config_key: superhero
         config_value: Superman
-  - prompt: Why don't you have a clue?
+  - prompt_text: Why don't you have a clue?
     config_key: no_clue
     config_section: personal_info
     prereqs:
@@ -520,7 +520,7 @@ prefs.ask
 ```
 ![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-options.png "Options")
 
-### Validators
+## Validators
 
 "But," you say, "I want to ensure that my user gives answers that conform to certain specifications!" Not a problem, dear user: `Prefs` gives you Validators. Currently supported Validators are:
 
@@ -541,12 +541,12 @@ An example:
 
 ```YAML
 prompts:
-  - prompt: What is your name?
+  - prompt_text: What is your name?
     config_key: name
     config_section: personal_info
     validators:
       - alphabetic
-  - prompt: How old are you?
+  - prompt_text: How old are you?
     config_key: age
     config_section: personal_info
     validators:
@@ -560,7 +560,7 @@ prefs.ask
 
 Note that validators are evaluated in order, from top to bottom. If any validator fails, `messenger` will display an error and prompt the user to try again.
 
-### Behaviors
+## Behaviors
 
 Finally, a common desire might be to modify the user's answer in some way before storing it. `Prefs` accomplishes this via Behaviors. Currently supported Behaviors are:
 
@@ -579,7 +579,7 @@ An example:
 
 ```YAML
 prompts:
-  - prompt: What is your favorite food?
+  - prompt_text: What is your favorite food?
     config_key: food
     config_section: personal_info
     validators:
@@ -597,7 +597,70 @@ prefs.ask
 
 Note that behaviors are executed in order, which might give you different results than you're expecting. Using the YAML above, for example, placing the `uppercase` behavior last in the list will uppercase *the entire string* (including prefix and suffix).
 
-### Adding Pref Responses to a Configurator
+## Pre- and Post-Messages/Actions
+
+`Prefs` allows you to define messages and "action" plugins that can be executed before and after the prompt is given.
+
+For example, imagine that before delivering a prompt, we want to open the user's default browser (notfying the user first, of course) so that they can collect some information before coming back. Once the user puts that information into the prompt, we want to provide a close-out message. We can accomplish this by writing a set of pre- and post-messages/actions on the prompt.
+
+### Defining the Schema
+
+```YAML
+prompts:
+  - prompt_text: What is the top story on espn.com?
+    config_key: top_story
+    config_section: app_data
+    pre:
+      message: 'I will now open espn.com in your default browser.'
+      action: open_url
+      action_parameters:
+        - url: http://www.espn.com
+    post:
+      message: 'Thanks for inputting!'
+    validators:
+      - non_nil
+```
+
+Both `pre` and `post` keys can contain up to 3 child keys:
+
+* `message` (**required**): the message to display in the pre or post stage
+* `action` (*optional*): the name of the action to execute in the pre or post stage
+* `action_parameters` (*optional*): an array of key/value pairs to be used in the action
+
+### Creating the Action
+
+`Prefs` actions are simply Ruby classes. A simple `open_url` action might be look like this:
+
+```Ruby
+module CLIUtils
+  class OpenUrlAction < PrefAction
+    def run(parameters)
+      `open #{ parameters[:url] }`
+    end
+  end
+end
+```
+
+Several items to note:
+
+1. The action class needs to be wrapped in the CLIUtils module.
+2. The class name needs to be the camel-case version of the `action` key in the YAML.
+3. The class name needs to end with "Action".
+4. The class needs to inherit from the PrefAction class.
+5. The class needs to implement one method: `method(parameters)`
+
+### Testing
+
+Let's run it!
+
+```Ruby
+prefs.ask
+```
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/actions-1.png "Pre-action")
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/actions-2.png "Action")
+![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/actions-3.png "Post-action")
+
+## Adding Pref Responses to a Configurator
 
 Once the user has answered all the preference prompts, you can fold those answers back into a Configurator using the `ingest` method:
 
@@ -610,7 +673,7 @@ configuration.ingest_prefs(prefs)
 configuration.save
 ```
 
-### Using Configurator Values as Defaults
+## Using Configurator Values as Defaults
 
 Note that you can also initialize a `Prefs` object with a Configurator:
 

@@ -10,13 +10,13 @@ class TestPrefs < Test::Unit::TestCase
   def setup
     @prefs_arr = [
       {
-        'prompt' => 'Batman or Superman?',
+        'prompt_text' => 'Batman or Superman?',
         'default' => 'Batman',
         'config_key' => 'superhero',
         'config_section' => 'personal_info'
       },
       {
-        'prompt' => 'Do you feel smart for preferring Batman?',
+        'prompt_text' => 'Do you feel smart for preferring Batman?',
         'default' => 'Y',
         'config_key' => 'batman_answer',
         'config_section' => 'personal_info',
@@ -28,7 +28,7 @@ class TestPrefs < Test::Unit::TestCase
         ]
       },
       {
-        'prompt' => 'Why do you prefer Superman?!',
+        'prompt_text' => 'Why do you prefer Superman?!',
         'default' => 'No clue',
         'config_key' => 'superman_answer',
         'config_section' => 'personal_info',

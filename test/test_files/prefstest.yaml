@@ -1,10 +1,13 @@
 prompts:
-  - prompt: What is your favorite food?
-    config_key: food
-    config_section: personal_info
+  - prompt_text: What is the top story on espn.com?
+    config_key: top_story
+    config_section: app_data
+    pre:
+      message: 'I will now open espn.com in your default browser.'
+      action: open_url
+      action_parameters:
+        - url: http://www.espn.com
+    post:
+      message: 'Thanks for inputting!'
     validators:
       - non_nil
-    behaviors:
-      - uppercase
-      - prefix: 'My favorite food: '
-      - suffix: ' (soooo good!)'

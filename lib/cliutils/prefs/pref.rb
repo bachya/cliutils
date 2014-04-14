@@ -36,13 +36,23 @@ module CLIUtils
     # @return [Array]
     attr_accessor :options
 
+    # Stores the message and behavior that should be
+    # executed after the prompt is delivered.
+    # @return [Hash]
+    attr_accessor :post
+
+    # Stores the message and behavior that should be
+    # executed before the prompt is delivered.
+    # @return [Hash]
+    attr_accessor :pre
+
     # Stores the prereqs information.
     # @return [Array]
     attr_accessor :prereqs
 
     # Stores the prompt text.
     # @return [String]
-    attr_accessor :prompt
+    attr_accessor :prompt_text
 
     # Stores key/value combinations required to show this Pref.
     # @return [Hash]
@@ -61,7 +71,32 @@ module CLIUtils
     def ==(other)
       @config_key == other.config_key &&
       @config_section == other.config_section &&
-      @prompt == other.prompt
+      @prompt_text == other.prompt_text
+    end
+
+    # Delivers the prompt the user. Handles retries
+    # after incorrect answers, validation, behavior
+    # evaluation, and pre-/post-behaviors.
+    # @param [String] default The default option
+    # @return [void]
+    def deliver(default = nil)
+      # Design decision: the pre-prompt behavior
+      # gets evaluated *once*, not every time the
+      # user gets prompted. This prevents multiple
+      # evaluations when bad options are provided.
+      _eval_pre
+
+      valid_option_chosen = false
+      until valid_option_chosen
+        response = prompt(@prompt_text, default)
+        if validate(response)
+          valid_option_chosen = true
+          @answer = evaluate_behaviors(response)
+          _eval_post
+        else
+          messenger.error(@last_error_message)
+        end
+      end
     end
 
     # Runs the passed text through this Pref's behaviors.
@@ -80,7 +115,7 @@ module CLIUtils
           if PrefBehavior.respond_to?(method)
             modified_text = PrefBehavior.send(method, *args)
           else
-            messenger.warn("Skipping undefined Pref behavior: #{ b }")
+            messenger.warn("Skipping undefined Pref Behavior: #{ b }")
           end
         end
         modified_text
@@ -129,11 +164,64 @@ module CLIUtils
               ret = false
             end
           else
-            messenger.warn("Skipping undefined Pref validator: #{ v }")
+            messenger.warn("Skipping undefined Pref Validator: #{ v }")
           end
         end
       end
       ret
+    end
+
+    # Evaluates the pre-prompt Hash and does the right thing. :)
+    # @return [void]
+    def _eval_pre
+      info(@pre[:message])
+      prompt('Press enter to continue')
+      
+      if (@pre[:action])
+        action_obj = _load_action(@pre[:action])
+        action_obj.run(@pre[:action_parameters][0])
+      end
+    end
+
+    # Evaluates the post-prompt Hash and does the right thing. :)
+    # @return [void]
+    def _eval_post
+      info(@post[:message])
+
+      if (@post[:action])
+        action_obj = _load_action(@post[:action])
+        action_obj.run(@post[:action_parameters][0])
+      end
+    end
+
+    # Loads a Pref Action, instantiates it (if it exists),
+    # and returns that instance. Note that the passed
+    # String can be a name (thus translating to an included
+    # Action) or a filepath to a user-defined Action.
+    # @param [String] path_or_name The name of or path to an Action
+    # @return [Object]
+    def _load_action(path_or_name)
+      if File.exist?(path_or_name)
+        # If the file exists, we're assuming that the user
+        # passed a filepath.
+        action_path = "#{ path_or_name }_action"
+        action_name = File.basename(path_or_name, '.*').camelize
+      else
+        # If it doesn't, we're assuming that the user
+        # passed a class name.
+        _default =  File.join(File.dirname(__FILE__), 'pref_actions')
+        action_path = File.join(_default, "#{ path_or_name }_action")
+        action_name = path_or_name.camelize
+      end
+
+      # Try to load and instantiate the Action. If that fails, warn
+      # the user with a message and skip over it.
+      begin
+        require action_path
+        Object.const_get("CLIUtils::#{ action_name }Action").new
+      rescue
+        messenger.warn("Skipping undefined Pref Action: #{ path_or_name }")
+      end
     end
   end
 end

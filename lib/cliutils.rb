@@ -10,6 +10,7 @@ require 'cliutils/logger_delegator'
 require 'cliutils/messaging'
 require 'cliutils/prefs'
 require 'cliutils/prefs/pref'
+require 'cliutils/prefs/pref_actions/pref_action'
 
 # The CLIUtils module, which wraps everything
 # in this gem.
