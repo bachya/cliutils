@@ -51,7 +51,7 @@ include CLIUtils
 
 Alternatively, as described below, mix in only the libraries that you want.
 
-Note that although this README.md is extensive, it may not cover all methods. Check out the [YARD documentation](http://rubydoc.info/github/bachya/cli-utils/master/frames) and the [tests](https://github.com/bachya/cli-utils/tree/master/test) to see more examples.
+Note that although this README.md is extensive, it may not cover all methods. Check out the [YARD documentation](http://rubydoc.info/github/bachya/cliutils/master/frames) and the [tests](https://github.com/bachya/cliutils/tree/master/test) to see more examples.
 
 # Libraries
 
@@ -77,7 +77,7 @@ To start, `PrettyIO` affords you colorized strings:
 ```ruby
 puts 'A sample string'.red
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-red-text.png "Colored Text via PrettyIO")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prettyio-red-text.png "Colored Text via PrettyIO")
 
 You get a stable of utility methods for the common ANSI color codes:
 
@@ -96,14 +96,14 @@ You also get the `colorize` method, which allows you to define more complex colo
 ```ruby
 puts 'A sample string'.colorize('35;42')
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-gnarly-text.png "Complex Colored Text via PrettyIO")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prettyio-gnarly-text.png "Complex Colored Text via PrettyIO")
 
 Naturally, memorizing the ANSI color scheme is a pain, so `PrettyIO` gives you a convenient method to look up these color combinations:
 
 ```ruby
 color_chart
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prettyio-color-chart.png "PrettyIO Color Chart")
 
 # Messaging
 
@@ -118,7 +118,7 @@ Once mixed in, you get access to `messenger`, a type of Logger that uses `Pretty
 ```ruby
 messenger.warn('Hey pal, you need to be careful.')
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-warn.png "A Warning from Messenger")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/messenger-warn.png "A Warning from Messenger")
 
 ## Messaging Methods
 
@@ -139,7 +139,7 @@ messenger.warn('WARNING: Tie Fighters approaching!')
 messenger.error('Porkins died :(')
 messenger.success('But Luke still blew up the Death Star!')
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/messenger-types-1.png "Basic Messenger Types")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/messenger-types-1.png "Basic Messenger Types")
 
 `messenger` also includes two "block" methods that allow you to wrap program execution in messages that are "longer-term".
 
@@ -176,7 +176,7 @@ puts ''
 CLIUtils::PrettyIO.wrap = false
 messenger.info(long_string)
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/wrapping.png "Text Wrapping")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/wrapping.png "Text Wrapping")
 
 ## Prompting
 
@@ -186,7 +186,7 @@ messenger.info(long_string)
 p = messenger.prompt('Are you a fan of Battlestar Galactica?', default = 'Y')
 messenger.info("You answered: #{ p }")
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prompting.png "Prompting")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prompting.png "Prompting")
 
 When you pass a default to `messaging.prompt`, hitting `Enter` (i.e., leaving the prompt blank) will return the value of the default.
 
@@ -217,7 +217,7 @@ messenger.section('This section message should appear only in STDOUT')
 
 In STDOUT:
 
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/multi-logger.png "Multi-logging")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/multi-logger.png "Multi-logging")
 
 ...and in `file.txt`:
 
@@ -433,7 +433,7 @@ With valid preferences loaded, simply use `ask` to begin prompting your user:
 ```Ruby
 prefs.ask
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask.png "Prefs.ask")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prefs-ask.png "Prefs.ask")
 
 ## Prerequisites
 
@@ -474,7 +474,7 @@ prompts:
 ```Ruby
 prefs.ask
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-prereqs.png "Prerequisities")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prefs-ask-prereqs.png "Prerequisities")
 
 Be careful that you don't define any circular prerequisities (e.g., A requires B and B requires A). In that case, both preferences will be ignored by `Prefs.ask`.
 
@@ -518,7 +518,7 @@ Once in place:
 ```Ruby
 prefs.ask
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-options.png "Options")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prefs-ask-options.png "Options")
 
 ## Validators
 
@@ -556,7 +556,7 @@ prompts:
 ```Ruby
 prefs.ask
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-validators.png "Validators")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prefs-ask-validators.png "Validators")
 
 Note that validators are evaluated in order, from top to bottom. If any validator fails, `messenger` will display an error and prompt the user to try again.
 
@@ -593,7 +593,7 @@ prompts:
 ```Ruby
 prefs.ask
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/prefs-ask-behaviors.png "Behaviors")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/prefs-ask-behaviors.png "Behaviors")
 
 Note that behaviors are executed in order, which might give you different results than you're expecting. Using the YAML above, for example, placing the `uppercase` behavior last in the list will uppercase *the entire string* (including prefix and suffix).
 
@@ -656,9 +656,9 @@ Let's run it!
 ```Ruby
 prefs.ask
 ```
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/actions-1.png "Pre-action")
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/actions-2.png "Action")
-![alt text](https://raw.githubusercontent.com/bachya/cli-utils/master/res/readme-images/actions-3.png "Post-action")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/actions-1.png "Pre-action")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/actions-2.png "Action")
+![alt text](https://raw.githubusercontent.com/bachya/cliutils/master/res/readme-images/actions-3.png "Post-action")
 
 ## Adding Pref Responses to a Configurator
 
@@ -694,7 +694,7 @@ In this case, `Prefs` will look to see if any values already exist for a specifi
 
 To view my current roadmap and objectives, check out the [Trello board](https://trello.com/b/qXs7Yeir/cliutils "CLIUtils on Trello").
 
-To report bugs with or suggest features/changes for CLIUtils, please use the [Issues Page](http://github.com/bachya/cli-utils/issues).
+To report bugs with or suggest features/changes for CLIUtils, please use the [Issues Page](http://github.com/bachya/cliutils/issues).
 
 # Contributing
 
