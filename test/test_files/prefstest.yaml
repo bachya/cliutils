@@ -10,5 +10,20 @@ prompts:
     # post:
     #   message: 'Thanks for inputting!'
     validators:
-      - non_nil
       - alphabetic
+      - alphanumeric
+      - date
+      - datetime
+      - filepath_exists
+      - non_nil
+      - number
+      - time
+      - url
+    behaviors:
+      - name: suffix
+        parameters:
+          text: 'test'
+      - name: prefix
+        parameters:
+          text: 'back'
+      - name: capitalize
