@@ -12,6 +12,10 @@ module CLIUtils
     # @return [String, Symbol]
     attr_accessor :answer
 
+    # Stores instantiated behavior objects.
+    # @return [Hash]
+    attr_accessor :behavior_objects
+
     # Stores the behaviors that this Pref conforms to.
     # @return [Array]
     attr_accessor :behaviors
@@ -54,6 +58,10 @@ module CLIUtils
     # @return [String]
     attr_accessor :prompt_text
 
+    # Stores instantiated Validators
+    # @return [Hash]
+    attr_accessor :validator_objects
+
     # Stores key/value combinations required to show this Pref.
     # @return [Hash]
     attr_accessor :validators
@@ -64,7 +72,8 @@ module CLIUtils
     def initialize(params = {})
       params.each { |key, value| send("#{ key }=", value) }
       
-      # _load_validators if @validators
+      _load_validators if @validators
+      _load_behaviors if @behaviors
     end
 
     # Custom equality operator for this class.
@@ -156,21 +165,21 @@ module CLIUtils
     # @param [String] text The text to validate
     # @return [Boolean]
     def _confirm_validators(text)
-      ret = true
-      if @validators
-        @validators.each do |v|
-          if PrefValidation.respond_to?(v)
-            validator = PrefValidation.send(v, text)
-            unless validator.code
-              @last_error_message = validator.message
-              ret = false
-            end
-          else
-            messenger.warn("Skipping undefined Pref Validator: #{ v }")
-          end
-        end
-      end
-      ret
+      # ret = true
+      # if @validators
+      #   @validators.each do |v|
+      #     if PrefValidation.respond_to?(v)
+      #       validator = PrefValidation.send(v, text)
+      #       unless validator.code
+      #         @last_error_message = validator.message
+      #         ret = false
+      #       end
+      #     else
+      #       messenger.warn("Skipping undefined Pref Validator: #{ v }")
+      #     end
+      #   end
+      # end
+      # ret
     end
 
     # Evaluates the pre-prompt Hash and does the right thing. :)
@@ -229,8 +238,14 @@ module CLIUtils
       end
     end
 
-    def _load_validators
+    def _load_behaviors
       
+    end
+
+    def _load_validators
+      @validators.each do |v|
+        puts v
+      end
     end
   end
 end
