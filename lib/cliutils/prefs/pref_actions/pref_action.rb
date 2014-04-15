@@ -4,6 +4,8 @@ module CLIUtils
   class PrefAction
     include Messaging
 
+    attr_accessor :parameters
+
     # Holds a reference to the pref that
     # is implementing this action.
     # @return [Pref]
@@ -16,8 +18,8 @@ module CLIUtils
     # subclass).
     # @parameter [Hash] parameters
     # @return [void]
-    def run(parameters = {})
-      messenger.error("`run` method not implemented on caller: #{ self.class }")
+    def run
+      fail "`run` method not implemented on caller: #{ self.class }"
     end
   end
 end

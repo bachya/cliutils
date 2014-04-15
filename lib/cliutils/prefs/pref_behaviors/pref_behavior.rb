@@ -5,8 +5,8 @@ module CLIUtils
     attr_accessor :parameters
     attr_accessor :pref
     
-    def evaluate
-      messenger.error("`evaluate` method not implemented on caller: #{ self.class }")
+    def evaluate(text = '')
+      fail "`evaluate` method not implemented on caller: #{ self.class }"
     end
   end
 end

@@ -4,26 +4,31 @@ prompts:
     config_section: app_data
     # pre:
     #   message: 'I will now open espn.com in your default browser.'
-    #   action: open_url
-    #   action_parameters:
-    #     - url: http://www.espn.com
+    #   action:
+    #     name: open_url
+    #     parameters:
+    #       url: http://www.espn.com
     # post:
     #   message: 'Thanks for inputting!'
     validators:
-      - alphabetic
-      - alphanumeric
-      - date
-      - datetime
-      - filepath_exists
-      - non_nil
-      - number
-      - time
-      - url
+      # - alphabetic
+      # - alphanumeric
+      # - date
+      # - datetime
+      # - filepath_exists
+      # - non_nil
+      # - number
+      # - time
+      # - url
     behaviors:
-      - name: suffix
-        parameters:
-          text: 'test'
-      - name: prefix
-        parameters:
-          text: 'back'
-      - name: capitalize
+      # - name: capitalize
+      # - name: expand_filepath
+      # - name: lowercase
+      # - name: prefix
+      #   parameters:
+      #     prefix: 'back'
+      # - name: suffix
+      #   parameters:
+      #     suffix: 'test'
+      # - name: titlecase
+      # - name: uppercase
