@@ -612,7 +612,7 @@ prompts:
     config_section: app_data
     pre:
       message: 'I will now open espn.com in your default browser.'
-      action: open_url
+      action: ~/.cliutils_plugins/open_url.rb
       action_parameters:
         - url: http://www.espn.com
     post:
