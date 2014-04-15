@@ -1,3 +1,7 @@
+# 1.4.2 (2014-04-14)
+
+* Fixed a bug where pre and post would try to run when not loaded
+
 # 1.4.1 (2014-04-14)
 
 * Added Pref reference to PrefAction

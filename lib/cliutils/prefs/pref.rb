@@ -63,6 +63,8 @@ module CLIUtils
     # @return [void]
     def initialize(params = {})
       params.each { |key, value| send("#{ key }=", value) }
+      
+      # _load_validators if @validators
     end
 
     # Custom equality operator for this class.
@@ -84,7 +86,7 @@ module CLIUtils
       # gets evaluated *once*, not every time the
       # user gets prompted. This prevents multiple
       # evaluations when bad options are provided.
-      _eval_pre
+      _eval_pre if @pre
 
       valid_option_chosen = false
       until valid_option_chosen
@@ -92,7 +94,7 @@ module CLIUtils
         if validate(response)
           valid_option_chosen = true
           @answer = evaluate_behaviors(response)
-          _eval_post
+          _eval_post if @post
         else
           messenger.error(@last_error_message)
         end
@@ -225,6 +227,10 @@ module CLIUtils
       rescue
         messenger.warn("Skipping undefined Pref Action: #{ path_or_name }")
       end
+    end
+
+    def _load_validators
+      
     end
   end
 end

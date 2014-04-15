@@ -11,6 +11,7 @@ require 'cliutils/messaging'
 require 'cliutils/prefs'
 require 'cliutils/prefs/pref'
 require 'cliutils/prefs/pref_actions/pref_action'
+require 'cliutils/prefs/pref_validators/pref_validator'
 
 # The CLIUtils module, which wraps everything
 # in this gem.
