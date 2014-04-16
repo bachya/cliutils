@@ -14,7 +14,7 @@ module CLIUtils
     # @return [Pref]
     attr_accessor :pref
 
-    # Eva
+    # Evaluate the Behavior!
     # @parameter [Hash] parameters
     # @raise [StandardError] if the subclass
     #   doesn't implement this method.
