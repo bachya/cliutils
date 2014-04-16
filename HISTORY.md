@@ -1,3 +1,12 @@
+# 2.0.0 (2014-04-15)
+
+* Added plugin-based Actions
+* Added plugin-based Behaviors
+* Added plugin-based Validators
+* Large refactorings
+* Added Wiki
+* Revised README.md
+
 # 1.4.2 (2014-04-14)
 
 * Fixed a bug where pre and post would try to run when not loaded
