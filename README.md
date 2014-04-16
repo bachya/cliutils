@@ -17,10 +17,10 @@ It's fairly simple:
 
 CLIUtils offers:
 
-* PrettyIO: nicer-looking CLI messages
-* Messaging: a system to display nicely-formatted messages to one or more tagets
-* Configuration: a app configuration manager
-* Prefs: a preferences prompter and manager
+* **PrettyIO:** nicer-looking CLI messages
+* **Messaging:** a system to display nicely-formatted messages to one or more tagets
+* **Configuration:** a app configuration manager
+* **Prefs:** a preferences prompter and manager
 
 ...along with plenty of documentation:
 
