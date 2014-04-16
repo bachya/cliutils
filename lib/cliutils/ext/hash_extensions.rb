@@ -5,7 +5,7 @@ class Hash
   # Deep merges a hash into the current one.
   # @param [Hash] other_hash The hash to merge in
   # @yield &block
-  # @return [Hash]
+  # @return [Hash] The original Hash
   def deep_merge!(other_hash, &block)
     other_hash.each_pair do |k, v|
       tv = self[k]
@@ -20,28 +20,28 @@ class Hash
 
   # Recursively turns all Hash keys into strings and
   # returns the new Hash.
-  # @return [Hash]
+  # @return [Hash] A new copy of the original Hash
   def deep_stringify_keys
     deep_transform_keys { |key| key.to_s }
   end
 
   # Same as deep_stringify_keys, but destructively
   # alters the original Hash.
-  # @return [Hash]
+  # @return [Hash] The original Hash
   def deep_stringify_keys!
     deep_transform_keys! { |key| key.to_s }
   end
 
   # Recursively turns all Hash keys into symbols and
   # returns the new Hash.
-  # @return [Hash]
+  # @return [Hash] A new copy of the original Hash
   def deep_symbolize_keys
     deep_transform_keys { |key| key.to_sym rescue key }
   end
 
   # Same as deep_symbolize_keys, but destructively
   # alters the original Hash.
-  # @return [Hash]
+  # @return [Hash] The original Hash
   def deep_symbolize_keys!
     deep_transform_keys! { |key| key.to_sym rescue key }
   end
@@ -49,7 +49,7 @@ class Hash
   # Generic method to perform recursive operations on a
   # Hash.
   # @yield &block
-  # @return [Hash]
+  # @return [Hash] A new copy of the original Hash
   def deep_transform_keys(&block)
     _deep_transform_keys_in_object(self, &block)
   end
@@ -57,7 +57,7 @@ class Hash
   # Same as deep_transform_keys, but destructively
   # alters the original Hash.
   # @yield &block
-  # @return [Hash]
+  # @return [Hash] The original Hash
   def deep_transform_keys!(&block)
     _deep_transform_keys_in_object!(self, &block)
   end

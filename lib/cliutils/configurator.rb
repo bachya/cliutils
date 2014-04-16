@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'yaml'
 
 module CLIUtils
@@ -55,6 +56,18 @@ module CLIUtils
       end
     end
 
+    # Convenience method to backup the configuration file
+    # in the same directory that the original inhabits.
+    # @return [String] The backed-up filepath
+    def backup
+      backup_path = ''
+      unless @config_path.nil? || @config_path.empty?
+        backup_path = "#{ @config_path }-#{ Time.now.to_i }"
+        FileUtils.cp(@config_path, backup_path)
+      end
+      backup_path
+    end
+
     # Compares the current version (if it exists) to
     # the last version that needed a configuration
     # change (if it exists). Assuming they exist and
@@ -97,7 +110,7 @@ module CLIUtils
     # Hook that fires when a non-existent method is called.
     # Allows this module to return data from the config
     # Hash when given a method name that matches a key.
-    # @return [Hash]
+    # @return [Hash] The hash with the method's name as key
     def method_missing(name, *args, &block)
       @data[name.to_sym] || @data.merge!(name.to_sym => {})
     end

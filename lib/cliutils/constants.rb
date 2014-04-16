@@ -1,5 +1,5 @@
 # Stores constants to use.
 module CLIUtils
   # The current version of the gem
-  VERSION = '2.0.1'
+  VERSION = '2.0.2'
 end

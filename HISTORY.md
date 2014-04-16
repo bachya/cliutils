@@ -1,3 +1,8 @@
+# 2.0.2 (2014-04-16)
+
+* Created backup method in Configurator
+* Modified YARD documentation
+
 # 2.0.1 (2014-04-16)
 
 * Modified PrettyIO word wrapping to coerce to String first
