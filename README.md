@@ -5,6 +5,10 @@ CLIUtils
 
 CLIUtils is a library of functionality designed to alleviate common tasks and headaches when developing command-line (CLI) apps in Ruby.
 
+# *Updating from 1.x.x to 2.0.0?*
+
+The big difference is schema changes for Validators, Behaviors, and Pre-Post Actions. Make sure you read the [wiki](https://github.com/bachya/cliutils/wiki "CLIUtils Wiki").
+
 # Why?
 
 It's fairly simple:
