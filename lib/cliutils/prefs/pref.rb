@@ -1,16 +1,34 @@
-require 'cliutils/messaging'
-require 'cliutils/prefs/pref_behavior'
-require 'cliutils/prefs/pref_validation'
-
 module CLIUtils
   # Pref Class
   # An individual preference
   class Pref
     include Messaging
 
+    # Constant defining an Action
+    ASSET_TYPE_ACTION = 0
+
+    # Constant defining a Behavior
+    ASSET_TYPE_BEHAVIOR = 1
+
+    # Constant defining a Validator
+    ASSET_TYPE_VALIDATOR = 2
+
+    # Contains a listing of asset names for classes and
+    # file suffixes.
+    # @return [Array]
+    @@asset_labels = [
+      { class_suffix: 'Action',    file_suffix: 'action'    },
+      { class_suffix: 'Behavior',  file_suffix: 'behavior'  },
+      { class_suffix: 'Validator', file_suffix: 'validator' }
+    ]
+
     # Stores the answer to this Pref.
     # @return [String, Symbol]
     attr_accessor :answer
+
+    # Stores instantiated Behavior objects.
+    # @return [Array]
+    attr_accessor :behavior_objects
 
     # Stores the behaviors that this Pref conforms to.
     # @return [Array]
@@ -54,17 +72,29 @@ module CLIUtils
     # @return [String]
     attr_accessor :prompt_text
 
+    # Stores instantiated Validators
+    # @return [Array]
+    attr_accessor :validator_objects
+
     # Stores key/value combinations required to show this Pref.
     # @return [Hash]
     attr_accessor :validators
 
-    # Initializes a new Pref via passed-in parameters.
+    # Initializes a new Pref via passed-in parameters. Also
+    # initializes objects for each Validator and Behavior on
+    # this Pref.
     # @param [Hash] params Parameters to initialize
     # @return [void]
     def initialize(params = {})
+      @behavior_objects = []
+      @validator_objects = []
+
+      # Assign all of the passed params as instance variables.
       params.each { |key, value| send("#{ key }=", value) }
-      
-      # _load_validators if @validators
+
+      # Instantiate any listed Behaviors or Validators.
+      @behaviors.each { |b| _init_and_add_behavior(b) } if @behaviors
+      @validators.each { |v| _init_and_add_validator(v) } if @validators
     end
 
     # Custom equality operator for this class.
@@ -105,25 +135,13 @@ module CLIUtils
     # @param [String] text The text to evaluate
     # @return [String]
     def evaluate_behaviors(text)
-      if @behaviors
-        modified_text = text
-        @behaviors.each do |method|
-          if method.is_a?(Hash)
-            parameter = method.values[0]
-            method = method.keys[0]
-          end
-
-          args = [modified_text, parameter]
-          if PrefBehavior.respond_to?(method)
-            modified_text = PrefBehavior.send(method, *args)
-          else
-            messenger.warn("Skipping undefined Pref Behavior: #{ b }")
-          end
+      modified_text = text
+      if @behavior_objects
+        @behavior_objects.each do |b|
+          modified_text = b.evaluate(modified_text)
         end
-        modified_text
-      else
-        text
       end
+      modified_text
     end
 
     # Validates a text against this pref's options and
@@ -131,8 +149,8 @@ module CLIUtils
     # @param [String] text The text to validate
     # @return [Boolean]
     def validate(text)
-      _confirm_options(text) &&
-      _confirm_validators(text)
+      _check_options(text) &&
+      _check_validators(text)
     end
 
     private
@@ -140,7 +158,7 @@ module CLIUtils
     # Validates a text against the options for this Pref
     # @param [String] text The text to validate
     # @return [Boolean]
-    def _confirm_options(text)
+    def _check_options(text)
       ret = true
       if @options
         unless @options.include?(text)
@@ -155,18 +173,14 @@ module CLIUtils
     # Validates a text against the validators for this Pref
     # @param [String] text The text to validate
     # @return [Boolean]
-    def _confirm_validators(text)
+    def _check_validators(text)
       ret = true
-      if @validators
-        @validators.each do |v|
-          if PrefValidation.respond_to?(v)
-            validator = PrefValidation.send(v, text)
-            unless validator.code
-              @last_error_message = validator.message
-              ret = false
-            end
-          else
-            messenger.warn("Skipping undefined Pref Validator: #{ v }")
+      if @validator_objects
+        @validator_objects.each do |v|
+          v.validate(text)
+          unless v.is_valid
+            @last_error_message = v.message
+            ret = false
           end
         end
       end
@@ -178,11 +192,10 @@ module CLIUtils
     def _eval_pre
       info(@pre[:message])
       prompt('Press enter to continue')
-      
+
       if (@pre[:action])
-        action_obj = _load_action(@pre[:action])
-        action_obj.pref = self
-        action_obj.run(@pre[:action_parameters][0])
+        action_obj = _init_action(@pre[:action][:name])
+        action_obj.run
       end
     end
 
@@ -192,45 +205,79 @@ module CLIUtils
       info(@post[:message])
 
       if (@post[:action])
-        action_obj = _load_action(@post[:action])
-        action_obj.pref = self
-        action_obj.run(@post[:action_parameters][0])
+        action_obj = _init_action(@post[:action][:name])
+        action_obj.run
       end
     end
 
-    # Loads a Pref Action, instantiates it (if it exists),
-    # and returns that instance. Note that the passed
-    # String can be a name (thus translating to an included
-    # Action) or a filepath to a user-defined Action.
-    # @param [String] path_or_name The name of or path to an Action
-    # @return [Object]
-    def _load_action(path_or_name)
+    # Attempts to instantiate a Pre or Post Action based on name; if
+    # successful, the new object gets placed in @validator_objects
+    # @param [String] path_or_name The path to or name of the Action
+    # @return [void]
+    def _init_action(path_or_name)
+      obj = _load_asset(ASSET_TYPE_ACTION, path_or_name)
+      unless obj.nil?
+        obj.pref = self
+        obj.parameters = @pre[:action][:parameters]
+      end
+      obj
+    end
+
+    # Attempts to instantiate a Behavior based on name; if
+    # successful, the new object gets placed in @behavior_objects
+    # @param [Hash] behavior_hash The Behavior attributes
+    # @return [void]
+    def _init_and_add_behavior(behavior_hash)
+      obj = _load_asset(ASSET_TYPE_BEHAVIOR, behavior_hash[:name])
+      unless obj.nil?
+        obj.pref = self
+        obj.parameters = behavior_hash[:parameters]
+        @behavior_objects << obj
+      end
+    end
+
+    # Attempts to instantiate a Validator based on name; if
+    # successful, the new object gets placed in @validator_objects
+    # @param [String] path_or_name The path to or name of the Validator
+    # @return [void]
+    def _init_and_add_validator(path_or_name)
+      obj = _load_asset(ASSET_TYPE_VALIDATOR, path_or_name)
+      unless obj.nil?
+        obj.pref = self
+        @validator_objects << obj
+      end
+    end
+
+    # General function to load an asset (a Validator or Behavior).
+    # Note that if an asset isn't found, the user is warned, but
+    # execution continues.
+    # @param [Integer] type ASSET_TYPE_BEHAVIOR or ASSET_TYPE_VALIDATOR
+    # @param [String] path_or_name The path to or name of the asset
+    # @return [Object] 
+    def _load_asset(type, path_or_name)
       if File.exist?(path_or_name)
         # If the file exists, we're assuming that the user
         # passed a filepath.
-        action_path = File.expand_path(path_or_name) if path_or_name.start_with?('~') 
-        action_path = "#{ path_or_name }_action"
-        action_name = File.basename(path_or_name, '.*').camelize
+        asset_path = File.expand_path(path_or_name) if path_or_name.start_with?('~') 
+        asset_path = "#{ path_or_name }_#{ @@asset_labels[type][:file_suffix] }"
+        asset_name = File.basename(path_or_name, '.*').camelize
       else
         # If it doesn't, we're assuming that the user
         # passed a class name.
-        _default =  File.join(File.dirname(__FILE__), 'pref_actions')
-        action_path = File.join(_default, "#{ path_or_name }_action")
-        action_name = path_or_name.camelize
+        _default =  File.join(File.dirname(__FILE__), "pref_#{ @@asset_labels[type][:file_suffix] }s")
+        asset_path = File.join(_default, "#{ path_or_name }_#{ @@asset_labels[type][:file_suffix] }")
+        asset_name = path_or_name.camelize
       end
 
       # Try to load and instantiate the Action. If that fails, warn
       # the user with a message and skip over it.
       begin
-        require action_path
-        Object.const_get("CLIUtils::#{ action_name }Action").new
-      rescue
-        messenger.warn("Skipping undefined Pref Action: #{ path_or_name }")
+        require asset_path
+        Object.const_get("CLIUtils::#{ asset_name }#{ @@asset_labels[type][:class_suffix] }").new
+      rescue LoadError
+        messenger.warn("Skipping undefined Pref #{ @@asset_labels[type][:class_suffix] }: #{ path_or_name }")
+        nil
       end
-    end
-
-    def _load_validators
-      
     end
   end
 end
