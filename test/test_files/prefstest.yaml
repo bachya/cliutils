@@ -2,14 +2,14 @@ prompts:
   - prompt_text: What is the top story on espn.com?
     config_key: top_story
     config_section: app_data
-    # pre:
-    #   message: 'I will now open espn.com in your default browser.'
-    #   action:
-    #     name: open_url
-    #     parameters:
-    #       url: http://www.espn.com
-    # post:
-    #   message: 'Thanks for inputting!'
+    pre:
+      message: 'I will now open espn.com in your default browser.'
+      action:
+        name: open_url
+        parameters:
+          url: http://www.espn.com
+    post:
+      message: 'Thanks for inputting!'
     validators:
       # - alphabetic
       # - alphanumeric
