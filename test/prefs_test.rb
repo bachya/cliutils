@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'test_helper'
 require 'yaml'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/hash_extensions')

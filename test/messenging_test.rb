@@ -1,5 +1,5 @@
 require 'logger'
-require 'test/unit'
+require 'test_helper'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/string_extensions')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/pretty_io')
