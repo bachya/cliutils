@@ -1,3 +1,7 @@
+# 2.0.1 (2014-04-16)
+
+* Modified PrettyIO word wrapping to coerce to String first
+
 # 2.0.0 (2014-04-15)
 
 * Added plugin-based Actions

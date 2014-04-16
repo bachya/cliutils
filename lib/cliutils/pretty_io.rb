@@ -60,9 +60,9 @@ module CLIUtils
         return text if PrettyIO.wrap_char_limit <= 0
 
         limit = PrettyIO.wrap_char_limit - prefix_str.length
-        text.gsub(/\n/, ' ')
-            .gsub(/(.{1,#{ limit }})(\s+|$)/, "#{ prefix_str }\\1\n")
-            .strip
+        text.to_s.gsub(/\n/, ' ')
+                 .gsub(/(.{1,#{ limit }})(\s+|$)/, "#{ prefix_str }\\1\n")
+                 .strip
       else
         text
       end
