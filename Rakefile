@@ -20,19 +20,13 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['test/*_test.rb']
 end
 
-require 'pry'
-desc 'Open up a PRY session with this gem loaded'
-task :pry do
-  puts version
-end
-
 desc "Release CLIUtils version #{version}"
 task :release => :build do
   unless `git branch` =~ /^\* master$/
     puts "You must be on the master branch to release!"
     exit!
   end
-  
+
   sh "git commit --allow-empty -a -m 'Release #{version}'"
   sh "git tag v#{version}"
   sh "git push origin master"
