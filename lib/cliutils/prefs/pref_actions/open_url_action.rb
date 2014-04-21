@@ -1,3 +1,5 @@
+require 'launchy'
+
 module CLIUtils
   # Pref Action to open a URL in the default
   # browser.
@@ -5,7 +7,10 @@ module CLIUtils
     # Runs the action.
     # @return [void]
     def run
-      `open #{ @parameters[:url] }`
+      url = @parameters[:url]
+      Launchy.open(url) do |exception|
+        puts "Failed to open #{ url }: #{ exception }"
+      end
     end
   end
 end
