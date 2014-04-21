@@ -8,11 +8,11 @@ Gem::Specification.new do |spec|
   spec.version          = CLIUtils::VERSION
   spec.authors          = ["Aaron Bach"]
   spec.email            = ["bachya1208@googlemail.com"]
-  spec.summary          = 'Sugary goodness for Ruby CLI apps.'
-  spec.description      = 'A library of functionality designed to alleviate common tasks and headaches when developing command-line (CLI) apps in Ruby.'
-  spec.homepage         = "http://www.bachyaproductions.com/cliutils-ruby-library-cli-apps/"
+  spec.summary          = CLIUtils::SUMMARY
+  spec.description      = CLIUtils::DESCRIPTION
+  spec.homepage         = "https://github.com/bachya/cliutils"
   spec.license          = "MIT"
-                        
+
   spec.files            = `git ls-files -z`.split("\x0")
   spec.executables      = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.test_files       = spec.files.grep(%r{^(test|spec|features)/})

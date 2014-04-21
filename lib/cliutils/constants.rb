@@ -1,5 +1,11 @@
 # Stores constants to use.
 module CLIUtils
+  DESCRIPTION = 'A library of functionality designed to alleviate common ' \
+  'tasks and headaches when developing command-line (CLI) apps in Ruby.'
+
+  # The summary of the gem
+  SUMMARY = 'Sugary goodness for Ruby CLI apps.'
+
   # The current version of the gem
   VERSION = '2.0.3'
 end
