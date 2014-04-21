@@ -13,13 +13,13 @@ module CLIUtils
       k.extend(self)
     end
 
-    # Empty method so that Messaging doesn't freak
-    # out when passed a debug message.
+    # Empty method so that Messaging doesn't freak out when passed a debug
+    # message.
     # @return [void]
     def debug(m); end
 
-    # Returns a default instance of LoggerDelegator that
-    # delegates to STDOUT only.
+    # Returns a default instance of LoggerDelegator that delegates to STDOUT
+    # only.
     # @return [LoggerDelegator]
     def default_instance
       stdout_logger = Logger.new(STDOUT)
@@ -47,7 +47,7 @@ module CLIUtils
     # Wraps a block in an opening and closing info message.
     # @param [String] m1 The opening message to output
     # @param [String] m2 The closing message to output
-    # @param [<True, False>] multiline Whether the message should be multiline
+    # @param [Boolean] multiline Whether the message should be multiline
     # @yield
     # @return [void]
     def info_block(m1, m2 = 'Done.', multiline = false)
@@ -109,25 +109,6 @@ module CLIUtils
     # @return [void]
     def section(m)
       puts _word_wrap(m, '---> ').purple
-    end
-
-    # Wraps a block in an opening and closing section message.
-    # @param [String] m The opening message to output
-    # @param [<True, False>] multiline Whether the message should be multiline
-    # @yield
-    # @return [void]
-    def section_block(m, multiline = true)
-      if block_given?
-        if multiline
-          section(m)
-        else
-          print _word_wrap(m, '---> ').purple
-        end
-
-        yield
-      else
-        fail 'Did not specify a valid block'
-      end
     end
 
     # Outputs a formatted-green success message.
