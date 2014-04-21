@@ -1,3 +1,7 @@
+# 2.0.3 (2014-04-20)
+
+* Removed section_block from Messaging (because it was totally not useful)
+
 # 2.0.2 (2014-04-16)
 
 * Created backup method in Configurator
