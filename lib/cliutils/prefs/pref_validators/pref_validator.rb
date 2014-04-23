@@ -20,7 +20,7 @@ module CLIUtils
     attr_accessor :pref
 
     # Validate the Validator!
-    # @parameter [String] text
+    # @param [String] text
     # @raise [StandardError] if the subclass
     #   doesn't implement this method.
     # @return [void]

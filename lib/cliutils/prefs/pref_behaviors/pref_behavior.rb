@@ -15,7 +15,7 @@ module CLIUtils
     attr_accessor :pref
 
     # Evaluate the Behavior!
-    # @parameter [Hash] parameters
+    # @param [String] text
     # @raise [StandardError] if the subclass
     #   doesn't implement this method.
     # @return [void]
