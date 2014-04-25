@@ -1,6 +1,12 @@
-# 2.0.3 (2014-04-20)
+# 2.1.0 (2014-04-20)
 
+* Added ability to register/deregister Pref Actions
+* Added ability to register/deregister Pref Behaviors
+* Added ability to register/deregister Pref Validators
+* Added same "Press enter to continue message" to both pre and post Pref behaviors
 * Removed section_block from Messaging (because it was totally not useful)
+* Several bugfixes
+* Added new Prefs and Pref unit tests
 
 # 2.0.2 (2014-04-16)
 

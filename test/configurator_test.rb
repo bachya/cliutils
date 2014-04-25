@@ -11,7 +11,7 @@ class TestConfigurator < Test::Unit::TestCase
   end
 
   def teardown
-    FileUtils.rm(@config_path) if File.exist?(@config_path)
+    FileUtils.rm(@config_path) if File.file?(@config_path)
   end
 
   def test_add_section

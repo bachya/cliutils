@@ -15,7 +15,7 @@ class TestMessaging < Test::Unit::TestCase
   end
 
   def teardown
-    FileUtils.rm(@file1path) if File.exist?(@file1path)
+    FileUtils.rm(@file1path) if File.file?(@file1path)
   end
 
   def test_stdout_output

@@ -1,17 +1,21 @@
 prompts:
-  - prompt_text: What is the top story on espn.com?
-    config_key: top_story
+  - prompt_text: This is a test prompt
+    config_key: test_prompt
     config_section: app_data
-    pre:
-      message: 'I will now open espn.com in your default browser.'
-      action:
-        name: open_url
-        parameters:
-          url: http://www.espn.com
-    post:
-      message: 'Thanks for inputting!'
+    # pre:
+    #   message: I will now test a custom action via filepath
+    #   action:
+    #     name: test
+    # pre:
+    #   message: 'I will now open espn.com in your default browser.'
+    #   action:
+    #     name: test
+    #     parameters:
+    #       url: http://www.espn.com
+    # post:
+    #   message: 'Thanks for inputting!'
     validators:
-      # - alphabetic
+      - alphabetic
       # - alphanumeric
       # - date
       # - datetime
@@ -21,7 +25,7 @@ prompts:
       # - time
       # - url
     behaviors:
-      # - name: capitalize
+      - name: capitalize
       # - name: expand_filepath
       # - name: lowercase
       # - name: prefix

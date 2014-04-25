@@ -6,6 +6,7 @@ module CLIUtils
   # those to a user via a prompt, and collect the results.
   class Prefs
     include Messaging
+
     # Stores the filepath (if it exists) to the prefs file.
     # @return [String]
     attr_reader :config_path
@@ -18,18 +19,37 @@ module CLIUtils
     # @return [Array]
     attr_reader :prompts
 
+    class << self
+      # Stores any actions registered for all
+      # instances of Prefs.
+      # @return [Hash]
+      attr_accessor :registered_actions
+
+      # Stores any behaviors registered for all
+      # instances of Prefs.
+      # @return [Hash]
+      attr_accessor :registered_behaviors
+
+      # Stores any validators registered for all
+      # instances of Prefs.
+      # @return [Hash]
+      attr_accessor :registered_validators
+    end
+
+    self.registered_actions = {}
+    self.registered_behaviors = {}
+    self.registered_validators = {}
+
     # Reads prompt data from and stores it.
     # @param [<String, Hash, Array>] data Filepath to YAML, Hash, or Array
     # @param [Configurator] configurator Source of defailt values
     # @return [void]
     def initialize(data, configurator = nil)
-      @answers = []
-      @configurator = configurator
       @prompts = []
-
+      @configurator = configurator
       case data
       when String
-        if File.exist?(data)
+        if File.file?(data)
           @config_path = data
           data = YAML.load_file(data).deep_symbolize_keys
           @prompts = _generate_prefs(data)
@@ -56,13 +76,62 @@ module CLIUtils
     # complete, questions w/ prerequisites are examined.
     # @return [void]
     def ask
+      # First, deliver all the prompts that don't have
+      # any prerequisites.
       @prompts.reject { |p| p.prereqs }.each do |p|
         _deliver_prompt(p)
       end
 
+      # After the "non-prerequisite" prompts are delivered,
+      # deliver any that require prerequisites.
       @prompts.select { |p| p.prereqs }.each do |p|
         _deliver_prompt(p) if _prereqs_fulfilled?(p)
       end
+    end
+
+    # Deregister an action based on the symbol it was
+    # stored under.
+    # @param [Symbol] symbol The symbol to remove
+    # @remove [void]
+    def self.deregister_action(symbol)
+      _deregister_asset(symbol, Pref::ASSET_TYPE_ACTION)
+    end
+
+    # Deregister a behavior based on the symbol it was
+    # stored under.
+    # @param [Symbol] symbol The symbol to remove
+    # @remove [void]
+    def self.deregister_behavior(symbol)
+      _deregister_asset(symbol, Pref::ASSET_TYPE_BEHAVIOR)
+    end
+
+    # Deregister a validator based on the symbol it was
+    # stored under.
+    # @param [Symbol] symbol The symbol to remove
+    # @remove [void]
+    def self.deregister_validator(symbol)
+      _deregister_asset(symbol, Pref::ASSET_TYPE_VALIDATOR)
+    end
+
+    # Register an action.
+    # @param [String] path The filepath of the action
+    # @remove [void]
+    def self.register_action(path)
+      self._register_asset(path, Pref::ASSET_TYPE_ACTION)
+    end
+
+    # Register a behavior.
+    # @param [String] path The filepath of the behavior
+    # @remove [void]
+    def self.register_behavior(path)
+      _register_asset(path, Pref::ASSET_TYPE_BEHAVIOR)
+    end
+
+    # Register a validator.
+    # @param [String] path The filepath of the validator
+    # @remove [void]
+    def self.register_validator(path)
+      _register_asset(path, Pref::ASSET_TYPE_VALIDATOR)
     end
 
     private
@@ -75,6 +144,9 @@ module CLIUtils
       default = p.default
       unless @configurator.nil?
         section_sym = p.config_section.to_sym
+
+        # If a Configurator has been included, replace relevant
+        # prompt defaults with those values from the Configurator.
         unless @configurator.data[section_sym].nil?
           config_val = @configurator.data[section_sym][p.config_key.to_sym]
           default = config_val unless config_val.nil?
@@ -106,6 +178,55 @@ module CLIUtils
         ret = false if a.nil?
       end
       ret
+    end
+
+    # Utility function to deregister an asset.
+    # @param [Symbol] symbol The asset to remove
+    # @param [Fixnum] type A Pref asset type
+    # @return [void]
+    def self._deregister_asset(symbol, type)
+      case type
+      when Pref::ASSET_TYPE_ACTION
+        CLIUtils::Prefs.registered_actions.delete(symbol)
+      when Pref::ASSET_TYPE_BEHAVIOR
+        CLIUtils::Prefs.registered_behaviors.delete(symbol)
+      when Pref::ASSET_TYPE_VALIDATOR
+        CLIUtils::Prefs.registered_validators.delete(symbol)
+      end
+    end
+
+    # Utility function to register an asset and associate
+    # it with the Prefs eigenclass.
+    # @param [String] path The filepath to the asset
+    # @param [Fixnum] type A Pref asset type
+    # @raise [StandardError] if the asset is unknown
+    # @return [void]
+    def self._register_asset(path, type)
+      if File.file?(path)
+        class_name = File.basename(path, '.*').camelize
+        case type
+        when Pref::ASSET_TYPE_ACTION
+          k = class_name.sub('Action', '').to_sym
+          unless CLIUtils::Prefs.registered_actions.key?(k)
+            h = { k => { class: class_name, path: path } }
+            CLIUtils::Prefs.registered_actions.merge!(h)
+          end
+        when Pref::ASSET_TYPE_BEHAVIOR
+          k = class_name.sub('Behavior', '').to_sym
+          unless CLIUtils::Prefs.registered_behaviors.key?(k)
+            h = { k => { class: class_name, path: path } }
+            CLIUtils::Prefs.registered_behaviors.merge!(h)
+          end
+        when Pref::ASSET_TYPE_VALIDATOR
+          k = class_name.sub('Validator', '').to_sym
+          unless CLIUtils::Prefs.registered_validators.key?(k)
+            h = { k => { class: class_name, path: path } }
+            CLIUtils::Prefs.registered_validators.merge!(h)
+          end
+        end
+      else
+        fail "Registration failed because of unknown filepath: #{ path }"
+      end
     end
   end
 end

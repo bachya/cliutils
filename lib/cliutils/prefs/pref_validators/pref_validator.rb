@@ -14,11 +14,6 @@ module CLIUtils
     # @return [String]
     attr_accessor :message
 
-    # Holds a reference to the Pref that is
-    # applying this Validator.
-    # @return [Pref]
-    attr_accessor :pref
-
     # Validate the Validator!
     # @param [String] text
     # @raise [StandardError] if the subclass

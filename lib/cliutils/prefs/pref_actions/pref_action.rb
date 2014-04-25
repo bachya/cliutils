@@ -9,11 +9,6 @@ module CLIUtils
     # @return [Hash]
     attr_accessor :parameters
 
-    # Holds a reference to the pref that
-    # is implementing this Action.
-    # @return [Pref]
-    attr_accessor :pref
-
     # Runs the Action. Note that the
     # method implemented here will throw
     # an exception by default, meaning that

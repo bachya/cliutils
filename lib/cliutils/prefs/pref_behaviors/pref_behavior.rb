@@ -9,11 +9,6 @@ module CLIUtils
     # @return [Hash]
     attr_accessor :parameters
 
-    # Holds a reference to the Pref that
-    # is applying this Behavior.
-    # @return [Pref]
-    attr_accessor :pref
-
     # Evaluate the Behavior!
     # @param [String] text
     # @raise [StandardError] if the subclass

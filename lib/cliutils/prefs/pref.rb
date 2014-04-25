@@ -195,7 +195,7 @@ module CLIUtils
 
       if (@pre[:action])
         action_obj = _init_action(@pre[:action][:name])
-        action_obj.run
+        action_obj.run if action_obj
       end
     end
 
@@ -203,10 +203,11 @@ module CLIUtils
     # @return [void]
     def _eval_post
       info(@post[:message])
+      prompt('Press enter to continue')
 
       if (@post[:action])
         action_obj = _init_action(@post[:action][:name])
-        action_obj.run
+        action_obj.run if action_obj
       end
     end
 
@@ -217,7 +218,6 @@ module CLIUtils
     def _init_action(path_or_name)
       obj = _load_asset(ASSET_TYPE_ACTION, path_or_name)
       unless obj.nil?
-        obj.pref = self
         obj.parameters = @pre[:action][:parameters]
       end
       obj
@@ -230,7 +230,6 @@ module CLIUtils
     def _init_and_add_behavior(behavior_hash)
       obj = _load_asset(ASSET_TYPE_BEHAVIOR, behavior_hash[:name])
       unless obj.nil?
-        obj.pref = self
         obj.parameters = behavior_hash[:parameters]
         @behavior_objects << obj
       end
@@ -243,7 +242,6 @@ module CLIUtils
     def _init_and_add_validator(path_or_name)
       obj = _load_asset(ASSET_TYPE_VALIDATOR, path_or_name)
       unless obj.nil?
-        obj.pref = self
         @validator_objects << obj
       end
     end
@@ -253,28 +251,57 @@ module CLIUtils
     # execution continues.
     # @param [Integer] type ASSET_TYPE_BEHAVIOR or ASSET_TYPE_VALIDATOR
     # @param [String] path_or_name The path to or name of the asset
-    # @return [Object] 
+    # @return [Object]
     def _load_asset(type, path_or_name)
-      if File.exist?(path_or_name)
+      asset_found = false
+      if File.file?(File.expand_path(path_or_name))
         # If the file exists, we're assuming that the user
         # passed a filepath.
-        asset_path = File.expand_path(path_or_name) if path_or_name.start_with?('~') 
-        asset_path = "#{ path_or_name }_#{ @@asset_labels[type][:file_suffix] }"
+        asset_found = true
+        asset_path = File.expand_path(path_or_name) if path_or_name.start_with?('~')
         asset_name = File.basename(path_or_name, '.*').camelize
-      else
-        # If it doesn't, we're assuming that the user
-        # passed a class name.
-        _default =  File.join(File.dirname(__FILE__), "pref_#{ @@asset_labels[type][:file_suffix] }s")
-        asset_path = File.join(_default, "#{ path_or_name }_#{ @@asset_labels[type][:file_suffix] }")
-        asset_name = path_or_name.camelize
       end
 
-      # Try to load and instantiate the Action. If that fails, warn
+      unless asset_found
+        # If the file doesn't exist, look to see if it's been
+        # pre-registered.
+        symbol = File.basename(path_or_name, '.*').camelize.to_sym
+        case type
+        when Pref::ASSET_TYPE_ACTION
+          if CLIUtils::Prefs.registered_actions.key?(symbol)
+            asset_found = true
+            asset_path = CLIUtils::Prefs.registered_actions[symbol][:path]
+            asset_name = CLIUtils::Prefs.registered_actions[symbol][:class]
+          end
+        when Pref::ASSET_TYPE_BEHAVIOR
+          if CLIUtils::Prefs.registered_behaviors.key?(symbol)
+            asset_found = true
+            asset_path = CLIUtils::Prefs.registered_behaviors[symbol][:path] rescue ''
+            asset_name = CLIUtils::Prefs.registered_behaviors[symbol][:class] rescue ''
+          end
+        when Pref::ASSET_TYPE_VALIDATOR
+          if CLIUtils::Prefs.registered_validators.key?(symbol)
+            asset_found = true
+            asset_path = CLIUtils::Prefs.registered_validators[symbol][:path] rescue ''
+            asset_name = CLIUtils::Prefs.registered_validators[symbol][:class] rescue ''
+          end
+        end
+      end
+
+      unless asset_found
+        # If the file doesn't exist and there's no pre-registered
+        # asset, as a last check, look for it as a built-in asset.
+        _default =  File.join(File.dirname(__FILE__), "pref_#{ @@asset_labels[type][:file_suffix] }s")
+        asset_path = File.join(_default, "#{ path_or_name }_#{ @@asset_labels[type][:file_suffix] }")
+        asset_name = "#{ path_or_name.camelize }#{ @@asset_labels[type][:class_suffix] }"
+      end
+
+      # Try to load and instantiate the asset. If that fails, warn
       # the user with a message and skip over it.
       begin
-        require asset_path
-        Object.const_get("CLIUtils::#{ asset_name }#{ @@asset_labels[type][:class_suffix] }").new
-      rescue LoadError
+        require File.expand_path(asset_path)
+        Object.const_get("CLIUtils::#{ asset_name }").new
+      rescue LoadError => e
         messenger.warn("Skipping undefined Pref #{ @@asset_labels[type][:class_suffix] }: #{ path_or_name }")
         nil
       end

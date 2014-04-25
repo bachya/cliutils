@@ -38,7 +38,7 @@ module CLIUtils
       @config_path = _path
       @data = {}
 
-      if File.exist?(_path)
+      if File.file?(_path)
         data = YAML.load_file(_path)
         @data.deep_merge!(data).deep_symbolize_keys!
       end

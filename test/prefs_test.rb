@@ -47,27 +47,55 @@ class TestPrefs < Test::Unit::TestCase
   end
 
   def teardown
-    FileUtils.rm(@prefs_filepath) if File.exist?(@prefs_filepath)
+    FileUtils.rm(@prefs_filepath) if File.file?(@prefs_filepath)
   end
 
   def test_file_creation
     p = CLIUtils::Prefs.new(@prefs_filepath)
     prefs = YAML::load_file(@prefs_filepath).deep_symbolize_keys
-
     assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prompts)
   end
 
   def test_array_creation
     p = CLIUtils::Prefs.new(@prefs_arr)
     prefs = @prefs_hash.deep_symbolize_keys
-
     assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prompts)
   end
 
   def test_hash_creation
     p = CLIUtils::Prefs.new(@prefs_hash)
     prefs = @prefs_hash.deep_symbolize_keys
-
     assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prompts)
+  end
+
+  def test_register
+    CLIUtils::Prefs.register_action(File.join(File.dirname(__FILE__), 'test_files/test_action.rb'))
+    assert_equal(CLIUtils::Prefs.registered_actions.key?(:Test), true)
+    assert_equal(CLIUtils::Prefs.registered_actions[:Test][:class], 'TestAction')
+    assert_equal(CLIUtils::Prefs.registered_actions[:Test][:path], File.join(File.dirname(__FILE__), 'test_files/test_action.rb'))
+
+    CLIUtils::Prefs.register_behavior(File.join(File.dirname(__FILE__), 'test_files/test_behavior.rb'))
+    assert_equal(CLIUtils::Prefs.registered_behaviors.key?(:Test), true)
+    assert_equal(CLIUtils::Prefs.registered_behaviors[:Test][:class], 'TestBehavior')
+    assert_equal(CLIUtils::Prefs.registered_behaviors[:Test][:path], File.join(File.dirname(__FILE__), 'test_files/test_behavior.rb'))
+
+    CLIUtils::Prefs.register_validator(File.join(File.dirname(__FILE__), 'test_files/test_validator.rb'))
+    assert_equal(CLIUtils::Prefs.registered_validators.key?(:Test), true)
+    assert_equal(CLIUtils::Prefs.registered_validators[:Test][:class], 'TestValidator')
+    assert_equal(CLIUtils::Prefs.registered_validators[:Test][:path], File.join(File.dirname(__FILE__), 'test_files/test_validator.rb'))
+  end
+
+  def test_deregister
+    CLIUtils::Prefs.register_action(File.join(File.dirname(__FILE__), 'test_files/test_action.rb'))
+    CLIUtils::Prefs.deregister_action(:Test)
+    assert_equal(CLIUtils::Prefs.registered_actions.key?(:Test), false)
+
+    CLIUtils::Prefs.register_behavior(File.join(File.dirname(__FILE__), 'test_files/test_behavior.rb'))
+    CLIUtils::Prefs.deregister_behavior(:Test)
+    assert_equal(CLIUtils::Prefs.registered_behaviors.key?(:Test), false)
+
+    CLIUtils::Prefs.register_validator(File.join(File.dirname(__FILE__), 'test_files/test_validator.rb'))
+    CLIUtils::Prefs.deregister_validator(:Test)
+    assert_equal(CLIUtils::Prefs.registered_validators.key?(:Test), false)
   end
 end

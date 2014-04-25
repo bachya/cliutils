@@ -57,14 +57,13 @@ module CLIUtils
     # @return [String]
     def _word_wrap(text, prefix_str)
       if PrettyIO.wrap
-        return text if PrettyIO.wrap_char_limit <= 0
-
+        return prefix_str + text if PrettyIO.wrap_char_limit <= 0
         limit = PrettyIO.wrap_char_limit - prefix_str.length
-        text.to_s.gsub(/\n/, ' ')
-                 .gsub(/(.{1,#{ limit }})(\s+|$)/, "#{ prefix_str }\\1\n")
-                 .strip
+        text.split("\n").collect! do |line|
+          line.length > limit ? text.gsub(/(.{1,#{ limit }})(\s+|$)/, "#{ prefix_str }\\1\n").strip : prefix_str + line
+        end * "\n"
       else
-        text
+        prefix_str + text
       end
     end
   end
