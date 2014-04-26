@@ -1,3 +1,7 @@
+# 2.1.1 (2014-04-26)
+
+* Fixed a bug in which older Ruby versions wouldn't load Pref assets correctly
+
 # 2.1.0 (2014-04-20)
 
 * Added ability to register/deregister Pref Actions

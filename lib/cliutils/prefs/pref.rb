@@ -299,7 +299,6 @@ module CLIUtils
       # Try to load and instantiate the asset. If that fails, warn
       # the user with a message and skip over it.
       begin
-        p "Requiring #{asset_path}"
         require File.expand_path(asset_path)
         Object.const_get('CLIUtils').const_get(asset_name).new
       rescue LoadError => e
