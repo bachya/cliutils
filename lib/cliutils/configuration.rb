@@ -1,5 +1,4 @@
 require 'logger'
-require 'yaml'
 
 module CLIUtils
   # Configuration Module
@@ -15,6 +14,8 @@ module CLIUtils
       'FATAL' => Logger::FATAL
     }
 
+    @@configuration = nil
+
     # Hook that triggers when this module is included.
     # @param [Object] k The includer object
     # @return [void]
@@ -26,7 +27,12 @@ module CLIUtils
     # a Configurator.
     # @return [Configurator]
     def configuration
-      @@configuration ||= Configurator.new('~/.default-cliutils')
+      if !@@configuration.nil?
+        @@configuration
+      else
+        fail 'Attempted to access `configuration` before ' \
+        'executing `load_configuration`'
+      end
     end
 
     # Singleton method to return (or initialize, if needed)

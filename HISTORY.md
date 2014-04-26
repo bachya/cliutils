@@ -1,3 +1,9 @@
+# 2.1.2 (2014-04-26)
+
+* Added some error checking to Configuration
+* More unit tests
+* A few small bugfixes
+
 # 2.1.1 (2014-04-26)
 
 * Fixed a bug in which older Ruby versions wouldn't load Pref assets correctly
