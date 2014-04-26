@@ -299,8 +299,9 @@ module CLIUtils
       # Try to load and instantiate the asset. If that fails, warn
       # the user with a message and skip over it.
       begin
+        p "Requiring #{asset_path}"
         require File.expand_path(asset_path)
-        Object.const_get("CLIUtils::#{ asset_name }").new
+        Object.const_get('CLIUtils').const_get(asset_name).new
       rescue LoadError => e
         messenger.warn("Skipping undefined Pref #{ @@asset_labels[type][:class_suffix] }: #{ path_or_name }")
         nil
