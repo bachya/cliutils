@@ -1,3 +1,7 @@
+# 2.1.4 (2014-04-26)
+
+* Slightly more robust Time regex in TimeValidator
+
 # 2.1.3 (2014-04-26)
 
 * Fixed TimeValidator to use Regex (rather than Time.parse, which isn't available in 2.0,0)
