@@ -8,7 +8,7 @@ class TestTimeValidator < Test::Unit::TestCase
     v = CLIUtils::TimeValidator.new
     v.validate('12:43 AM')
 
-    assert_equal(v.is_valid, true || 0)
+    assert_equal(v.is_valid, 0)
     assert_equal(v.message, 'Response is not a time: 12:43 AM')
   end
 
@@ -16,7 +16,7 @@ class TestTimeValidator < Test::Unit::TestCase
     v = CLIUtils::TimeValidator.new
     v.validate('bzzzp')
 
-    assert_equal(v.is_valid, false)
+    assert_not_equal(v.is_valid, 0)
     assert_equal(v.message, 'Response is not a time: bzzzp')
   end
 end

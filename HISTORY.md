@@ -1,3 +1,7 @@
+# 2.1.3 (2014-04-26)
+
+* Fixed TimeValidator to use Regex (rather than Time.parse, which isn't available in 2.0,0)
+
 # 2.1.2 (2014-04-26)
 
 * Added some error checking to Configuration

@@ -6,7 +6,7 @@ module CLIUtils
     # @param [Object] text The "text" to evaluate
     # @return [String]
     def validate(text)
-      @is_valid = !(Time.parse(text) rescue nil).nil?
+      @is_valid = text.to_s =~ /^([01]?[0-9]|2[0-3])\:[0-5][0-9](\s?[AaPp][Mm])?$/
       @message = "Response is not a time: #{ text }"
     end
   end
