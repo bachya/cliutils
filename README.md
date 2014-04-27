@@ -2,6 +2,7 @@ CLIUtils
 ====
 [![Build Status](https://travis-ci.org/bachya/cliutils.svg?branch=master)](https://travis-ci.org/bachya/cliutils)
 [![Gem Version](https://badge.fury.io/rb/cliutils.svg)](http://badge.fury.io/rb/cliutils)
+[![Coverage Status](https://coveralls.io/repos/bachya/cliutils/badge.png?branch=master)](https://coveralls.io/r/bachya/cliutils?branch=master)
 
 CLIUtils is a library of functionality designed to alleviate common tasks and headaches when developing command-line (CLI) apps in Ruby.
 
