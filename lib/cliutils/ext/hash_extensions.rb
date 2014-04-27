@@ -2,20 +2,24 @@
 # Contains many convenient methods borrowed from Rails
 # http://api.rubyonrails.org/classes/Hash.html
 class Hash
-  # Deep merges a hash into the current one.
+  # Deep merges a hash into the current one. Returns
+  # a new copy of the hash.
   # @param [Hash] other_hash The hash to merge in
-  # @yield &block
   # @return [Hash] The original Hash
-  def deep_merge!(other_hash, &block)
-    other_hash.each_pair do |k, v|
-      tv = self[k]
-      if tv.is_a?(Hash) && v.is_a?(Hash)
-        self[k] = tv.deep_merge(v, &block)
-      else
-        self[k] = block && tv ? block.call(k, tv, v) : v
-      end
+  def deep_merge(other_hash)
+    self.merge(other_hash) do |key, oldval, newval|
+      oldval = oldval.to_hash if oldval.respond_to?(:to_hash)
+      newval = newval.to_hash if newval.respond_to?(:to_hash)
+      oldval.class.to_s == 'Hash' && newval.class.to_s == 'Hash' ? oldval.deep_merge(newval) : newval
     end
-    self
+  end
+
+  # Deep merges a hash into the current one. Does
+  # the replacement inline.
+  # @param [Hash] other_hash The hash to merge in
+  # @return [Hash] The original Hash
+  def deep_merge!(other_hash)
+    replace(deep_merge(other_hash))
   end
 
   # Recursively turns all Hash keys into strings and
@@ -66,6 +70,7 @@ class Hash
   # key and returns the value (if there is one).
   # http://stackoverflow.com/a/2239847/327179
   # @param [<Symbol, String>] key The key to search for
+  # @yield
   # @return [Multiple]
   def recursive_find_by_key(key)
     # Create a stack of hashes to search through for the needle which
@@ -86,7 +91,6 @@ class Hash
         end
       end
     end
-    yield if block_given?
   end
 
   private

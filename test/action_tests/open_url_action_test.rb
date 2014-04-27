@@ -9,4 +9,11 @@ class TestOpenUrlAction < Test::Unit::TestCase
     a.parameters = { url: 'http://www.google.com' }
     assert_output() { a.run }
   end
+
+  def test_invalid_run
+    a = CLIUtils::OpenUrlAction.new
+    a.parameters = { url: 'bachya' }
+    m = "Failed to open URL: No application found to handle 'bachya'"
+    assert_raise_with_message(RuntimeError, m) { a.run }
+  end
 end

@@ -56,6 +56,11 @@ class TestPrefs < Test::Unit::TestCase
     assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prompts)
   end
 
+  def test_bad_file_creation
+    m = 'Invalid configuration file: asd'
+    assert_raise_with_message(RuntimeError, m) { p = CLIUtils::Prefs.new('asd') }
+  end
+
   def test_array_creation
     p = CLIUtils::Prefs.new(@prefs_arr)
     prefs = @prefs_hash.deep_symbolize_keys
@@ -66,6 +71,11 @@ class TestPrefs < Test::Unit::TestCase
     p = CLIUtils::Prefs.new(@prefs_hash)
     prefs = @prefs_hash.deep_symbolize_keys
     assert_equal(prefs[:prompts].map { |p| CLIUtils::Pref.new(p) }, p.prompts)
+  end
+
+  def test_invalid_type_creation
+    m = 'Invalid configuration data'
+    assert_raise_with_message(RuntimeError, m) { p = CLIUtils::Prefs.new(123) }
   end
 
   def test_register
@@ -83,6 +93,13 @@ class TestPrefs < Test::Unit::TestCase
     assert_equal(CLIUtils::Prefs.registered_validators.key?(:Test), true)
     assert_equal(CLIUtils::Prefs.registered_validators[:Test][:class], 'TestValidator')
     assert_equal(CLIUtils::Prefs.registered_validators[:Test][:path], File.join(File.dirname(__FILE__), 'test_files/test_validator.rb'))
+  end
+
+  def test_bad_registration
+    m = 'Registration failed because of unknown filepath: bachya.rb'
+    assert_raise_with_message(RuntimeError, m) { CLIUtils::Prefs.register_action('bachya.rb') }
+    assert_raise_with_message(RuntimeError, m) { CLIUtils::Prefs.register_behavior('bachya.rb') }
+    assert_raise_with_message(RuntimeError, m) { CLIUtils::Prefs.register_validator('bachya.rb') }
   end
 
   def test_deregister

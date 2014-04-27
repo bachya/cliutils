@@ -9,7 +9,7 @@ module CLIUtils
     def run
       url = @parameters[:url]
       Launchy.open(url) do |exception|
-        puts "Failed to open #{ url }: #{ exception }"
+        fail "Failed to open URL: #{ exception }" if exception
       end
     end
   end

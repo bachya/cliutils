@@ -1,11 +1,3 @@
-begin
-  unless (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM).nil?
-    require 'Win32/Console/ANSI'
-  end
-rescue LoadError
-  raise 'You must run `gem install win32console` to use CLIMessage on Windows'
-end
-
 require 'readline'
 
 module CLIUtils

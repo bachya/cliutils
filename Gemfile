@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-# gem 'simplecov', :require => false
-gem 'coveralls', require: false
+gem 'simplecov', :require => false
+# gem 'coveralls', require: false
 
 platforms :rbx do
   gem 'racc'

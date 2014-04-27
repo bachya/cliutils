@@ -28,7 +28,7 @@ module CLIUtils
     # functions.
     # @return [void]
     def self.delegate
-      %w(log debug info warn error section success).each do |m|
+      %w(log debug info info_block warn error section success).each do |m|
         define_method(m) do |*args|
           @targets.each_value { |v| v.send(m, *args) }
         end
@@ -40,7 +40,7 @@ module CLIUtils
     # @return [void]
     def detach(target_name)
       unless @targets.key?(target_name)
-        fail "Cannot delete invalid target: #{ target_name }"
+        fail "Cannot detach invalid target: #{ target_name }"
       end
       @targets.delete(target_name)
       LoggerDelegator.delegate
