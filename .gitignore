@@ -5,4 +5,4 @@ pkg
 bin
 .tmp
 Gemfile.lock
-coverage coverage
+coverage
