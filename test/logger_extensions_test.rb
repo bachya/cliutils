@@ -2,7 +2,6 @@ require 'test_helper'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/logger_extensions')
 
-# Tests for the Logger extension methods
 class TestLoggerExtensions < Test::Unit::TestCase
   def test_custom_level
     l = Logger.new(STDOUT)

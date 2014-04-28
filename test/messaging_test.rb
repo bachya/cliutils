@@ -7,7 +7,6 @@ require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/pretty_io')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/logger_delegator')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/messaging')
 
-# Tests for the Hash extension methods
 class TestMessaging < Test::Unit::TestCase
   include CLIUtils::Messaging
 

@@ -4,7 +4,6 @@ require 'test_helper'
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/hash_extensions')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/configurator')
 
-# Tests for the Configurator class
 class TestConfigurator < Test::Unit::TestCase
   def setup
     @config_path = '/tmp/test.config'

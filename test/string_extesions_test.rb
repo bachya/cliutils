@@ -2,7 +2,6 @@ require 'test_helper'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/string_extensions')
 
-# Tests for the String extension methods
 class TestStringExtensions < Test::Unit::TestCase
   def test_custom_colors
     assert_output("\e[34mtest\e[0m") { print 'test'.blue }
@@ -13,7 +12,7 @@ class TestStringExtensions < Test::Unit::TestCase
     assert_output("\e[37mtest\e[0m") { print 'test'.white }
     assert_output("\e[33mtest\e[0m") { print 'test'.yellow }
   end
-  
+
   def test_colorize
     assert_output("\e[35;42mtest\e[0m") { print 'test'.colorize('35;42') }
   end

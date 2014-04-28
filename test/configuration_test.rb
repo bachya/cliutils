@@ -3,7 +3,6 @@ require 'test_helper'
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/configurator')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/configuration')
 
-# Tests for the Configurator class
 class TestConfiguration < Test::Unit::TestCase
   include CLIUtils::Configuration
 

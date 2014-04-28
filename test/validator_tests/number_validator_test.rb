@@ -2,7 +2,6 @@ require 'test_helper'
 
 require File.join(File.dirname(__FILE__), '..', '..', 'lib/cliutils/prefs/pref_validators/number_validator')
 
-# Tests for the Configurator class
 class TestNumberValidator < Test::Unit::TestCase
   def test_valid
     v = CLIUtils::NumberValidator.new

@@ -2,7 +2,6 @@ require 'test_helper'
 
 require File.join(File.dirname(__FILE__), '..', '..', 'lib/cliutils/prefs/pref_validators/time_validator')
 
-# Tests for the Configurator class
 class TestTimeValidator < Test::Unit::TestCase
   def test_valid
     v = CLIUtils::TimeValidator.new

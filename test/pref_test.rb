@@ -7,7 +7,6 @@ require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs/pref_actions
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs/pref_behaviors/pref_behavior')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs/pref_validators/pref_validator')
 
-# Tests for the Prefs class
 class TestPref < Test::Unit::TestCase
   def setup
     @prefs_hash = {

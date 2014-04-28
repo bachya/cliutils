@@ -2,7 +2,6 @@ require 'test_helper'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/hash_extensions')
 
-# Tests for the Hash extension methods
 class TestHashExtensions < Test::Unit::TestCase
   def test_deep_merge
     h1 = { key: 'value', key2: %w(value1, value2) }

@@ -6,7 +6,6 @@ require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/hash_extension
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/prefs/pref')
 
-# Tests for the Prefs class
 class TestPrefs < Test::Unit::TestCase
   def setup
     @prefs_arr = [

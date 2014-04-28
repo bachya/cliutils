@@ -2,7 +2,6 @@ require 'test_helper'
 
 require File.join(File.dirname(__FILE__), '..', '..', 'lib/cliutils/prefs/pref_validators/alphabetic_validator')
 
-# Tests for the Configurator class
 class TestAlphabeticValidator < Test::Unit::TestCase
   def test_valid
     v = CLIUtils::AlphabeticValidator.new
