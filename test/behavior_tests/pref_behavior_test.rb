@@ -6,7 +6,8 @@ require File.join(File.dirname(__FILE__), '..', '..', 'test/test_files/test_beha
 class TestPrefBehavior < Test::Unit::TestCase
   def test_direct_call
     b = CLIUtils::TestBehaviorEmpty.new
-    m = '`evaluate` method not implemented on caller: CLIUtils::TestBehaviorEmpty'
-    assert_raise_with_message(RuntimeError, m) { b.evaluate('bachya') }
+
+    exception = assert_raise(RuntimeError) { b.evaluate(123) }
+    assert_equal('`evaluate` method not implemented on caller: CLIUtils::TestBehaviorEmpty', exception.message)
   end
 end

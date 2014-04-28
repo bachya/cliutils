@@ -36,8 +36,8 @@ class TestConfigurator < Test::Unit::TestCase
 
   def test_add_existing_section
     @config.add_section(:test)
-    m = 'Section already exists: test'
-    assert_raise_with_message(RuntimeError, m) { @config.add_section(:test) }
+    exception = assert_raise(RuntimeError) { @config.add_section(:test) }
+    assert_equal('Section already exists: test', exception.message)
   end
 
   def test_backup
@@ -53,8 +53,8 @@ class TestConfigurator < Test::Unit::TestCase
   end
 
   def test_delete_nonexistent_section
-    m = 'Cannot delete nonexistent section: test'
-    assert_raise_with_message(RuntimeError, m) { @config.delete_section(:test) }
+    exception = assert_raise(RuntimeError) { @config.delete_section(:test) }
+    assert_equal('Cannot delete nonexistent section: test', exception.message)
   end
 
   def test_accessing
@@ -113,7 +113,7 @@ class TestConfigurator < Test::Unit::TestCase
   end
 
   def test_ingest_bad_prefs
-    m = 'Invaid Prefs class'
-    assert_raise_with_message(RuntimeError, m) { @config.ingest_prefs(123) }
+    exception = assert_raise(RuntimeError) { @config.ingest_prefs(123) }
+    assert_equal('Invaid Prefs class', exception.message)
   end
 end

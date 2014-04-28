@@ -57,8 +57,8 @@ class TestPrefs < Test::Unit::TestCase
   end
 
   def test_bad_file_creation
-    m = 'Invalid configuration file: asd'
-    assert_raise_with_message(RuntimeError, m) { p = CLIUtils::Prefs.new('asd') }
+    exception = assert_raise(RuntimeError) { p = CLIUtils::Prefs.new('asd') }
+    assert_equal('Invalid configuration file: asd', exception.message)
   end
 
   def test_array_creation
@@ -74,8 +74,8 @@ class TestPrefs < Test::Unit::TestCase
   end
 
   def test_invalid_type_creation
-    m = 'Invalid configuration data'
-    assert_raise_with_message(RuntimeError, m) { p = CLIUtils::Prefs.new(123) }
+    exception = assert_raise(RuntimeError) { p = CLIUtils::Prefs.new(123) }
+    assert_equal('Invalid configuration data', exception.message)
   end
 
   def test_register
@@ -97,9 +97,15 @@ class TestPrefs < Test::Unit::TestCase
 
   def test_bad_registration
     m = 'Registration failed because of unknown filepath: bachya.rb'
-    assert_raise_with_message(RuntimeError, m) { CLIUtils::Prefs.register_action('bachya.rb') }
-    assert_raise_with_message(RuntimeError, m) { CLIUtils::Prefs.register_behavior('bachya.rb') }
-    assert_raise_with_message(RuntimeError, m) { CLIUtils::Prefs.register_validator('bachya.rb') }
+
+    exception = assert_raise(RuntimeError) { CLIUtils::Prefs.register_action('bachya.rb') }
+    assert_equal(m, exception.message)
+
+    exception = assert_raise(RuntimeError) { CLIUtils::Prefs.register_behavior('bachya.rb') }
+    assert_equal(m, exception.message)
+
+    exception = assert_raise(RuntimeError) { CLIUtils::Prefs.register_validator('bachya.rb') }
+    assert_equal(m, exception.message)
   end
 
   def test_deregister

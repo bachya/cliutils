@@ -60,7 +60,8 @@ class TestMessaging < Test::Unit::TestCase
   end
 
   def test_detach_unknown_target
-    assert_raise_with_message(RuntimeError, "Cannot detach invalid target: bachya") { messenger.detach(:bachya) }
+    exception = assert_raise(RuntimeError) { messenger.detach(:bachya) }
+    assert_equal('Cannot detach invalid target: bachya', exception.message)
   end
 
   def test_color_chart
