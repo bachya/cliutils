@@ -125,7 +125,19 @@ class TestPrefs < Test::Unit::TestCase
 
   def test_ask
     p = CLIUtils::Prefs.new(@prefs_filepath)
-    p.ask
+    stdin = Tempfile.new("test_readline_stdin")
+    stdout = Tempfile.new("test_readline_stdout")
+    begin
+      stdin.write("\n")
+      stdin.close
+      stdout.close
+      line = replace_stdio(stdin.path, stdout.path) {
+        p.ask
+      }
+    ensure
+      stdin.close(true)
+      stdout.close(true)
+    end
   end
 
   private

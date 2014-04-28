@@ -1,6 +1,7 @@
 require 'fileutils'
 require 'test_helper'
 
+require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/hash_extensions')
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/configurator')
 
 # Tests for the Configurator class
@@ -76,7 +77,8 @@ class TestConfigurator < Test::Unit::TestCase
     @config.save
 
     File.open(@config_path, 'r') do |f|
-      assert_output("---\nmy_app:\n  config_location: \"/Users/bob/.my-app-config\"\n  log_level: WARN\n  version: 1.0.0\nuser_data:\n  username: bob\n  age: 45\nsection1:\n  a: test\n  b: test\n") { puts f.read }
+      h = YAML.load(f.read).deep_symbolize_keys
+      assert_equal(@config.data, h)
     end
   end
 
@@ -97,19 +99,19 @@ class TestConfigurator < Test::Unit::TestCase
     @config.ingest_prefs(prefs)
     data = {
       my_app: {
-        config_location: "/Users/bob/.my-app-config",
-        log_level: "WARN",
-        version: "1.0.0"
+        config_location: '/Users/bob/.my-app-config',
+        log_level: 'WARN',
+        version: '1.0.0'
       },
       user_data: {
-        username: "bob",
+        username: 'bob',
         age: 45
       },
       app_data: {
         test_prompt: nil
       }
     }
-    assert_equal(data[:app_data], @config.data[:app_data])
+    assert_equal(@config.data, data)
   end
 
   def test_ingest_bad_prefs
