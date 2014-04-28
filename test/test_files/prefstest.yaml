@@ -15,7 +15,7 @@ prompts:
     # post:
     #   message: 'Thanks for inputting!'
     validators:
-      - alphabetic
+      # - alphabetic
       # - alphanumeric
       # - date
       # - datetime

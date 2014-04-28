@@ -109,7 +109,7 @@ class TestConfigurator < Test::Unit::TestCase
         test_prompt: nil
       }
     }
-    assert_equal(data, @config.data)
+    assert_equal(data[:app_data], @config.data[:app_data])
   end
 
   def test_ingest_bad_prefs

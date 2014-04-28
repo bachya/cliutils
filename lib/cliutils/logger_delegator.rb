@@ -28,9 +28,9 @@ module CLIUtils
     # functions.
     # @return [void]
     def self.delegate
-      %w(log debug info info_block warn error section success).each do |m|
-        define_method(m) do |*args|
-          @targets.each_value { |v| v.send(m, *args) }
+      %w(log debug info info_block prompt warn error section success).each do |m|
+        define_method(m) do |*args, &block|
+          @targets.each_value { |v| v.send(m, *args, &block) if v.respond_to?(m) }
         end
       end
     end

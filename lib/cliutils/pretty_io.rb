@@ -1,5 +1,3 @@
-require 'readline'
-
 module CLIUtils
   # CLIMessenger Module
   # Outputs color-coordinated messages to a CLI

@@ -1,4 +1,5 @@
 require 'cliutils/pretty_io'
+require 'readline'
 
 module CLIUtils
   #  CLIMessenger Module
@@ -90,14 +91,13 @@ module CLIUtils
     # @return [String]
     def prompt(prompt, default = nil, start_dir = '')
       Readline.completion_append_character = nil
-      Readline.completion_proc = lambda do |prefix|
-        files = Dir["#{start_dir}#{prefix}*"]
-        files.map { |f| File.expand_path(f) }
-             .map { |f| File.directory?(f) ? "#{ f }/" : f }
+      Readline.completion_proc = Proc.new do |str|
+        Dir[str + '*'].grep( /^#{ Regexp.escape(str) }/ )
       end
+
       p = "# #{ prompt }#{ default.nil? ? ':' : " [default: #{ default }]:" } "
       choice = Readline.readline(p.cyan)
-      if choice.empty?
+      if choice.nil? || choice.empty?
         default
       else
         choice

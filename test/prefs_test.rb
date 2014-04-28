@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'tempfile'
 require 'yaml'
 
 require File.join(File.dirname(__FILE__), '..', 'lib/cliutils/ext/hash_extensions')
@@ -120,5 +121,33 @@ class TestPrefs < Test::Unit::TestCase
     CLIUtils::Prefs.register_validator(File.join(File.dirname(__FILE__), 'test_files/test_validator.rb'))
     CLIUtils::Prefs.deregister_validator(:Test)
     assert_equal(CLIUtils::Prefs.registered_validators.key?(:Test), false)
+  end
+
+  def test_ask
+    p = CLIUtils::Prefs.new(@prefs_filepath)
+    p.ask
+  end
+
+  private
+
+  def replace_stdio(stdin_path, stdout_path)
+    open(stdin_path, "r"){|stdin|
+      open(stdout_path, "w"){|stdout|
+        orig_stdin = STDIN.dup
+        orig_stdout = STDOUT.dup
+        STDIN.reopen(stdin)
+        STDOUT.reopen(stdout)
+        begin
+          Readline.input = STDIN
+          Readline.output = STDOUT
+          yield
+        ensure
+          STDIN.reopen(orig_stdin)
+          STDOUT.reopen(orig_stdout)
+          orig_stdin.close
+          orig_stdout.close
+        end
+      }
+    }
   end
 end
