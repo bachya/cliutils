@@ -27,7 +27,7 @@ module CLIUtils
     # a Configurator.
     # @return [Configurator]
     def configuration
-      if !@@configuration.nil?
+      if @@configuration
         @@configuration
       else
         fail 'Attempted to access `configuration` before ' \
