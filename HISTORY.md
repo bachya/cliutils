@@ -1,3 +1,8 @@
+# 2.2.1 (2014-05-04)
+
+* Easier Configuration path setting
+* Spec to test Configuration and Messaging consistency
+
 # 2.2.0 (2014-04-26)
 
 * More robust `Messaging` that allows for logging of prompts

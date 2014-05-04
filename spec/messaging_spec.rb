@@ -7,6 +7,12 @@ require 'cliutils/pretty_io'
 describe CLIUtils::Messaging do
   include CLIUtils::Messaging
 
+  it 'returns the same messenger each time' do
+    m1 = messenger
+    m2 = messenger
+    expect(m1).to eq(m2)
+  end
+
   it 'gives a set of standard message formats' do
     out = capture_stdout { messenger.error('error') }
     expect(out).to eq('# error'.red + "\n")

@@ -5,6 +5,8 @@ module CLIUtils
   # Manages any configuration values and the flat YAML file
   # into which they get stored.
   module Configuration
+    extend self
+
     # Allows easy access to Logger levels.
     LOG_LEVELS = {
       'DEBUG' => Logger::DEBUG,
@@ -15,13 +17,6 @@ module CLIUtils
     }
 
     @@configuration = nil
-
-    # Hook that triggers when this module is included.
-    # @param [Object] k The includer object
-    # @return [void]
-    def self.included(k)
-      k.extend(self)
-    end
 
     # Singleton method to return (or initialize, if needed)
     # a Configurator.
@@ -42,5 +37,6 @@ module CLIUtils
     def load_configuration(path)
       @@configuration = Configurator.new(path)
     end
+    alias_method :filepath=, :load_configuration
   end
 end
