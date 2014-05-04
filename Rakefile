@@ -13,13 +13,6 @@ desc 'Create YARD documentation'
 YARD::Rake::YardocTask.new do |t|
 end
 
-require 'rake/testtask'
-desc 'Run unit tests'
-Rake::TestTask.new do |t|
-  t.libs << "test"
-  t.test_files = FileList['test/*_test.rb', 'test/**/*_test.rb']
-end
-
 require 'rspec/core/rake_task'
 desc "Run the specs."
 RSpec::Core::RakeTask.new do |t|
