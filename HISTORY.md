@@ -1,3 +1,10 @@
+# 2.2.0 (2014-04-26)
+
+* More robust `Messaging` that allows for logging of prompts
+* Complete RSpec tests (moving on from Test Unit)
+* Removed useless `info_block` method
+* Several bugfixes
+
 # 2.1.4 (2014-04-26)
 
 * Slightly more robust Time regex in TimeValidator

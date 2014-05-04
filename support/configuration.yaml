@@ -1,0 +1,8 @@
+---
+my_app:
+  config_location: "/Users/bob/.my-app-config"
+  log_level: WARN
+  version: 1.0.0
+user_data:
+  username: bob
+  age: 45

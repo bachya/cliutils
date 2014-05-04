@@ -20,6 +20,13 @@ Rake::TestTask.new do |t|
   t.test_files = FileList['test/*_test.rb', 'test/**/*_test.rb']
 end
 
+require 'rspec/core/rake_task'
+desc "Run the specs."
+RSpec::Core::RakeTask.new do |t|
+  t.pattern = "spec/**/*_spec.rb"
+  t.verbose = false
+end
+
 desc "Release CLIUtils version #{version}"
 task :release => :build do
   unless `git branch` =~ /^\* master$/
@@ -41,4 +48,4 @@ task :build do
   FileUtils.mv("./cliutils-#{version}.gem", "pkg")
 end
 
-task :default => :test
+task :default => [:spec] #:yard

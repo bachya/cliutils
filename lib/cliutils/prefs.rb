@@ -54,7 +54,7 @@ module CLIUtils
           data = YAML.load_file(data).deep_symbolize_keys
           @prompts = _generate_prefs(data)
         else
-          fail "Invalid configuration file: #{ data }"
+            fail "Invalid configuration file: #{ data }"
         end
       when Hash
         @config_path = nil

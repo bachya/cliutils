@@ -120,7 +120,7 @@ module CLIUtils
 
       valid_option_chosen = false
       until valid_option_chosen
-        response = prompt(@prompt_text, default)
+        response = messenger.prompt(@prompt_text, default)
         if validate(response)
           valid_option_chosen = true
           @answer = evaluate_behaviors(response)
@@ -190,11 +190,11 @@ module CLIUtils
     # Evaluates the pre-prompt Hash and does the right thing. :)
     # @return [void]
     def _eval_pre
-      info(@pre[:message])
-      prompt('Press enter to continue')
+      messenger.info(@pre[:message])
+      messenger.prompt('Press enter to continue')
 
       if (@pre[:action])
-        action_obj = _init_action(@pre[:action][:name])
+        action_obj = _init_action(@pre[:action])
         action_obj.run if action_obj
       end
     end
@@ -202,11 +202,11 @@ module CLIUtils
     # Evaluates the post-prompt Hash and does the right thing. :)
     # @return [void]
     def _eval_post
-      info(@post[:message])
-      prompt('Press enter to continue')
+      messenger.info(@post[:message])
+      messenger.prompt('Press enter to continue')
 
       if (@post[:action])
-        action_obj = _init_action(@post[:action][:name])
+        action_obj = _init_action(@post[:action])
         action_obj.run if action_obj
       end
     end
@@ -217,8 +217,8 @@ module CLIUtils
     # @return [void]
     def _init_action(path_or_name)
       obj = _load_asset(ASSET_TYPE_ACTION, path_or_name)
-      unless obj.nil?
-        obj.parameters = @pre[:action][:parameters]
+      unless obj.nil? || @pre[:parameters].nil?
+        obj.parameters = @pre[:parameters]
       end
       obj
     end
@@ -258,7 +258,7 @@ module CLIUtils
         # If the file exists, we're assuming that the user
         # passed a filepath.
         asset_found = true
-        asset_path = File.expand_path(path_or_name) if path_or_name.start_with?('~')
+        asset_path = File.expand_path(path_or_name)
         asset_name = File.basename(path_or_name, '.*').camelize
       end
 

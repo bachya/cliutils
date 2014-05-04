@@ -9,7 +9,7 @@ module CLIUtils
     # @return [String]
     def validate(text)
       @is_valid = text.to_s =~ URI::DEFAULT_PARSER.regexp[:ABS_URI]
-      @message = "Response is not a url: #{ text }"
+      @message = "Response is not a URL: #{ text }"
     end
   end
 end

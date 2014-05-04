@@ -1,0 +1,27 @@
+prompts:
+  - prompt_text: Batman or Superman?
+    default: Batman
+    config_key: superhero
+    config_section: personal_info
+  - prompt_text: Do you feel smart for preferring Batman?
+    default: Y
+    config_key: batman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Batman
+  - prompt_text: Why do you prefer Superman?!
+    default: No clue
+    config_key: superman_answer
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman
+  - prompt_text: Why don't you have a clue?
+    config_key: no_clue
+    config_section: personal_info
+    prereqs:
+      - config_key: superhero
+        config_value: Superman
+      - config_key: superman_answer
+        config_value: No clue

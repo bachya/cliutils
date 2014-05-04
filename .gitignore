@@ -6,3 +6,4 @@ bin
 .tmp
 Gemfile.lock
 coverage
+npm-debug.log
