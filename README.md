@@ -22,7 +22,7 @@ It's fairly simple:
 
 CLIUtils offers:
 
-* **PrettyIO:** nicer-looking CLI messages
+* **PrettyIO:** some basic CLI sugar
 * **Messaging:** a system to display nicely-formatted messages to one or more tagets
 * **Configuration:** a app configuration manager
 * **Prefs:** a preferences prompter and manager
