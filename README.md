@@ -40,6 +40,7 @@ CLIUtils is certified against the following:
 * Ruby 2.1.0
 * Ruby 2.0.0
 * Ruby 1.9.3
+* jruby-mode19
 * Latest RBX
 
 # Installation
