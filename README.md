@@ -4,11 +4,13 @@ CLIUtils
 [![Gem Version](https://badge.fury.io/rb/cliutils.svg)](http://badge.fury.io/rb/cliutils)
 [![Coverage Status](http://img.shields.io/coveralls/bachya/cliutils/master.svg)](https://coveralls.io/r/bachya/cliutils?branch=master)
 
-CLIUtils is a library of functionality designed to alleviate common tasks and headaches when developing command-line (CLI) apps in Ruby.
+CLIUtils is a library of functionality designed to alleviate common tasks and
+headaches when developing command-line (CLI) apps in Ruby.
 
 # *Updating from 1.x.x to 2.0.0?*
 
-The big difference is schema changes for Validators, Behaviors, and Pre-Post Actions. Make sure you read the [wiki](https://github.com/bachya/cliutils/wiki "CLIUtils Wiki").
+The big difference is schema changes for Validators, Behaviors, and Pre-Post
+Actions. Make sure you read the [wiki](https://github.com/bachya/cliutils/wiki "CLIUtils Wiki").
 
 # Why?
 
@@ -77,17 +79,23 @@ include CLIUtils
 
 # Can I use it with...?
 
-I often get asked how nicely CLIUtils plays with other Ruby-based CLI libraries (like Dave Copeland's excellent [Methadone](https://github.com/davetron5000/methadone "Methadone") and [GLI](https://github.com/davetron5000/gli "GLI")). Answer: they play very nicely. I use CLIUtils in [Sifttter Redux](https://github.com/bachya/Sifttter-Redux "Sifttter Redux") (which is built on GLI) and [ExpandSync](https://github.com/bachya/ExpandSync "ExpandSync") (which is built on Methadone).
-
-# Known Issues
-
-* LoggerDelegator doesn't currently know what to do with `messenger.prompt`, so you'll have to manually log a `debug` message if you want that information logged.
+I often get asked how nicely CLIUtils plays with other Ruby-based CLI
+libraries (like Dave Copeland's excellent
+[Methadone](https://github.com/davetron5000/methadone "Methadone") and
+[GLI](https://github.com/davetron5000/gli "GLI")). Answer: they play very
+nicely. I use CLIUtils in
+[Sifttter Redux](https://github.com/bachya/Sifttter-Redux "Sifttter Redux")
+(which is built on GLI) and
+[ExpandSync](https://github.com/bachya/ExpandSync "ExpandSync") (which is built
+  on Methadone).
 
 # Bugs and Feature Requests
 
-To view my current roadmap and objectives, check out the [Trello board](https://trello.com/b/qXs7Yeir/cliutils "CLIUtils on Trello").
+To view my current roadmap and objectives, check out the
+[Trello board](https://trello.com/b/qXs7Yeir/cliutils "CLIUtils on Trello").
 
-To report bugs with or suggest features/changes for CLIUtils, please use the [Issues Page](http://github.com/bachya/cliutils/issues).
+To report bugs with or suggest features/changes for CLIUtils, please use
+the [Issues Page](http://github.com/bachya/cliutils/issues).
 
 # Contributing
 
@@ -106,8 +114,19 @@ Contributions are welcome and encouraged. To contribute:
 
 Copyright © 2014 Aaron Bach <bachya1208@gmail.com>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the 'Software'), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
