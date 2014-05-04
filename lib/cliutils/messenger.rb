@@ -2,6 +2,8 @@ require 'cliutils/pretty_io'
 require 'readline'
 
 module CLIUtils
+  # Allows for messages to be sent to STDOUT, as well
+  # as any number of Logger instances.
   class Messenger
     include PrettyIO
 
@@ -17,8 +19,8 @@ module CLIUtils
       @targets.merge!(target)
     end
 
-    # Empty method so that Messaging doesn't freak out when passed a debug
-    # message.
+    # Outputs a debug message; since this shouldn't appear in STDOUT,
+    # only send it to the Logger targets.
     # @return [void]
     def debug(m)
       @targets.each { |_, t| t.debug(m) }
@@ -50,10 +52,17 @@ module CLIUtils
       @targets.each { |_, t| t.info(m) }
     end
 
+    # Deprecated method to show info messages around
+    # a block of actions
+    # @param [Array] params
+    # @return [void]
     def info_block(*params)
       warn('As of 2.2.0, `info_block` is deprecated and nonfunctioning.')
     end
 
+    # Initializes a new Messenger with an optional
+    # Hash of targets.
+    # @param [Hash] targets Logger targets
     def initialize(targets = {})
       @targets = targets
     end

@@ -1,12 +1,12 @@
 require 'cliutils/messenger'
 
 module CLIUtils
-  #  CLIMessenger Module
-  #  Outputs coordinated messages to a variety of targets.
+  # Allows access to a single, unified instances of
+  # CLUtils::Messenger.
   module Messaging
     # Singleton method to return (or initialize, if needed)
-    # a LoggerDelegator.
-    # @return [LoggerDelegator]
+    # a CLIUtils::Messenger.
+    # @return [Messenger]
     def messenger
       @@messenger ||= CLIUtils::Messenger.new
     end

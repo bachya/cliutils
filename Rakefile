@@ -48,4 +48,4 @@ task :build do
   FileUtils.mv("./cliutils-#{version}.gem", "pkg")
 end
 
-task :default => [:spec] #:yard
+task :default => [:spec, :yard]

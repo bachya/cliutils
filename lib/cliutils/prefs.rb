@@ -92,7 +92,7 @@ module CLIUtils
     # Deregister an action based on the symbol it was
     # stored under.
     # @param [Symbol] symbol The symbol to remove
-    # @remove [void]
+    # @return [void]
     def self.deregister_action(symbol)
       _deregister_asset(symbol, Pref::ASSET_TYPE_ACTION)
     end
@@ -100,7 +100,7 @@ module CLIUtils
     # Deregister a behavior based on the symbol it was
     # stored under.
     # @param [Symbol] symbol The symbol to remove
-    # @remove [void]
+    # @return [void]
     def self.deregister_behavior(symbol)
       _deregister_asset(symbol, Pref::ASSET_TYPE_BEHAVIOR)
     end
@@ -108,28 +108,28 @@ module CLIUtils
     # Deregister a validator based on the symbol it was
     # stored under.
     # @param [Symbol] symbol The symbol to remove
-    # @remove [void]
+    # @return [void]
     def self.deregister_validator(symbol)
       _deregister_asset(symbol, Pref::ASSET_TYPE_VALIDATOR)
     end
 
     # Register an action.
     # @param [String] path The filepath of the action
-    # @remove [void]
+    # @return [void]
     def self.register_action(path)
       self._register_asset(path, Pref::ASSET_TYPE_ACTION)
     end
 
     # Register a behavior.
     # @param [String] path The filepath of the behavior
-    # @remove [void]
+    # @return [void]
     def self.register_behavior(path)
       _register_asset(path, Pref::ASSET_TYPE_BEHAVIOR)
     end
 
     # Register a validator.
     # @param [String] path The filepath of the validator
-    # @remove [void]
+    # @return [void]
     def self.register_validator(path)
       _register_asset(path, Pref::ASSET_TYPE_VALIDATOR)
     end
