@@ -20,14 +20,18 @@ describe CLIUtils::Pref do
       options: ['bachya'],
       pre: {
         message: 'Test pre message',
-        action: "#{ File.join(base_path, 'test_action.rb') }",
-        parameters: {
-          param1: 'value1'
+        action: {
+          name: "#{ File.join(base_path, 'test_action.rb') }",
+          parameters: {
+            param1: 'value1'
+          }
         }
       },
       post: {
         message: 'Test post message',
-        action: "#{ File.join(base_path, 'test_action.rb') }"
+        action: {
+          name: "#{ File.join(base_path, 'test_action.rb') }"
+        }
       },
       prereqs: [
         { config_section: 'section' },
@@ -47,14 +51,18 @@ describe CLIUtils::Pref do
       options: ['bachya'],
       pre: {
         message: 'Test pre message',
-        action: 'test',
-        parameters: {
-          param1: 'value1'
+        action: {
+          name: 'test',
+          parameters: {
+            param1: 'value1'
+          }
         }
       },
       post: {
         message: 'Test post message',
-        action: 'test'
+        action: {
+          name: 'test'
+        }
       },
       prereqs: [
         { config_section: 'section' },
@@ -94,8 +102,8 @@ describe CLIUtils::Pref do
     expect(pref.default).to eq(pref_data[:default])
     expect(pref.last_error_message).to eq(nil)
     expect(pref.options).to eq(['bachya'])
-    expect(pref.post).to eq({ message: 'Test post message', action: "#{ File.join(base_path, 'test_action.rb') }" })
-    expect(pref.pre).to eq({message: 'Test pre message', action: "#{ File.join(base_path, 'test_action.rb') }", parameters: { param1: 'value1' } })
+    expect(pref.post).to eq({message: 'Test post message', action: { name: '/Users/abach/Git/cliutils/spec/../support/test_action.rb' } })
+    expect(pref.pre).to eq({message: 'Test pre message', action: { name: '/Users/abach/Git/cliutils/spec/../support/test_action.rb', parameters: { param1: 'value1'} } })
     expect(pref.prereqs).to eq([{ config_section: 'section' }, { config_value: 'value' }])
     expect(pref.validator_objects[0].class).to eq(CLIUtils::TestValidator)
     expect(pref.validators).to eq([File.join(base_path, 'test_validator.rb')])

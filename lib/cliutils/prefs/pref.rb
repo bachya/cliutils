@@ -187,39 +187,35 @@ module CLIUtils
       ret
     end
 
+    def _eval_action(type = 'pre')
+      messenger.info(instance_variable_get("@#{ type }")[:message])
+      messenger.prompt('Press enter to continue')
+
+      if instance_variable_get("@#{ type }")[:action]
+        action_obj = _init_action(instance_variable_get("@#{ type }")[:action])
+        action_obj.run if action_obj
+      end
+    end
+
     # Evaluates the pre-prompt Hash and does the right thing. :)
     # @return [void]
     def _eval_pre
-      messenger.info(@pre[:message])
-      messenger.prompt('Press enter to continue')
-
-      if (@pre[:action])
-        action_obj = _init_action(@pre[:action])
-        action_obj.run if action_obj
-      end
+      _eval_action('pre')
     end
 
     # Evaluates the post-prompt Hash and does the right thing. :)
     # @return [void]
     def _eval_post
-      messenger.info(@post[:message])
-      messenger.prompt('Press enter to continue')
-
-      if (@post[:action])
-        action_obj = _init_action(@post[:action])
-        action_obj.run if action_obj
-      end
+      _eval_action('post')
     end
 
     # Attempts to instantiate a Pre or Post Action based on name; if
     # successful, the new object gets placed in @validator_objects
-    # @param [String] path_or_name The path to or name of the Action
+    # @param [Hash] action_hash The hash of action data (name, params, etc.)
     # @return [void]
-    def _init_action(path_or_name)
-      obj = _load_asset(ASSET_TYPE_ACTION, path_or_name)
-      unless obj.nil? || @pre[:parameters].nil?
-        obj.parameters = @pre[:parameters]
-      end
+    def _init_action(action_hash)
+      obj = _load_asset(ASSET_TYPE_ACTION, action_hash[:name])
+      obj.parameters = action_hash[:parameters]
       obj
     end
 
@@ -254,6 +250,7 @@ module CLIUtils
     # @return [Object]
     def _load_asset(type, path_or_name)
       asset_found = false
+
       if File.file?(File.expand_path(path_or_name))
         # If the file exists, we're assuming that the user
         # passed a filepath.

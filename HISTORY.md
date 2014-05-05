@@ -1,3 +1,9 @@
+# 2.2.3 (2014-05-04)
+
+* Changed Messenger `debug` method to be conditional
+* Fixed a few bugs in Pref Actions
+* Fixed Pref spec
+
 # 2.2.2 (2014-05-04)
 
 * Added dot-notation syntax for Hash extensions

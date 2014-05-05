@@ -23,7 +23,7 @@ module CLIUtils
     # only send it to the Logger targets.
     # @return [void]
     def debug(m)
-      @targets.each { |_, t| t.debug(m) }
+      @targets.each { |_, t| t.debug { m } }
     end
 
     # Detaches a delegation target.
