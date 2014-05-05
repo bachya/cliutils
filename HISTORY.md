@@ -1,3 +1,7 @@
+# 2.2.2 (2014-05-04)
+
+* Added dot-notation syntax for Hash extensions
+
 # 2.2.1 (2014-05-04)
 
 * Easier Configuration path setting

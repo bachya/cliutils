@@ -110,9 +110,12 @@ module CLIUtils
     # Hook that fires when a non-existent method is called.
     # Allows this module to return data from the config
     # Hash when given a method name that matches a key.
+    # @param [<String, Symbol>] name The name of the method
+    # @param [Array] args The arguments
+    # @yield if a block is passed
     # @return [Hash] The hash with the method's name as key
     def method_missing(name, *args, &block)
-      @data[name.to_sym] || @data.merge!(name.to_sym => {})
+      @data[name.to_sym] ||= {}
     end
 
     # Clears the configuration data.

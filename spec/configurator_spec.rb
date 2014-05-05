@@ -53,6 +53,12 @@ describe CLIUtils::Configuration do
     config.data[:test].merge!(name: 'Bob')
     expect(config.data[:test][:name]).to eq('Bob')
     expect(config.test[:name]).to eq('Bob')
+    expect(config.test.name).to eq('Bob')
+  end
+
+  it 'allows data setting via hash or magic methods' do
+    config.test.name = 'Aaron'
+    expect(config.data[:test][:name]).to eq('Aaron')
   end
 
   it 'resets the entire data collection' do

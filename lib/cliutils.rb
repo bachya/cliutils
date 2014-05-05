@@ -1,7 +1,6 @@
 require 'cliutils/ext/hash_extensions'
 require 'cliutils/ext/logger_extensions'
 require 'cliutils/ext/string_extensions'
-
 require 'cliutils/constants'
 require 'cliutils/pretty_io'
 require 'cliutils/configurator'

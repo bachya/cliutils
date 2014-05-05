@@ -10,7 +10,8 @@ class Hash
     self.merge(other_hash) do |key, oldval, newval|
       oldval = oldval.to_hash if oldval.respond_to?(:to_hash)
       newval = newval.to_hash if newval.respond_to?(:to_hash)
-      oldval.class.to_s == 'Hash' && newval.class.to_s == 'Hash' ? oldval.deep_merge(newval) : newval
+      oldval.class.to_s == 'Hash' && newval.class.to_s == 'Hash' ?
+        oldval.deep_merge(newval) : newval
     end
   end
 
@@ -64,6 +65,21 @@ class Hash
   # @return [Hash] The original Hash
   def deep_transform_keys!(&block)
     _deep_transform_keys_in_object!(self, &block)
+  end
+
+  # Allows for dot-notation getting/setting within
+  # a Hash.
+  # http://ceronio.net/2012/01/javascript-style-object-value-assignment-in-ruby/
+  # @param [<String, Symbol>] meth The method name
+  # @param [Array] args Any passed arguments
+  # @yield if a block is passed
+  def method_missing(meth, *args, &block)
+    meth_name = meth.to_s
+    if meth_name[-1,1] == '='
+      self[meth_name[0..-2].to_sym] = args[0]
+    else
+      self[meth] || self[meth_name]
+    end
   end
 
   # Recursively searches a hash for the passed
