@@ -115,7 +115,11 @@ module CLIUtils
     # @yield if a block is passed
     # @return [Hash] The hash with the method's name as key
     def method_missing(name, *args, &block)
-      @data[name.to_sym] ||= {}
+      if name[-1,1] == '='
+        @data[name[0..-2].to_sym] = args[0]
+      else
+        @data[name.to_sym] ||= {}
+      end
     end
 
     # Clears the configuration data.

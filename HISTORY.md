@@ -1,3 +1,7 @@
+# 2.2.4 (2014-05-05)
+
+* Fixed a bug with dot-notation access in Configurator
+
 # 2.2.3 (2014-05-04)
 
 * Changed Messenger `debug` method to be conditional
