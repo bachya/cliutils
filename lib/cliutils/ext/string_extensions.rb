@@ -55,6 +55,14 @@ class String
     downcase
   end
 
+  # Truncates a string to a certain length
+  # and adds an ellipsis after.
+  # @param [Fixnum] length The length to truncate at
+  # @return [String]
+  def truncate(length = 30)
+    self[0..length].gsub(/\s\w+\s*$/, '...')
+  end
+
   # Makes the associated string white.
   # @return [void]
   def white
