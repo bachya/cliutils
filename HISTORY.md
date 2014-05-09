@@ -1,4 +1,4 @@
-# 2.2.5 (2014-05-05)
+# 2.2.5 (2014-05-08)
 
 * Added truncate String method
 
