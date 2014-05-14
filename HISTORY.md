@@ -1,3 +1,7 @@
+# 2.2.6 (2014-05-13)
+
+* Added small logic to string truncate to deal with strings under length
+
 # 2.2.5 (2014-05-08)
 
 * Added truncate String method

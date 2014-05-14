@@ -60,6 +60,7 @@ class String
   # @param [Fixnum] length The length to truncate at
   # @return [String]
   def truncate(length = 30)
+    return self if self.length < length
     self[0..length].gsub(/\s\w+\s*$/, '...')
   end
 

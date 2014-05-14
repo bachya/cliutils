@@ -8,5 +8,5 @@ module CLIUtils
   SUMMARY = 'Sugary goodness for Ruby CLI apps.'
 
   # The current version of the gem
-  VERSION = '2.2.5'
+  VERSION = '2.2.6'
 end
